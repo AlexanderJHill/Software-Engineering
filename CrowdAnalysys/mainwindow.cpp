@@ -12,3 +12,13 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_MainWindow_iconSizeChanged(const QSize &iconSize)
+{
+
+}
+
+void MainWindow::on_textBrowser_destroyed()
+{
+
+}

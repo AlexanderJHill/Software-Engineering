@@ -15,6 +15,11 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_MainWindow_iconSizeChanged(const QSize &iconSize);
+
+    void on_textBrowser_destroyed();
+
 private:
     Ui::MainWindow *ui;
 };
