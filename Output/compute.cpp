@@ -5,8 +5,14 @@ Compute::Compute(){
 }
 
 void Compute::calcOutput(){
-    //fisherman vs time of day
+    //fishermen vs time of day
     //percentage of success vs # fisherman, weather,experience and skill
+    
+    //go fishing = 1
+    //stay at home = -1
+    //Majority at home < 0, higher success percentage
+    //Majority fishing > 0, lower success percentage
+    
 }
 
 void Compute::resultGen(){
@@ -21,7 +27,9 @@ void Compute::dataUpdate(){
 }
 
 int Compute::stratGuide(){
-
+    //influence percentage, p
+    
+    
     return strategy;
 }
 
