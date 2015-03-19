@@ -18,9 +18,20 @@ public:
     void log(const QString& text);
 
 private slots:
+    void on_fishers_valueChanged(int value);
+    void on_locations_valueChanged(int value);
+    void on_fishtypes_valueChanged(int value);
+    void on_fishpop_valueChanged(int value);
+    void on_horizontalSlider_4_valueChanged(int value);
+
+    void on_lineEdit_0_textEdited(const QString &arg1);
+    void on_lineEdit_1_textEdited(const QString &arg1);
+    void on_lineEdit_2_textEdited(const QString &arg1);
+    void on_lineEdit_3_textEdited(const QString &arg1);
+    void on_lineEdit_4_textEdited(const QString &arg1);
 
 
-
+    void on_weather_clicked();
 
 private:
     Ui::MainWindow *ui;

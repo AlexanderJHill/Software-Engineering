@@ -8,12 +8,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    ui->plainTextEdit->setReadOnly(true);
     log("auto scrolling simulation log");
     for (int i=0;i<10;i++){
         log("log test");
     }
-
 }
 
 MainWindow::~MainWindow()
@@ -26,3 +25,68 @@ void MainWindow::log(const QString& text){
     ui->plainTextEdit->verticalScrollBar()->setValue(ui->plainTextEdit->verticalScrollBar()->maximum()); // Scrolls to the bottom
 }
 
+void MainWindow::on_fishers_valueChanged(int value)
+{
+    QString s = QString::number(value);
+    ui->lineEdit_0->setText(s);
+    log("[test] fisher value changed to ");
+    log(s);
+}
+
+
+void MainWindow::on_locations_valueChanged(int value)
+{
+    QString s = QString::number(value);
+    ui->lineEdit_1->setText(s);
+}
+
+void MainWindow::on_fishtypes_valueChanged(int value)
+{
+    QString s = QString::number(value);
+    ui->lineEdit_2->setText(s);
+}
+
+void MainWindow::on_fishpop_valueChanged(int value)
+{
+    QString s = QString::number(value);
+    ui->lineEdit_3->setText(s);
+}
+
+void MainWindow::on_horizontalSlider_4_valueChanged(int value)
+{
+    QString s = QString::number(value);
+    ui->lineEdit_4->setText(s);
+}
+
+void MainWindow::on_lineEdit_0_textEdited(const QString &arg1)
+{
+    ui->fishers->setValue(arg1.toInt());
+}
+
+void MainWindow::on_lineEdit_1_textEdited(const QString &arg1)
+{
+    ui->locations->setValue(arg1.toInt());
+}
+
+void MainWindow::on_lineEdit_2_textEdited(const QString &arg1)
+{
+    ui->fishtypes->setValue(arg1.toInt());
+}
+
+void MainWindow::on_lineEdit_3_textEdited(const QString &arg1)
+{
+    ui->fishpop->setValue(arg1.toInt());
+}
+
+void MainWindow::on_lineEdit_4_textEdited(const QString &arg1)
+{
+    ui->horizontalSlider_4->setValue(arg1.toInt());
+}
+
+void MainWindow::on_weather_clicked()
+{
+    if(ui->weather->isChecked())
+        log("[test] weather enabled");
+    else
+        log("[test] weather disabled");
+}

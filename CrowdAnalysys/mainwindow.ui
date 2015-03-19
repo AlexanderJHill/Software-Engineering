@@ -37,14 +37,14 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
-        <widget class="QSlider" name="horizontalSlider_3">
+        <widget class="QSlider" name="fishers">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_2">
+        <widget class="QLineEdit" name="lineEdit_0">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -56,6 +56,12 @@
            <width>50</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="readOnly">
+          <bool>false</bool>
+         </property>
+         <property name="placeholderText">
+          <string>0</string>
          </property>
         </widget>
        </item>
@@ -84,14 +90,14 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
-        <widget class="QSlider" name="horizontalSlider_2">
+        <widget class="QSlider" name="locations">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_5">
+        <widget class="QLineEdit" name="lineEdit_1">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -103,6 +109,9 @@
            <width>50</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="placeholderText">
+          <string>0</string>
          </property>
         </widget>
        </item>
@@ -131,14 +140,14 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_3">
        <item>
-        <widget class="QSlider" name="horizontalSlider">
+        <widget class="QSlider" name="fishtypes">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="lineEdit_2">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -150,6 +159,9 @@
            <width>50</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="placeholderText">
+          <string>0</string>
          </property>
         </widget>
        </item>
@@ -178,7 +190,7 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
-        <widget class="QSlider" name="horizontalSlider_4">
+        <widget class="QSlider" name="fishpop">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -191,6 +203,9 @@
            <width>50</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="placeholderText">
+          <string>0</string>
          </property>
         </widget>
        </item>
@@ -219,7 +234,7 @@
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_5">
        <item>
-        <widget class="QSlider" name="horizontalSlider_5">
+        <widget class="QSlider" name="horizontalSlider_4">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
@@ -232,6 +247,9 @@
            <width>50</width>
            <height>16777215</height>
           </size>
+         </property>
+         <property name="placeholderText">
+          <string>0</string>
          </property>
         </widget>
        </item>
@@ -251,7 +269,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QGroupBox" name="groupBox_3">
+      <widget class="QGroupBox" name="weather">
        <property name="title">
         <string>Weather</string>
        </property>
@@ -264,21 +282,21 @@
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_3">
             <item>
-             <widget class="QRadioButton" name="radioButton_3">
+             <widget class="QRadioButton" name="radioButton0">
               <property name="text">
                <string>Overcast</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton_2">
+             <widget class="QRadioButton" name="radioButton1">
               <property name="text">
                <string>Rain</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButton">
+             <widget class="QRadioButton" name="radioButton2">
               <property name="text">
                <string>Snow</string>
               </property>
@@ -341,7 +359,7 @@
       <x>10</x>
       <y>580</y>
       <width>781</width>
-      <height>101</height>
+      <height>111</height>
      </rect>
     </property>
     <property name="documentTitle">
