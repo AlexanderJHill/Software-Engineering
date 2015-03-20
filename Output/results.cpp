@@ -8,49 +8,27 @@ Results::Results(){
 }
 
 //capital == success points
-float Results::computeAgentResults(float result,float decision){
-    float rt;
-    float tmpSum = 0;
+ //result should be the minority choice
+void Results::computeAgentResults(float result,float decision){
+    //float rt;
+   // float tmpSum = 0;
     //Strategy a;
     //float decision = a.getDecision();
+   
     if(result == decision)	//win
     {
         capital++;
-        rt = 1;
+       // rt = 1;
     }
     else			//lose
     {
         capital--;
-        rt = 0;
+        //rt = 0;
     }
-    /*
-    //update strategy scores
-    for(int i=0;i<10;i++)	//10 strategies
-    {
-        stratPter[i]->updateScore(result,STI);
-        //remove low scored strat
-        if(stratPter[i]->getScore() < 0)
-        {
-            stratPter[i] = new Strategy;
-        }
-        //update the new best strategy
-        tmpSum += stratPter[i]->getScore();
-        if(stratPter[i]->getScore() > bestStratScore)
-        {
-            bestStratIndex = i;
-            bestStratScore = stratPter[i]->getScore();
-        }
-    }
-    */
-    
-   
-    avgStratScore = tmpSum/10;
-    return rt;
-    
     
 }
 float Results::getAgentResults(){
-     std::cout<<capital<<'\n';
+    // std::cout<<capital<<'\n';
     return capital;
     
 }
