@@ -1,3 +1,4 @@
+//contains trategy algorithm
 #include "strategy.h"
 #include<iostream>
 #include <ctime>
@@ -30,18 +31,18 @@ float Strategy::getThreshold(){
 }
 
 
-//This is the decision for every agent
+//This is the decision for every agent, random at first
 //go fishing = 1
 //stay at home = -1
-float Strategy::earlyDecision(float early){
+int Strategy::earlyDecision(float early){
     return early;
 }
 
-float Strategy::getDecision(){
+int Strategy::getDecision(){
     float p = getThreshold();
     
     //Test values
-    float earlyd = earlyDecision(-1);
+    //int earlyd = earlyDecision(-1);
     
     if (p < 70){
         decision = earlyd;//early decsion
@@ -55,10 +56,10 @@ float Strategy::getDecision(){
 
 
 //return strategy score
-float Strategy::stratScore(float majority){
- 
-    float decision = getDecision();
+int Strategy::stratScore(int majority){
     
+    //Get majority decision from agents
+    int decision = getDecision();
     float p = getThreshold();
     
     if(p> 70){
@@ -88,14 +89,16 @@ float Strategy::stratScore(float majority){
 }
 
 
-/*Testing
+/*
 int main (int argc, char** argv){
     Strategy a;
-    a.stratScore(1);
+
+    a.earlyDecision(1);
     a.stratScore(-1);
-    a.stratScore(1);
+
     
     
     return 0;
 }
 */
+
