@@ -45,7 +45,7 @@ int Strategy::getDecision(){
     //int earlyd = earlyDecision(-1);
     
     if (p < 70){
-        decision = earlyd;//early decsion
+        decision = early;//early decsion
     }
     else if (p>70){
         decision = 1;//go fishing
