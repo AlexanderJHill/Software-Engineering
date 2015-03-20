@@ -2,18 +2,17 @@
 #define ____strategy__
 
 #include <stdio.h>
-
+//strategy class
 class Strategy{
 private:
-    float score;
-    float decision;
+    int score;
+    int decision;
 public:
     Strategy();
     float getThreshold();
-    float earlyDecision(float early);
-    float getDecision();
-    float stratDecide();
-    float stratScore(float majority);
+    int earlyDecision(int early);
+    int getDecision();
+    int stratScore(int majority);
 };
 
 #endif /* defined(____strategy__) */
