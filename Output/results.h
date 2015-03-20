@@ -11,7 +11,7 @@ private:
     float avgStratScore;
 public:
     Results();
-    float computeAgentResults(float results,float decision);
+    void computeAgentResults(float results,float decision);
     float getAgentResults();
     
     
