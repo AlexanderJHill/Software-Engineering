@@ -2,20 +2,15 @@
 #define ____results__
 
 #include <stdio.h>
-
+#include "strategy.h"
 class Results{
 private:
-    float capital;
-    float bestStratIndex;
-    float bestStratScore;
-    float avgStratScore;
+    int success;
+    int decision;
 public:
     Results();
-    void computeAgentResults(float results,float decision);
-    float getAgentResults();
-    
-    
+    void computeAgentsSuccess(int majority,int decided);
+    int getAgentsSuccess();
+    float computeCrowdness(float goFish);
 };
-
-
 #endif /* defined(____results__) */
