@@ -95,20 +95,25 @@ void MainWindow::on_weather_clicked()
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    QLabel *saveFileNameLabel;
-    int frameStyle = QFrame::Sunken | QFrame::Panel;
-    saveFileNameLabel = new QLabel;
-    saveFileNameLabel->setFrameStyle(frameStyle);
 
-    QFileDialog::Options options;
-         QString selectedFilter;
-         QString fileName = QFileDialog::getSaveFileName(this,
-                                     tr("Save File As"),
-                                     saveFileNameLabel->text(),
-                                     tr("All Files (*);;Text Files (*.txt)"),
-                                     &selectedFilter,
-                                     options);
-         if (!fileName.isEmpty())
-             saveFileNameLabel->setText(fileName);
+    graphview.show();
 
 }
+
+//code to display a save dialog
+//
+//QLabel *saveFileNameLabel;
+//int frameStyle = QFrame::Sunken | QFrame::Panel;
+//saveFileNameLabel = new QLabel;
+//saveFileNameLabel->setFrameStyle(frameStyle);
+
+//QFileDialog::Options options;
+//     QString selectedFilter;
+//     QString fileName = QFileDialog::getSaveFileName(this,
+//                                 tr("Save File As"),
+//                                 saveFileNameLabel->text(),
+//                                 tr("All Files (*);;Text Files (*.txt)"),
+//                                 &selectedFilter,
+//                                 options);
+//     if (!fileName.isEmpty())
+//         saveFileNameLabel->setText(fileName);

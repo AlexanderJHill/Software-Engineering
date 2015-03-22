@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "graphview.h"
 
 namespace Ui {
 class MainWindow;
@@ -37,6 +38,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    Graphview graphview;
 };
 
 #endif // MAINWINDOW_H

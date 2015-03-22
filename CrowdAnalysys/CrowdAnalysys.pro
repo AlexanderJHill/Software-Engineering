@@ -6,15 +6,22 @@
 
 QT       += core gui
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 TARGET = CrowdAnalysys
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+    graphview.cpp \
+    qcpdocumentobject.cpp \
+    mainwindow.cpp \
+    qcustomplot.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    graphview.h \
+    qcpdocumentobject.h \
+    qcustomplot.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    graphview.ui
