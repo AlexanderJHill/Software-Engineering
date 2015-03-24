@@ -1,30 +1,6 @@
-/***************************************************************************
-**                                                                        **
-**  QCustomPlot, an easy to use, modern plotting widget for Qt            **
-**  Copyright (C) 2011, 2012, 2013, 2014 Emanuel Eichhammer               **
-**                                                                        **
-**  This program is free software: you can redistribute it and/or modify  **
-**  it under the terms of the GNU General Public License as published by  **
-**  the Free Software Foundation, either version 3 of the License, or     **
-**  (at your option) any later version.                                   **
-**                                                                        **
-**  This program is distributed in the hope that it will be useful,       **
-**  but WITHOUT ANY WARRANTY; without even the implied warranty of        **
-**  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         **
-**  GNU General Public License for more details.                          **
-**                                                                        **
-**  You should have received a copy of the GNU General Public License     **
-**  along with this program.  If not, see http://www.gnu.org/licenses/.   **
-**                                                                        **
-****************************************************************************
-**           Author: Emanuel Eichhammer                                   **
-**  Website/Contact: http://www.qcustomplot.com/                          **
-**             Date: 27.12.14                                             **
-**          Version: 1.3.0                                                **
-****************************************************************************/
-
 #include "Graphview.h"
 #include "ui_Graphview.h"
+#include <QtGui>
 
 Graphview::Graphview(QWidget *parent) :
 QMainWindow(parent),
@@ -49,6 +25,8 @@ Graphview::~Graphview()
 
 void Graphview::setupPlot()
 {
+
+
   // The following plot setup is taken from the sine demo:
   // add two new graphs and set their look:
   ui->plot->addGraph();
@@ -56,6 +34,11 @@ void Graphview::setupPlot()
   ui->plot->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
   ui->plot->addGraph();
   ui->plot->graph(1)->setPen(QPen(Qt::red)); // line color red for second graph
+
+  ui->plot_2->addGraph();
+  ui->plot_2->graph(0)->setPen(QPen(Qt::black));
+  ui->plot_2->graph(0)->setBrush(QBrush(QColor(0, 0, 0, 30)));
+
   // generate some points of data (y0 for first, y1 for second graph):
   QVector<double> x(250), y0(250), y1(250);
   for (int i=0; i<250; ++i)
@@ -80,9 +63,16 @@ void Graphview::setupPlot()
   ui->plot->graph(0)->rescaleAxes();
   // same thing for graph 1, but only enlarge ranges (in case graph 1 is smaller than graph 0):
   ui->plot->graph(1)->rescaleAxes(true);
+
+  connect(ui->plot_2->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->plot_2->xAxis2, SLOT(setRange(QCPRange)));
+  connect(ui->plot_2->yAxis, SIGNAL(rangeChanged(QCPRange)), ui->plot_2->yAxis2, SLOT(setRange(QCPRange)));
+  ui->plot_2->graph(0)->setData(x, y0);
+
   // Note: we could have also just called customPlot->rescaleAxes(); instead
   // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking:
   ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+  ui->plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+
 }
 
 void Graphview::on_actionInsert_Plot_triggered()

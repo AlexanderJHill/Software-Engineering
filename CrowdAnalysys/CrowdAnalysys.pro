@@ -16,12 +16,14 @@ SOURCES += main.cpp\
     graphview.cpp \
     qcpdocumentobject.cpp \
     mainwindow.cpp \
-    qcustomplot.cpp
+    qcustomplot.cpp \
+    UserSettings.cpp
 
 HEADERS  += mainwindow.h \
     graphview.h \
     qcpdocumentobject.h \
-    qcustomplot.h
+    qcustomplot.h \
+    UserSettings.h
 
 FORMS    += mainwindow.ui \
     graphview.ui
