@@ -2,7 +2,7 @@
 #include <chrono>
 #include <random>
 
-vector<double> generateRandomNumber(double lowerBound, double upperBound, int length)
+vector<int> generateRandomNumber(int lowerBound, int upperBound, int length)
 {
 	// construct a trivial random generator engine from a time-based seed:
 	/*unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
@@ -19,7 +19,7 @@ vector<double> generateRandomNumber(double lowerBound, double upperBound, int le
 	mt19937 eng(rd()); // seed the generator
 	uniform_int_distribution<> distr(lowerBound, upperBound); // define the range
 	
-	vector<double> randNumber;
+	vector<int> randNumber;
 	for (int i = 0; i < length; i++){
 		randNumber.push_back(distr(eng));
 	}

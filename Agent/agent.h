@@ -26,7 +26,7 @@ private:
 
 
 public:
-	Agent(); //constructor
+	Agent(vector<Strategy *> strat); //constructor
 	vector<Strategy *> getStrat();
 	void calcThreshold();
 	int getDecision();
@@ -45,6 +45,8 @@ public:
 	void setCommunication(int newCommunication);
 	void updateStrategyScore(int minoritydecision);
 };
+
+void initAgent(list<Agent *> *allAgent, int numAgent, list<Strategy *> stratlist);
 
 //struct list *get_all_agent();
 #endif

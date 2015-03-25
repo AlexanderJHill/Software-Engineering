@@ -4,6 +4,6 @@
 #include <vector>
 using namespace std;
 
-vector<double> generateRandomNumber(double lowerBound, double upperBound, int length);
+vector<int> generateRandomNumber(int lowerBound, int upperBound, int length);
 
 #endif

@@ -3,19 +3,18 @@
 
 static list<Agent> all_agent;
 
-Agent::Agent(){
-	vector<double> randDecision = generateRandomNumber(-1.0, 1.0, 3);
+Agent::Agent(vector<Strategy *> newstrat){
+	//generate random history
+	vector<int> randDecision = generateRandomNumber(-1, 1, 3);
 	for (int i = 0; i < 3; i++){
-		//generate random history
 		if (randDecision.at(i) <= 0)
 			history.push_back(-1);
 		else
 			history.push_back(1);
-
-		//generate random strategy
-		//Strategy *randStrat = new Strategy();
-		//strat.push_back(randStrat);
 	}
+
+	//maps the strategy
+	strat = newstrat;
 }
 
 vector<Strategy *> Agent::getStrat()
@@ -163,4 +162,21 @@ void Agent::updateStrategyScore(int minoritydecision)
 			bestStrategy->updateScore(-1);
 	}
 
+}
+
+void initAgent(list<Agent *> *allAgent, int numAgent, list<Strategy *> stratlist)
+{
+	vector<int> randStrat = generateRandomNumber(0, 19, numAgent * 3);
+	vector<Strategy *> strat;
+	for (int i = 0; i < numAgent; i++)
+	{
+		for (int j = 0; j < 3; j++){
+			list<Strategy *>::iterator it = stratlist.begin();
+			advance(it, randStrat.at(i + j));
+			strat.push_back(*it);
+		}
+		Agent *newAgent = new Agent(strat);
+		allAgent->push_back(newAgent);
+		strat.clear();
+	}
 }
