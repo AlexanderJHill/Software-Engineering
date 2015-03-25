@@ -79,7 +79,7 @@ void Agent::calcThreshold()
 	float T = (fishduration / 24) * 20;
 	float W = (-abs((67.5 - temp) / 67.5) * 20) + 20;
 	float p = E + T + W;
-	//haven't include frequency of communication is threshold
+	//haven't include frequency of communication in threshold
 	threshold = p;
 }
 
@@ -99,8 +99,10 @@ void Agent::makeDecision()
 	//change the earlydecision
 	if (threshold >= 85 && earlydecison == -1)
 		decision = 1;
-	if (threshold <= 40 && earlydecison == 1)
+	else if (threshold <= 40 && earlydecison == 1)
 		decision = -1;
+	else
+		decision = earlydecison;
 }
 
 void Agent::makeEarlyDecision()
@@ -133,7 +135,7 @@ void Agent::makeEarlyDecision()
 	earlydecison = decisionPattern.at(index);
 }
 
-void Agent::updateStrategyScore(int minoritydecision)
+void Agent::updateStrategyScore(int winnigScore)
 {
 	//strategy score will not be update if earlydecision is changed
 	//by the threshold
@@ -156,7 +158,7 @@ void Agent::updateStrategyScore(int minoritydecision)
 		//update the score. Strategy score added by 1 if the agent's decision is
 		//equal to minoritydecision. Strategy score is minus by 1 if the agent's
 		//decision is not equal to minoritydecision
-		if (decision == minoritydecision)
+		if (decision*winnigScore > 0)
 			bestStrategy->updateScore(1);
 		else
 			bestStrategy->updateScore(-1);
