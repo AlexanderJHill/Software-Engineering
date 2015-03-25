@@ -1,6 +1,8 @@
 #include "agent.h"
 #include "randomgenerator.h"
 
+static list<Agent> all_agent;
+
 Agent::Agent(){
 	vector<double> randDecision = generateRandomNumber(-1.0, 1.0, 3);
 	for (int i = 0; i < 3; i++){
@@ -11,8 +13,8 @@ Agent::Agent(){
 			history.push_back(1);
 
 		//generate random strategy
-		Strategy *randStrat = new Strategy();
-		strat.push_back(randStrat);
+		//Strategy *randStrat = new Strategy();
+		//strat.push_back(randStrat);
 	}
 }
 
@@ -162,4 +164,3 @@ void Agent::updateStrategyScore(int minoritydecision)
 	}
 
 }
-

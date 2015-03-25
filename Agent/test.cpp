@@ -2,24 +2,32 @@
 #include <iostream>
 #include <chrono>
 #include <random>
+#include <list>
+#include <bitset>
 #include "randomgenerator.h"
 #include "agent.h"
+#include "strategy.h"
 using namespace std;
 
 void main()
 {
-	Agent agent[10];
-	vector<Strategy *> strat = agent[0].getStrat();
+	list<Strategy *> *allStrat = new list<Strategy *>();
+	initStrategy(allStrat);
+	list<Strategy *>::iterator it = allStrat->begin();
 
-	//print out strategy pattern
-	for (int i = 0; i < strat.size(); i++)
-	{
-		Strategy *s = strat.at(i);
-		cout << "Strategy " << i + 1 << endl;
-		vector<int> decision = s->getDecisionPattern();
+	int i = 0;
+	while (i < allStrat->size()){
+		Strategy *strat = *it;
+		vector<int> decision = strat->getDecisionPattern();
+		cout << "Strategy " << i << endl;
 		for (int j = 0; j < decision.size(); j++)
 		{
 			cout << decision.at(j) << endl;
 		}
+		it++; i++;
 	}
+	cout << "Length: " << allStrat->size();
+
+
+
 }
