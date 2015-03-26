@@ -45,6 +45,7 @@ void main()
 		//keep track of decision to get the winner side
 		winner = winner + curAgent->getDecision();
 		//cout << curAgent->getDecision() << endl;
+		counter++;
 	}
 
 	//updating the strategy score

@@ -6,6 +6,8 @@
 #include <vector>
 using namespace std;
 
+static int numOfAgent;
+
 class Agent{
 private:
 	vector<Strategy *> strat; //holds the 3 unique strategies
