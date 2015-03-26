@@ -3,22 +3,25 @@
 #include "agent.h"
 #include "strategy.h"
 #include "spot.h"
+/*
+ constructor
+ */
 Spot::Spot(){
-    goFish = 0;//Initial
+    numAgent = 0;//Initial
+    maxcapacity = 0;
 }
 
 /*
-maxcapacity of fisherman variable is initialized for a given spot
+ maxcapacity of fisherman variable is initialized for a given spot
  */
 void Spot::setCap(double cap) {
     maxcapacity = cap;
 }
 
-/* @pre: maxcapacity is initialized
-@post: None
-@return: Returns a spot maxcapacity
+/* 
+ Returns a spot's maxcapacity
  */
-int Spot::getSpotCapacity() {
+double Spot::getSpotCapacity() {
     return maxcapacity;
 }
 
@@ -36,38 +39,137 @@ int Spot::getAgentNum() {
     return numAgent;
 }
 
-/* @pre: The number of Agents going to this specific spot has been decided.
- @post: The crowdness, in percentage
-*/
-double Spot::crowdness() {
-    double crowdness =( goFish/maxcapacity)*100;
-   // cout<<crowdness<<'\n';
+/* @pre: 
+ Computes the crowdness, in percentage
+ */
+double Spot::crowdness(double goFish) {
+    double crowdness =(goFish/maxcapacity)*100;
+    //cout<<crowdness<<'\n';
     return crowdness;
 }
-/*
- Majority decides to fish or not according to decision
- */
-void Spot::decideToGoFish(){
-        //Get the Agents decision to know if they went fishing or not
+
+
+
+ int main(){
+     
+     double goFishing = 0;//Initialize agents deciding to go fishing
+     int numAgent = 1000;// getfisherNum();
+     int temperature = 50; //getfishTemp();
+     int duration = 24;//getRunTime();
+     int loc = 2;//getFishLoc();
+     int skill = 3;//getFishSkill();
+     int comm = 5; //getfisherComm();
+     
+     double max = (numAgent)/(loc);//maximum agent per spot, even division of input agents
+if(loc == 2){// when there are two locations initialize two spots
+     //First spot
+     Spot a;
+     a.setCap(max);//should be according to AgentNum
+     a.setAgentNum(max);
+     //Get the Agents decision to know if they went fishing or not
+     list<Strategy *> allStrat;
+     initStrategy(&allStrat);
+     list<Strategy *>::iterator it = allStrat.begin();
+    
+     list<Agent *> allAgent;
+     initAgent(&allAgent, max, allStrat);
+ 
+     for (list<Agent *>::iterator it = allAgent.begin(); it != allAgent.end(); it++)
+     {
+         Agent *curAgent = *it;
+         //These should be from user input
+         curAgent->setTemp(temperature);
+         curAgent->setSkill(skill);
+         curAgent->setFishduration(duration);
+         curAgent->setCommunication(comm);
+ 
+         //Make agent decisions
+         curAgent->makeEarlyDecision();
+         curAgent->calcThreshold();
+         curAgent->makeDecision();
+         curAgent->updateHistory();
+ 
+         //If decides to go, then increase going fishing by 1
+         if(curAgent->getDecision()==1){
+             goFishing++;
+            // cout<<goFishing<<'\n';
+         }
+ 
+     }
+     cout<<a.crowdness(goFishing)<<"%"<<'\n';
+
+     
+     //Second spot
+     Spot b;
+     b.setCap(max);//should be according to AgentNum
+     b.setAgentNum(max);
+     //Get the Agents decision to know if they went fishing or not
+     
+     list<Agent *> allAgent2;
+     initAgent(&allAgent2, max, allStrat);
+     
+     for (list<Agent *>::iterator it = allAgent2.begin(); it != allAgent2.end(); it++)
+     {
+         Agent *curAgent = *it;
+         //These should be from user input
+         curAgent->setTemp(temperature);
+         curAgent->setSkill(skill);
+         curAgent->setFishduration(duration);
+         curAgent->setCommunication(comm);
+         
+         //Make agent decisions
+         curAgent->makeEarlyDecision();
+         curAgent->calcThreshold();
+         curAgent->makeDecision();
+         curAgent->updateHistory();
+         
+         //If decides to go, then increase going fishing by 1
+         if(curAgent->getDecision()==1){
+             goFishing++;
+             // cout<<goFishing<<'\n';
+         }
+         
+     }
+     cout<<b.crowdness(goFishing)<<"%"<<'\n';
+    
+    for (list<Agent *>::iterator it = allAgent.begin(); it != allAgent.end(); it++)
+    {
+        Agent *curAgent = *it;
+        curAgent->updateStrategyScore(curAgent->getDecision());
+    }
+    
+   
+    cout << "Strategy Score" << '\n';
+    for (list<Strategy *>::iterator it = allStrat.begin(); it != allStrat.end(); it++)
+    {
+        Strategy *curStrat = *it;
+        cout << curStrat->getScore() << '\n';
+    }
+
+}
+     
+else{
+    //First spot
+    Spot a;
+    a.setCap(max);//should be according to AgentNum
+    a.setAgentNum(max);
+    //Get the Agents decision to know if they went fishing or not
     list<Strategy *> allStrat;
     initStrategy(&allStrat);
     list<Strategy *>::iterator it = allStrat.begin();
     
-    
     list<Agent *> allAgent;
-    int numAgent = 100;//Get from user input
-    initAgent(&allAgent, numAgent, allStrat);
-    
+    initAgent(&allAgent, max, allStrat);
     
     for (list<Agent *>::iterator it = allAgent.begin(); it != allAgent.end(); it++)
     {
         Agent *curAgent = *it;
         //These should be from user input
-        curAgent->setTemp(50);
-        curAgent->setSkill(3);
-        curAgent->setFishduration(24);
-        curAgent->setCommunication(4);
-
+        curAgent->setTemp(temperature);
+        curAgent->setSkill(skill);
+        curAgent->setFishduration(duration);
+        curAgent->setCommunication(comm);
+        
         //Make agent decisions
         curAgent->makeEarlyDecision();
         curAgent->calcThreshold();
@@ -76,20 +178,15 @@ void Spot::decideToGoFish(){
         
         //If decides to go, then increase going fishing by 1
         if(curAgent->getDecision()==1){
-            goFish++;
+            goFishing++;
+            // cout<<goFishing<<'\n';
         }
         
     }
-   //cout<<"fisherman: "<<goFish<<'\n';
-}
+    cout<<a.crowdness(goFishing)<<"%"<<'\n';
 
-/*Testing
-int main(){
-    Spot a;
-    a.setCap(100);//should be =<100 because of numAgents above
-    a.decideToGoFish();
-    cout<<a.crowdness()<<'\n';
-    return 0;
+    
 }
-*/
- 
+ return 0;
+ }
+
