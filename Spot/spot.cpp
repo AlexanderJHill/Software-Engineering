@@ -22,6 +22,20 @@ int Spot::getSpotCapacity() {
     return maxcapacity;
 }
 
+/*
+ set the number of agents going, from input
+ */
+void Spot::setAgentNum(int fisherNum){
+    numAgent = fisherNum;
+}
+
+/*
+ Returns number of Agents on spot
+ */
+int Spot::getAgentNum() {
+    return numAgent;
+}
+
 /* @pre: The number of Agents going to this specific spot has been decided.
  @post: The crowdness, in percentage
 */
