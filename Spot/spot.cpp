@@ -57,12 +57,13 @@ double Spot::crowdness(double goFish) {
      int numAgent = 1000;// getfisherNum();
      int temperature = 50; //getfishTemp();
      int duration = 24;//getRunTime();
-     int loc = 2;//getFishLoc();
+     int loc = 2;//getFishLoc();Only 1 or 2
      int skill = 3;//getFishSkill();
      int comm = 5; //getfisherComm();
      
      double max = (numAgent)/(loc);//maximum agent per spot, even division of input agents
-     if(loc == 2){// when there are two locations initialize two spots
+     // when there are two locations initialize two spots
+     if(loc == 2){
          //First spot
          Spot a;
          a.setCap(max);//should be according to AgentNum
@@ -154,6 +155,8 @@ double Spot::crowdness(double goFish) {
          }
      }
      
+     
+     //If there is only one location then only use one spot
      else{
          //First spot
          Spot a;
@@ -205,7 +208,6 @@ double Spot::crowdness(double goFish) {
          for (list<Strategy *>::iterator it = allStrat.begin(); it != allStrat.end(); it++)
          {
              Strategy *curStrat = *it;
-    
              cout << curStrat->getScore() << '\n';
          }
 
