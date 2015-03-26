@@ -4,15 +4,15 @@
 #include <stdio.h>
 class Spot{
 private:
-    int maxcapacity;
-    int goFish;
+    double maxcapacity;
+    double goFish;
     
 public:
     Spot();
-    Spot(int cap);
+    void setCap(double cap);
     int getSpotCapacity();
-    double crowdness(int fisher);
-    int decideToGoFish()
+    double crowdness();
+    void decideToGoFish();
 };
 
 #endif /* defined(____spot__) */
