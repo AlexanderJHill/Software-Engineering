@@ -4,18 +4,17 @@
 #include <stdio.h>
 class Spot{
 private:
-    double maxcapacity;
-    double goFish;
-    int numAgent;
+    double maxcapacity;//max agents per spot
+    int numAgent;//number of agents possibly going fishing per spot
+
 
 public:
-    Spot();
-    void setCap(double cap);
-    int getSpotCapacity();
-    void setAgentNum(int fisherNum);
-    int getAgentNum();
-    double crowdness();
-    void decideToGoFish();
+    Spot();//initialize
+    void setCap(double cap);//set the maxcapacity per spot
+    int getSpotCapacity();//get back maxcapacity
+    void setAgentNum(int fisherNum);//total number of agents possibly going to spot
+    int getAgentNum();//get back total deciding agents
+    double crowdness(double goFish);//calculate the crowdness
 };
 
 #endif /* defined(____spot__) */
