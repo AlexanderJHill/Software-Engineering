@@ -101,7 +101,7 @@ double Spot::crowdness(double goFish) {
              
          }
          double crowd = a.crowdness(goFishing);
-         cout<<crowd<<"%"<<'\n';
+         cout<<"Spot1: "<<crowd<<"%"<<'\n';
 
      
          //Second spot
@@ -137,7 +137,7 @@ double Spot::crowdness(double goFish) {
              }
          
          }
-         cout<<b.crowdness(goFishing)<<"%"<<'\n';
+         cout<<"Spot2: "<<b.crowdness(goFishing)<<"%"<<'\n';
          
     
          for (list<Agent *>::iterator it = allAgent.begin(); it != allAgent.end(); it++)
@@ -194,7 +194,7 @@ double Spot::crowdness(double goFish) {
              }
         
          }
-         cout<<a.crowdness(goFishing)<<"%"<<'\n';
+         cout<<"Spot: "<<a.crowdness(goFishing)<<"%"<<'\n';
          
          
          for (list<Agent *>::iterator it = allAgent.begin(); it != allAgent.end(); it++)
