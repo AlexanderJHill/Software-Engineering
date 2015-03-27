@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <vector>
+#include <list>
 using namespace std;
 
 class Strategy{
@@ -15,10 +16,11 @@ private:
 	//special case for starategy: 0->stay at home, 1->go fishing
 	vector<int> decisionPattern;
 public:
-    Strategy();
+    Strategy(vector<int> randDecision);
 	vector<int> getDecisionPattern();
 	int getScore();
 	void updateScore(int point);
 };
 
+void initStrategy(list<Strategy *> *allStrategy);
 #endif /* defined(____strategy__) */

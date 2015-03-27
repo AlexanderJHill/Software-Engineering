@@ -6,6 +6,8 @@
 #include <vector>
 using namespace std;
 
+static int numOfAgent;
+
 class Agent{
 private:
 	vector<Strategy *> strat; //holds the 3 unique strategies
@@ -22,29 +24,33 @@ private:
 	// new rule: p => 85 change decision to 1
 	//			 40 < p < 85 decision remain
 	//			 p <= 40 decision change to -1
-	float threshold;
+	float threshold; //calculate using calcThreshold
 
 
 public:
-	Agent(); //constructor
+	Agent(vector<Strategy *> strat); //constructor
 	vector<Strategy *> getStrat();
+	void updateStrategyScore(int winnigScore);
 	void calcThreshold();
 	int getDecision();
 	void makeEarlyDecision();
 	void makeDecision(); //will be based on earlydecision and threshold
 	vector<int> getHistory();
 	void updateHistory(); //push new decision
-	int getSkill();
-	void setSkill(int newskill);
-	float getFishDuration();
-	void setFishduration(float newFishDuration);
-	float getTemp();
-	void setTemp(float newTemp);
-	//int getTypeFish();
-	int getCommunication();
+
+	void setTemp(float newTemp); //from input
+	void setSkill(int newskill); //can be randomize
+	void setFishduration(float newFishDuration); //can be randomize
 	void setCommunication(int newCommunication);
-	void updateStrategyScore(int minoritydecision);
+
+	int getCommunication();
+	int getSkill();
+	//int getTypeFish();
+	float getTemp();
+	float getFishDuration();
 };
+
+void initAgent(list<Agent *> *allAgent, int numAgent, list<Strategy *> stratlist);
 
 //struct list *get_all_agent();
 #endif
