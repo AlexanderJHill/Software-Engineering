@@ -11,7 +11,7 @@ private:
 public:
     Spot();//initialize
     void setCap(double cap);//set the maxcapacity per spot
-    int getSpotCapacity();//get back maxcapacity
+    double getSpotCapacity();//get back maxcapacity
     void setAgentNum(int fisherNum);//total number of agents possibly going to spot
     int getAgentNum();//get back total deciding agents
     double crowdness(double goFish);//calculate the crowdness
