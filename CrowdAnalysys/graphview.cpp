@@ -72,6 +72,7 @@ void Graphview::setupPlot()
   // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking:
   ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
   ui->plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+  ui->tabWidget->setCurrentIndex(0);
 
 }
 
@@ -84,14 +85,24 @@ void Graphview::on_actionInsert_Plot_triggered()
   // into the text document.
   double width = ui->cbUseCurrentSize->isChecked() ? 0 : ui->sbWidth->value();
   double height = ui->cbUseCurrentSize->isChecked() ? 0 : ui->sbHeight->value();
-  cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot, width, height));
+
+  int a = ui->tabWidget->currentIndex();
+  switch (a){
+      case 0:
+          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot, width, height));
+          break;
+      case 1:
+          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_2, width, height));
+          break;
+  }
   
   ui->textEdit->setTextCursor(cursor);
 }
 
 void Graphview::on_actionSave_Document_triggered()
 {
-  QString fileName = QFileDialog::getSaveFileName(this, "Save document...", qApp->applicationDirPath(), "*.pdf");
+  QString filter = "PDF (*.pdf)";
+  QString fileName = QFileDialog::getSaveFileName(this, "Save document...", qApp->applicationDirPath(), filter);
   if (!fileName.isEmpty())
   {
     QPrinter printer;
