@@ -2,6 +2,7 @@
 #include "ui_Graphview.h"
 #include <QtGui>
 
+
 Graphview::Graphview(QWidget *parent) :
 QMainWindow(parent),
 ui(new Ui::Graphview)
@@ -22,6 +23,7 @@ Graphview::~Graphview()
 {
   delete ui;
 }
+
 
 void Graphview::setupPlot()
 {
@@ -76,6 +78,13 @@ void Graphview::setupPlot()
 
 }
 
+
+//!
+//! \brief Graphview::on_actionInsert_Plot_triggered
+//!
+//!
+//!
+//!
 void Graphview::on_actionInsert_Plot_triggered()
 {
   QTextCursor cursor = ui->textEdit->textCursor();

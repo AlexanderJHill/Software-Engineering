@@ -11,14 +11,25 @@ namespace Ui {
 class Graphview;
 }
 
+//! provides a view that shows the colected graphs and allows them to be inserted into a report.
+//!
+//! Graphview is intended to be used after the simulation has finished. It will accept data from
+//! the simulation module deffineing plots and display them to the users. There is also a report view
+//! on the left side that allows users to insert selected graphs to compile a final report.
 class Graphview : public QMainWindow
 {
   Q_OBJECT
   
 public:
+    //!
+    //! \brief Graphview::setupPlot
+    //!
   explicit Graphview(QWidget *parent = 0);
   ~Graphview();
   
+    //! configures the plots
+    //! \brief setupPlot
+    //!
   void setupPlot();
   
 private slots:

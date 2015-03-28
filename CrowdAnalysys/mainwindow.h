@@ -9,6 +9,10 @@ namespace Ui {
 class MainWindow;
 }
 
+//!
+//! \brief The MainWindow class
+//! Provides the Main windows for the Fisher sim project.
+//!
 class MainWindow : public QMainWindow, public UserSettings
 {
     Q_OBJECT
@@ -16,6 +20,7 @@ class MainWindow : public QMainWindow, public UserSettings
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
 
     void log(const QString& text);
 

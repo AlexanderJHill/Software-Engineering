@@ -11,6 +11,11 @@ ui_*.h
 Debug/
 Release/
 
+# the doxygen output folders.
+latex/
+html/
+
+
 # .log files (usually created by QtTest - thanks to VestniK)
 *.log
 
@@ -57,5 +62,6 @@ desktop.ini
 *.exe
 *.out
 *.app
+
 
 
