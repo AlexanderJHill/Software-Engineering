@@ -49,7 +49,7 @@ double Spot::crowdness(double goFish) {
 }
 
 
-
+/* Used for integration testing part
  int main(){
       
      int winning = 0;//Keep tracks of winning decision
@@ -214,4 +214,4 @@ double Spot::crowdness(double goFish) {
      }
  return 0;
  }
-
+*/
