@@ -21,7 +21,7 @@ vector<int> generateRandomNumber(int lowerBound, int upperBound, int length)
 	
 	vector<int> randNumber;
 	for (int i = 0; i < length; i++){
-		randNumber.push_back(distr(eng));
+		randNumber.push_back(distr(eng)); //generate number
 	}
 
 	return randNumber;

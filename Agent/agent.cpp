@@ -79,7 +79,7 @@ void Agent::calcThreshold()
 	float T = (fishduration / 24) * 20;
 	float W = (-abs((67.5 - temp) / 67.5) * 20) + 20;
 	float C = (communication / numOfAgent) * 20;
-	float p = E + T + W;
+	float p = E + T + W + C;
 	//haven't include frequency of communication in threshold
 	threshold = p;
 }
@@ -111,11 +111,11 @@ void Agent::makeEarlyDecision()
 	int index = 0; //hold the row number for a strategy
 
 	if (history.at(2) == 1)
-		index = index + 4;
+		index = index + 1;
 	if (history.at(1) == 1)
 		index = index + 2;
 	if (history.at(0) == 1)
-		index = index + 1;
+		index = index + 4;
 
 	//get the highest score of strategy
 	Strategy *bestStrategy = strat.at(0);
@@ -159,7 +159,7 @@ void Agent::updateStrategyScore(int winnigScore)
 		//update the score. Strategy score added by 1 if the agent's decision is
 		//equal to minoritydecision. Strategy score is minus by 1 if the agent's
 		//decision is not equal to minoritydecision
-		if (decision*winnigScore > 0)
+		if (-(decision * winnigScore) > 0)
 			bestStrategy->updateScore(1);
 		else
 			bestStrategy->updateScore(-1);
@@ -183,4 +183,14 @@ void initAgent(list<Agent *> *allAgent, int numAgent, list<Strategy *> stratlist
 		strat.clear();
 	}
 	numOfAgent = numAgent;
+}
+
+int Agent::getEarlyDecision()
+{
+	return earlydecison;
+}
+
+float Agent::getThreshold()
+{
+	return threshold;
 }

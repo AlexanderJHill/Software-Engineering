@@ -29,13 +29,10 @@ private:
 
 public:
 	Agent(vector<Strategy *> strat); //constructor
-	vector<Strategy *> getStrat();
 	void updateStrategyScore(int winnigScore);
 	void calcThreshold();
-	int getDecision();
 	void makeEarlyDecision();
 	void makeDecision(); //will be based on earlydecision and threshold
-	vector<int> getHistory();
 	void updateHistory(); //push new decision
 
 	void setTemp(float newTemp); //from input
@@ -43,11 +40,16 @@ public:
 	void setFishduration(float newFishDuration); //can be randomize
 	void setCommunication(int newCommunication);
 
+	vector<int> getHistory();
+	int getDecision();
 	int getCommunication();
 	int getSkill();
 	//int getTypeFish();
 	float getTemp();
 	float getFishDuration();
+	int getEarlyDecision();
+	float getThreshold();
+	vector<Strategy *> getStrat();
 };
 
 void initAgent(list<Agent *> *allAgent, int numAgent, list<Strategy *> stratlist);
@@ -55,4 +57,4 @@ void initAgent(list<Agent *> *allAgent, int numAgent, list<Strategy *> stratlist
 //struct list *get_all_agent();
 #endif
 
-//for typefish, not sure yet how to implement it yet. maybe can use enum type. 
+//for typefish, not sure how to implement it yet. maybe can use enum type. 
