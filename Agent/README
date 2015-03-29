@@ -18,7 +18,7 @@
 
 **********Running unit test on Windows**********
 
-Agent Unit Test
+*Agent Unit Test
 1. Open a Developer Command Prompt as administartor
 2. Change directory:
    cd $HOME\Demo1\2_unit_testing\Agent
@@ -27,7 +27,7 @@ Agent Unit Test
 4. Run
    unit_test_agent
 
-Strategy Unit Test
+*Strategy Unit Test
 1. Assume that you are still in the same directory
 2. Compile cpp files
    cl unit_test_strategy.cpp agent.cpp strategy.cpp randomgenerator.cpp
