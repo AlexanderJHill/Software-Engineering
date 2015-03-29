@@ -4,28 +4,15 @@
 class UnitTest : public QObject
 {
 	Q_OBJECT
+
 	private slots:
-	void toUpper();
-	void algebra();
+
 	void logTest();
 	void lineEditTest();
 	void sliderTest();
 	void buttonTest();
-
+	void tabTest();
 };
-
-void UnitTest::toUpper()
-{
-	QString str = "Hello";
-	QVERIFY(str.toUpper() == "HELLO");
-}
-
-void UnitTest::algebra(){
-	int x = 0;
-	int a = 1;
-	QVERIFY(x == 0);
-	QVERIFY(a == 1);
-}
 
 void UnitTest::logTest(){			// tests log function that prints to a Qt text widget
 	QPlainTextEdit textEdit;
@@ -57,6 +44,16 @@ void UnitTest::buttonTest(){		// tests clicking a button
 	button.setCheckable(true);
 	QTest::mouseClick(&button, Qt::LeftButton);
 	QVERIFY(button.isChecked() == true);
+	QTest::mouseClick(&button, Qt::LeftButton);
+	QVERIFY(button.isChecked() == false);
+
+}
+
+void UnitTest::tabTest(){		// tests a tab widget
+	QTabWidget tab;
+	QWidget a, b;
+	QCOMPARE(tab.addTab(&a, "a"), 0);
+	QCOMPARE(tab.addTab(&b, "b"), 1);
 }
 
 QTEST_MAIN(UnitTest)
