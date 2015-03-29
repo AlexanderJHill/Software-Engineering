@@ -2,6 +2,9 @@
 # Compiled object files
 *.o
 
+# ignore user spicific IDE file
+CrowdAnalysys.pro.user.*
+
 # Generated MOC, resource and UI files
 moc_*.cpp
 qrc_*.cpp

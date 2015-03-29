@@ -22,7 +22,7 @@ class Graphview : public QMainWindow
   
 public:
     //!
-    //! \brief Graphview::setupPlot
+    //! \brief constructor for the Graphview class
     //!
   explicit Graphview(QWidget *parent = 0);
   ~Graphview();

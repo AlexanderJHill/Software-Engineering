@@ -21,7 +21,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-
+    //!
+    //! \brief Sends a string to the simulation log.
+    //! \param text to display in the log.
+    //!
     void log(const QString& text);
 
 private slots:
