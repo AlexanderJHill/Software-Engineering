@@ -4,6 +4,8 @@ the other classes are working. Unit testing also covers integration testing when
 since Spot is dependent on the Agent and Strategy classes. It is also dependent on the user input 
 from the GUI. Since the code and GUI are not connected yet, values used are random.
 
-To do integration testing agent.cpp strategy.cpp spot.cpp randomgenerator.cpp spottest.cpp has to be compiled 
-in the same diectory. This test would print the output generated. The outputs are how crowded a spot would be
+To do integration testing:
+Be sure agent.cpp/.h strategy.cpp/.h spot.cpp/.h randomgenerator.cpp/.h codetest.cpp are in the same directory
+Compile: agent.cpp strategy.cpp spot.cpp randomgenerator.cpp spottest.cpp 
+This test would print the output generated. The outputs are how crowded a spot would be
 and the score of all twenty strategies.
