@@ -5,7 +5,7 @@
 
 How to use:
 
-Run 'CrowdAnalysys.exe' in the Fisher Sim (standalone version) folder. If any error messages appear, install the C++ redistributables 'vcredist_x64.exe' in the same folder, restart your machine and try again.
+Run 'CrowdAnalysys.exe' in the Fisher Sim (standalone version) folder. If any error messages appear, install the C++ redistributables 'vcredist_x64.exe' in the same folder, restart your machine and try again. The standalone version runs on Windows only.
 
 The code can be built using Qt Creator.
  Qt can be downloaded from https://www.qt.io/download-open-source/. You also need a suitable compiler already on your system.
