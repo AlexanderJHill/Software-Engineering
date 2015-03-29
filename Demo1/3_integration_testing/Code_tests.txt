@@ -6,6 +6,7 @@ from the GUI. Since the code and GUI are not connected yet, values used are rand
 
 To do integration testing:
 Be sure agent.cpp/.h strategy.cpp/.h spot.cpp/.h randomgenerator.cpp/.h codetest.cpp are in the same directory
-Compile: agent.cpp strategy.cpp spot.cpp randomgenerator.cpp codetest.cpp 
-This test would print the output generated. The outputs are how crowded a spot would be
+Compile the following files: agent.cpp strategy.cpp spot.cpp randomgenerator.cpp codetest.cpp 
+Then execute the files.
+This test would print the output generated. The types of outputs are how crowded a spot would be
 and the score of all twenty strategies.
