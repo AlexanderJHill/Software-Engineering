@@ -10,10 +10,10 @@
 Folder discriptions:
 
 	/Agent -- 
-	/CrowdAnalysys -- The Fisher sim main project
-	/Fisher Sim (standalone version) tools used to create a stand alone application. 
+	/CrowdAnalysys -- The Fisher Sim project code
+	/Fisher Sim (standalone version) -- Release version of the project
 	/Spot -- 
-	/test -- used for unit tests
+	/Demo1 -- Demo 1 archive
 
 
 Documentation:
