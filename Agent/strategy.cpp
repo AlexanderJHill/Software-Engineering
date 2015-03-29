@@ -34,7 +34,7 @@ void initStrategy(list<Strategy *> *allStrategy)
 	for (int i = 1; i < 21; i++){
 		bitset<5> bin(i);
 		for (int j = 0, counter = 1; j < bin.size(); j++, counter++){
-			if (bin.at(j) == 0)
+			if (bin.to_string().at(j) == '0')
 				temp.push_back(-1);
 			else
 				temp.push_back(1);
