@@ -1,17 +1,40 @@
 /**
-@brief Documentation file for Mainpage, and defgroups.
-@author Alexander Hill
-
 @mainpage Fisher Sim - Introduction
+Introduction
+=====================================
 
 Fisher Sim is being developed as part of a Software Engineering
-project at Rutgers University. 
+project at Rutgers University for the spring semester of 2015. 
+
+__Team members:__
+	+ Matthew Chatten
+	+ Ameer Fiqri Barahim
+	+ Vicent Vindel Dura 
+	+ Alexander Hill
+	+ David Lazaar
+	+ Orielle Joy Yu
+
+__Group 12__
 
 
-Minority Game
-Group 12
+Project Goals
+=====================
+The Fisher Sim project seeks to build off of the clasic El Farol Bar problem in game theory. 
+In the El Farol Bar problem models for decisions that a based on others are examined.
+In the original formulation, the question is whether or not to go to a bar. 
+Going to the bar is a good decision only if most people decide it is a bad decision, and vice versa.
 
-Academic Year 2014-2015
+Fisher Sim adds additional metrics to this problem in an attempt to better understand and predict people's disision to go fishing.  
+
+
+Compiling the software
+------------------------
+Fisher sim currently consists of two separate programs. 
+The primary componate is located under the CrowdAnalysys folder in in the project root directory.
+This folder contains the main project as a QT application along with the technical documentation (this file).
+The other componate of the Fisher sim program is located 
+
+
 
 http://www.stack.nl/~dimitri/doxygen/manual/markdown.html#md_page_header
   
