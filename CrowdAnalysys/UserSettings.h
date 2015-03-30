@@ -1,9 +1,10 @@
 #ifndef _USERSETTINGS_H_
 #define _USERSETTINGS_H_
+//! \file usersettings.h 
+//! \brief contains the users global simulation parameters.
 
-//!
-//! \brief Records the global simulation settings
-//!
+
+//! \brief contains the users global simulation parameters.
 class UserSettings{
 public:
 

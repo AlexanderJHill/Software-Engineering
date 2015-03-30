@@ -1,6 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+//! \file mainwindow.h 
+//! \brief mainwindow creates the primary GUI display
+
 #include <QMainWindow>
 #include "graphview.h"
 #include "UserSettings.h"

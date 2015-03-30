@@ -1,0 +1,100 @@
+/**
+@page Algorithms Algorithms & Data Structures
+
+Algorithms
+=====================================
+
+Decision Making
+------------------
+
+The algorithm is made to compute a unique decision for every agent. 
+The decision is either to go fishing (denoted as 1) or stay at home (denoted as -1). 
+At first every decision of an agent is randomly chosen from a random strategy. 
+Then, every decision may change by the percentage of influence threshold, p. The decision is determine using the logic below:
+
+	if p < 70
+		decision that is made by the strategy is kept.
+	else if p > 70	
+		decision will be change to 1-go to fishing.
+
+
+The value of influence threshold depends on the factors below:
+	+ Skill and experience rank
+	+ Frequency of communication
+	+ Amount of each type of fish
+	+ Fishing duration
+	+ Weather pattern
+
+Since some of the factors above are unique for each agents, it will be able to preserve the uniqueness of every decision. 
+Every factors will contribute 20% to the influence threshold. 
+
+
+Strategy
+-----------------
+Every agent will have a short-term memory and a long-term memory. 
+Short-term memory is limited to 3 previous outcomes of the agent winning and losing. 
+Long-term memory is the strategy that is used by the agent to make the initial decision
+ before taking into account of influence threshold. 
+
+
+Since there are 8 possible outcomes from the short-term memory, the strategy that
+ can be generated from these outcome is 256. 
+ Every agent is allow to have 3 strategies, this will result in 2,763,520 different combinations of strategies. 
+ Every agent will get a random combination of 3 strategies and it will be likely that every combination is unique.
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ The process to make the early decision is shown below:
+strategy=choose the strategy that has a higher score
+
+	for i=1 →8
+
+		if history==strategy history [i]
+
+			early decision=strategy action [i]
+
+		return early decision
+
+		
+At the beginning of every simulation, all the strategies’ score are zero. 
+So, it can be conclude that the initial strategy of every agent is random. 
+If the agent won the round the strategy score will increase by one point. 
+Conversely, every losing round the strategy score is lowered by one. 
+The early decision will be passed to the decision making where the influence threshold of
+ the agent will be calculated and the early decision may be changed.
+
+
+Overall process
+-------------------
+Below is the overall process of how every decision of an agent being made:
+
+	strategy=choose the strategy that has a higher score
+	for i=1 →8
+		if history==strategy history [i]
+			early decision=strategy action [i]
+	if p<70
+		decision=early decision
+	else if p>70	
+		decision=1
+
+	
+Strategy score will be calculated when all the decisions have been made. 
+Plus for a strategy to earn the score the decision must not be changed by the influence threshold. 
+The logic is shown below:
+
+	
+	if p<70
+		if majority go to fishing and decision == -1
+			strategy score increase by one point
+		else strategy score lower by one point
+		if majority stay at home and decision==1
+			strategy score increase by one point
+		else strategy score lower by one point
+	
+ 
+*/
