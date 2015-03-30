@@ -59,9 +59,14 @@ public:
 	void calcThreshold();
 	void makeEarlyDecision();
 	void makeDecision(); 				//!< will be based on earlydecision and threshold
-	void updateHistory(); 				//! push new decision on
+	void updateHistory(); 				//!< push new decision on
 
-	void setTemp(float newTemp); 		//!< from input
+	//! Sets the temperature of the water
+	//!
+	//! 
+	//! \param newTemp the new temperature in degrees Celsius
+	//! 
+	void setTemp(float newTemp); 		
 	void setSkill(int newskill); 		//!< can be randomize
 	void setFishduration(float newFishDuration); //!< can be randomize
 	void setCommunication(int newCommunication);
@@ -80,9 +85,20 @@ public:
 	//int getTypeFish();
 	
 	float getTemp();
+	
+	//! Returns the decay of the fish population
+	//!
+	//! \return the decay value used
 	float getFishDuration();
+	
+	
 	int getEarlyDecision();
 	float getThreshold();
+	
+	//! Returns the statagies used by this agent
+	//! Agents can change stratagies as they learn
+	//!
+	//! \return a vector containing the stratagies. This will normally return 3 items. 
 	vector<Strategy *> getStrat();
 };
 
