@@ -52,7 +52,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Graphview graphview;
+    QString settings;
+    bool simulated = false;
 };
 
 #endif // MAINWINDOW_H

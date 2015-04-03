@@ -34,6 +34,7 @@ public:
     //! \brief setupPlot
     //!
   void setupPlot();
+  void printSettings(QString s);
   
 private slots:
   void on_actionInsert_Plot_triggered();

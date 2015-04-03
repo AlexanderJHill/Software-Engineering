@@ -24,6 +24,11 @@ Graphview::~Graphview()
   delete ui;
 }
 
+void Graphview::printSettings(QString s){
+
+    ui->textEdit->append(s);
+
+}
 
 void Graphview::setupPlot()
 {

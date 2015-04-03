@@ -3,7 +3,7 @@
 *.o
 
 # ignore user spicific IDE file
-CrowdAnalysys.pro.user.*
+*.user
 
 # Generated MOC, resource and UI files
 moc_*.cpp

@@ -9,10 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->plainTextEdit->setReadOnly(true);
-    log("auto scrolling simulation log");
-    for (int i=0;i<10;i++){
-        log("log test");
-    }
+    log("Welcome to Fisher Sim!");
 }
 
 MainWindow::~MainWindow()
@@ -29,7 +26,6 @@ void MainWindow::on_fishers_valueChanged(int value)
 {
     QString s = QString::number(value);
     ui->lineEdit_0->setText(s);
-    log("[test] fisher value changed to " + s);
 }
 
 
@@ -99,13 +95,20 @@ void MainWindow::on_weather_clicked()
 void MainWindow::on_reportButton_clicked()
 {
 
-    graphview.show();
+    if (simulated == false){
+        log("ERROR - run a simulation first");
+        return;
+    }
+    Graphview *graphview = new Graphview();
+    graphview->show();
+    graphview->printSettings(settings);
 
 }
 
 void MainWindow::on_simulateButton_clicked()
 {
 
+    simulated = true;
     fisherNum = ui->fishers->value();
     fishLoc = ui->locations->value();
     fishType = ui->fishtypes->value();
@@ -126,16 +129,22 @@ void MainWindow::on_simulateButton_clicked()
     QString fishpop = QString::number(getfishPop());
     QString types = QString::number(getfishType());
     QString runtime = QString::number(getRuntime());
-    QString weather = QString::number(getfishTemp());
 
-    log("Simulation started with the following settings...");
-    log("Fishers - " + fishers);
-    log("Locations - " + locations);
-    log("Fish population - " + fishpop);
-    log("Different fish types - " + types);
-    log("Simulation runtime in days - " + runtime);
-    log("Weather - " + weather);
-    log("Weather enums      0 = good weather . . . 1 = overcast . . . 2 = rain . . . 3 = snow");
+    QString w;
+    switch(fishTemp){
+    case 0:
+        w = "Sunny";
+    case 1:
+        w = "Overcast";
+    case 2:
+        w = "Rain";
+    case 3:
+        w = "Snow";
+    }
+    QString a = ("Fishers\t" + fishers + "\nLocations\t" + locations + "\nFish Population\t"
+            + fishpop + "\nFish Types\t" + types + "\nRuntime\t" + runtime + "\nWeather\t" + w);
+    settings = ("Simulation settings:\n" + a);
+    log ("Simulation started with the following settings...\n" + a);
 
 }
 
