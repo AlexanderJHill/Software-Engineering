@@ -1,7 +1,7 @@
 #include "agent.h"
 #include "randomgenerator.h"
 
-static list<Agent> all_agent;
+static list<Agent *> allAgent;
 
 Agent::Agent(vector<Strategy *> newstrat){
 	//generate random history
@@ -78,7 +78,7 @@ void Agent::calcThreshold()
 	//float F = ((num / pop) * 20) - 20; //not sure how to represent fish yet
 	float T = (fishduration / 24) * 20;
 	float W = (-abs((67.5 - temp) / 67.5) * 20) + 20;
-	float C = (communication / numOfAgent) * 20;
+	float C = (communication / allAgent.size()) * 20;
 	float p = E + T + W + C;
 	//haven't include frequency of communication in threshold
 	threshold = p;
@@ -167,22 +167,22 @@ void Agent::updateStrategyScore(int winnigScore)
 
 }
 
-void initAgent(list<Agent *> *allAgent, int numAgent, list<Strategy *> stratlist)
+void initAgent(int numOfAgent)
 {
-	vector<int> randStrat = generateRandomNumber(0, 19, numAgent * 3);
+	list<Strategy *> *stratlist = getAllStrat();
+	vector<int> randStrat = generateRandomNumber(0, 19, numOfAgent * 3);
 	vector<Strategy *> strat;
-	for (int i = 0; i < numAgent; i++)
+	for (int i = 0; i < numOfAgent; i++)
 	{
 		for (int j = 0; j < 3; j++){
-			list<Strategy *>::iterator it = stratlist.begin();
+			list<Strategy *>::iterator it = stratlist->begin();
 			advance(it, randStrat.at(i + j));
 			strat.push_back(*it);
 		}
 		Agent *newAgent = new Agent(strat);
-		allAgent->push_back(newAgent);
+		allAgent.push_back(newAgent);
 		strat.clear();
 	}
-	numOfAgent = numAgent;
 }
 
 int Agent::getEarlyDecision()
@@ -194,3 +194,9 @@ float Agent::getThreshold()
 {
 	return threshold;
 }
+
+list<Agent *> *getAllAgent()
+{
+	return &allAgent;
+}
+

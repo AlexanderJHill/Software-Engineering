@@ -1,10 +1,12 @@
 #include "strategy.h"
 #include "randomgenerator.h"
-#include<iostream>
+#include<string>
 #include <bitset>
 #include <ctime>
 #include <cstdlib>
 using namespace std;
+
+static list<Strategy *> allStrategy;
 
 //Strategy constructor
 Strategy::Strategy(vector<int> randDecision){
@@ -27,12 +29,11 @@ void Strategy::updateScore(int point)
 	score = score + point;
 }
 
-void initStrategy(list<Strategy *> *allStrategy)
+void initStrategy()
 {
 	vector<int> temp;
-	//int counter = 1;
 	for (int i = 1; i < 21; i++){
-		bitset<5> bin(i);
+		bitset<5> bin(i); 
 		for (int j = 0, counter = 1; j < bin.size(); j++, counter++){
 			if (bin.to_string().at(j) == '0')
 				temp.push_back(-1);
@@ -41,11 +42,16 @@ void initStrategy(list<Strategy *> *allStrategy)
 			if (j == 4) j = -1;
 			if (counter == 8){
 				Strategy *strat = new Strategy(temp);
-				allStrategy->push_back(strat);
+				allStrategy.push_back(strat);
 				temp.clear();
 				break;
 			}
 		}
 	}
 
+}
+
+list<Strategy *> *getAllStrat()
+{
+	return &allStrategy;
 }

@@ -6,8 +6,6 @@
 #include <vector>
 using namespace std;
 
-static int numOfAgent;
-
 class Agent{
 private:
 	vector<Strategy *> strat; //holds the 3 unique strategies
@@ -52,7 +50,8 @@ public:
 	vector<Strategy *> getStrat();
 };
 
-void initAgent(list<Agent *> *allAgent, int numAgent, list<Strategy *> stratlist);
+void initAgent(int numOfAgent);
+list<Agent *> *getAllAgent();
 
 //struct list *get_all_agent();
 #endif

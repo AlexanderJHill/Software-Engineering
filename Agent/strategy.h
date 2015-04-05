@@ -22,5 +22,6 @@ public:
 	void updateScore(int point);
 };
 
-void initStrategy(list<Strategy *> *allStrategy);
+void initStrategy();
+list<Strategy *> *getAllStrat();
 #endif /* defined(____strategy__) */

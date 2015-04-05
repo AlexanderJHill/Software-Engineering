@@ -2,18 +2,19 @@
 #include <string>
 #include <stdio.h>
 #include "agent.h"
+#include "strategy.h"
 
 using namespace std;
 
 
 void main()
 {
-	list<Strategy *> allStrat; // holds all the strategies
-	initStrategy(&allStrat); // initialize strategies
+	initStrategy(); // initialize strategies
+	list<Strategy *> *allStrat = getAllStrat();
 
-	list<Agent *> allAgent; // holds all the dummy agent
 	int numofAgent = 2;
-	initAgent(&allAgent, numofAgent, allStrat); // initialize agents
+	initAgent(numofAgent); // initialize agents
+	list<Agent *> *allAgent = getAllAgent(); // holds all the dummy agent
 
 	// set factors value for Agent 1
 	float temp1 = 67.5;
@@ -28,7 +29,7 @@ void main()
 	int com2 = 0;
 
 	// retrieve agents from list
-	list<Agent *>::iterator it = allAgent.begin();
+	list<Agent *>::iterator it = allAgent->begin();
 	Agent *agent1 = *it;
 	it++;
 	Agent *agent2 = *it;
