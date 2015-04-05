@@ -57,6 +57,11 @@ float Agent::getTemp()
 	return temp;
 }
 
+//! Sets the temperature of the water
+//!
+//! 
+//! \param newTemp the new temperature in degrees celsius
+//! 
 void Agent::setTemp(float newTemp)
 {
 	temp = newTemp;

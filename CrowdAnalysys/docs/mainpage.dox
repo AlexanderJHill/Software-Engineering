@@ -6,6 +6,8 @@ Introduction
 Fisher Sim is being developed as part of a Software Engineering
 project at Rutgers University for the spring semester of 2015. 
 
+__Group 12__
+
 __Team members:__
 	+ Matthew Chatten
 	+ Ameer Fiqri Barahim
@@ -14,12 +16,12 @@ __Team members:__
 	+ David Lazaar
 	+ Orielle Joy Yu
 
-__Group 12__
+
 
 
 Project Goals
 =====================
-The Fisher Sim project seeks to build off of the clasic El Farol Bar problem in game theory. 
+The Fisher Sim project seeks to build off of the classic El Farol Bar problem in game theory. 
 In the El Farol Bar problem models for decisions that a based on others are examined.
 In the original formulation, the question is whether or not to go to a bar. 
 Going to the bar is a good decision only if most people decide it is a bad decision, and vice versa.
@@ -30,16 +32,55 @@ Fisher Sim adds additional metrics to this problem in an attempt to better under
 Compiling the software
 ------------------------
 Fisher sim currently consists of two separate programs. 
-The primary componate is located under the CrowdAnalysys folder in in the project root directory.
+The primary component is located under the CrowdAnalysys folder in in the project root directory.
 This folder contains the main project as a QT application along with the technical documentation (this file).
-The other componate of the Fisher sim program is located 
+The other components of the Fisher sim program are located under the /spot and /Agent folders. 
+These folders contain work on the simulation engine and contain basic console c++ applications. 
+They are currently separated from the primary GUI application in order to simplify debugging.
+ 
+
+To build the primary application you will need a working installation of the QT creator framework. 
+The community edition obtained for free from their website located here: https://www.qt.io/download/ 
+In addition to QT creator, you will need a c++ complier for your system. 
+If you do not already have a complier installed and are on a Windows system then a suitable complier
+can be obtained by installing a version of Microsoft's visual studio express.
+On Debian Linux systems, a c++ complier can be installed by installing the buildutils package from your package manager.
+
+
+Updating Documentation
+-------------------------------
+Technical documentation is maintained through the Doxygen tool by loading the Doxyfile located under /CrowdAnalysys/docs.
+Using Doxygen allows for the documentation to be included along with the code which can assist in keeping things up to date. 
+When changes to the code / documentation are made the Doxygen tool must be run to rebuild the Technical Documentation.
+This will create an additional 2 folders in the docs folder each one containing an html edition and the other containing a Latex / pdf version.
+
+If you wish to build the pdf version you will need an installation of latex on your system and to have its binaries in your system path.
+Linux editions of latex can be installed through the package manager and a windows edition can be obtained from the Miktex project located at http://miktex.org/.
+In order to generate class relation images your system will need GraphViz installed.
+
+### Tools needed summery ###
+
+__Software Build__
+	+ MSVS or GNU Build system
+	+ Qt Creator
+
+__Documentation Build__
+	+ Doxygen
+	+ Latex
+	+ GraphViz 
 
 
 
-http://www.stack.nl/~dimitri/doxygen/manual/markdown.html#md_page_header
+### Adding Documentation ###
+Documentation can be added in two general styles. Most documentation will mostly be general explanations
+ for programming constructs which can be added  as explained http://www.stack.nl/~dimitri/doxygen/manual/docblocks.html.
+
+More extensive comments can take advantage of Markdown formatting and Latex style mathematical expressions.
+Supported markdown formatting can be seen here: http://www.stack.nl/~dimitri/doxygen/manual/markdown.html.
+
+
+
   
-
-
 
 
 */

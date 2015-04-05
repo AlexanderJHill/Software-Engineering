@@ -1,6 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+//! \file mainwindow.h 
+//! \brief mainwindow creates the primary GUI display
+
 #include <QMainWindow>
 #include "graphview.h"
 #include "UserSettings.h"
@@ -49,7 +52,8 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    Graphview graphview;
+    QString settings;
+    bool simulated = false;
 };
 
 #endif // MAINWINDOW_H
