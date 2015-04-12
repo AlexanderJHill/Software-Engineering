@@ -48,7 +48,10 @@ SOURCES       = main.cpp \
 		qcpdocumentobject.cpp \
 		mainwindow.cpp \
 		qcustomplot.cpp \
-		UserSettings.cpp debug\moc_mainwindow.cpp \
+		UserSettings.cpp \
+		..\Agent\agent.cpp \
+		..\Agent\randomgenerator.cpp \
+		..\Agent\strategy.cpp debug\moc_mainwindow.cpp \
 		debug\moc_graphview.cpp \
 		debug\moc_qcpdocumentobject.cpp \
 		debug\moc_qcustomplot.cpp
@@ -58,6 +61,9 @@ OBJECTS       = debug\main.obj \
 		debug\mainwindow.obj \
 		debug\qcustomplot.obj \
 		debug\UserSettings.obj \
+		debug\agent.obj \
+		debug\randomgenerator.obj \
+		debug\strategy.obj \
 		debug\moc_mainwindow.obj \
 		debug\moc_graphview.obj \
 		debug\moc_qcpdocumentobject.obj \
@@ -67,12 +73,18 @@ DIST          =  mainwindow.h \
 		graphview.h \
 		qcpdocumentobject.h \
 		qcustomplot.h \
-		UserSettings.h main.cpp \
+		UserSettings.h \
+		..\Agent\agent.h \
+		..\Agent\randomgenerator.h \
+		..\Agent\strategy.h main.cpp \
 		graphview.cpp \
 		qcpdocumentobject.cpp \
 		mainwindow.cpp \
 		qcustomplot.cpp \
-		UserSettings.cpp
+		UserSettings.cpp \
+		..\Agent\agent.cpp \
+		..\Agent\randomgenerator.cpp \
+		..\Agent\strategy.cpp
 QMAKE_TARGET  = CrowdAnalysys
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = CrowdAnalysys.exe
@@ -122,6 +134,26 @@ DESTDIR_TARGET = debug\CrowdAnalysys.exe
 	$<
 <<
 
+{..\Agent}.cpp{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\Agent}.cc{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\Agent}.cxx{debug\}.obj::
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
+{..\Agent}.c{debug\}.obj::
+	$(CC) -c $(CFLAGS) $(INCPATH) -Fodebug\ @<<
+	$<
+<<
+
 ####### Build rules
 
 first: all
@@ -141,7 +173,7 @@ dist:
 	$(ZIP) CrowdAnalysys.zip $(SOURCES) $(DIST) CrowdAnalysys.pro C:\Qt\5.4\msvc2013_64\mkspecs\features\spec_pre.prf C:\Qt\5.4\msvc2013_64\mkspecs\common\shell-win32.conf C:\Qt\5.4\msvc2013_64\mkspecs\qconfig.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_clucene_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_core.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_declarative.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_declarative_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_enginio.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_enginio_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_help.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_location.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_network.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_platformsupport_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_script.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_script_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_scripttools.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_scripttools_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webengine.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webengine_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webenginecore.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webenginecore_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webenginewidgets.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webenginewidgets_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webkit.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webkit_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webkitwidgets.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webkitwidgets_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webview.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_webview_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.4\msvc2013_64\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.4\msvc2013_64\mkspecs\features\qt_functions.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\qt_config.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\win32\qt_config.prf C:\Qt\5.4\msvc2013_64\mkspecs\win32-msvc2013\qmake.conf C:\Qt\5.4\msvc2013_64\mkspecs\features\spec_post.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\exclusive_builds.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\default_pre.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\win32\default_pre.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\resolve_config.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\default_post.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\build_pass.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\win32\rtti.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\precompile_header.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\warn_on.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\qt.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\resources.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\moc.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\win32\opengl.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\uic.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\win32\windows.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\testcase_targets.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\exceptions.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\yacc.prf C:\Qt\5.4\msvc2013_64\mkspecs\features\lex.prf CrowdAnalysys.pro C:/Qt/5.4/msvc2013_64/lib/qtmaind.prl C:/Qt/5.4/msvc2013_64/lib/Qt5Cored.prl C:/Qt/5.4/msvc2013_64/lib/Qt5PrintSupportd.prl C:/Qt/5.4/msvc2013_64/lib/Qt5Widgetsd.prl C:/Qt/5.4/msvc2013_64/lib/Qt5Guid.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.obj debug\graphview.obj debug\qcpdocumentobject.obj debug\mainwindow.obj debug\qcustomplot.obj debug\UserSettings.obj debug\moc_mainwindow.obj debug\moc_graphview.obj debug\moc_qcpdocumentobject.obj debug\moc_qcustomplot.obj
+	-$(DEL_FILE) debug\main.obj debug\graphview.obj debug\qcpdocumentobject.obj debug\mainwindow.obj debug\qcustomplot.obj debug\UserSettings.obj debug\agent.obj debug\randomgenerator.obj debug\strategy.obj debug\moc_mainwindow.obj debug\moc_graphview.obj debug\moc_qcpdocumentobject.obj debug\moc_qcustomplot.obj
 	-$(DEL_FILE) debug\CrowdAnalysys.exp debug\CrowdAnalysys.ilk debug\CrowdAnalysys.idb
 
 distclean: clean 
@@ -655,7 +687,7 @@ debug\moc_mainwindow.cpp: C:\Qt\5.4\msvc2013_64\include\QtWidgets\QMainWindow \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qtprintsupportversion.h \
 		UserSettings.h \
 		mainwindow.h
-	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ahill/Documents/Software-Engineering/CrowdAnalysys -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore mainwindow.h -o debug\moc_mainwindow.cpp
+	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -I"C:/Users/Ameer Fiqri Barahim/Desktop/Software-Engineering/CrowdAnalysys" -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore mainwindow.h -o debug\moc_mainwindow.cpp
 
 debug\moc_graphview.cpp: C:\Qt\5.4\msvc2013_64\include\QtWidgets\QMainWindow \
 		C:\Qt\5.4\msvc2013_64\include\QtWidgets\qmainwindow.h \
@@ -1148,7 +1180,7 @@ debug\moc_graphview.cpp: C:\Qt\5.4\msvc2013_64\include\QtWidgets\QMainWindow \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qtprintsupportversion.h \
 		graphview.h
-	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ahill/Documents/Software-Engineering/CrowdAnalysys -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore graphview.h -o debug\moc_graphview.cpp
+	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -I"C:/Users/Ameer Fiqri Barahim/Desktop/Software-Engineering/CrowdAnalysys" -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore graphview.h -o debug\moc_graphview.cpp
 
 debug\moc_qcpdocumentobject.cpp: C:\Qt\5.4\msvc2013_64\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013_64\include\QtCore\qobject.h \
@@ -1637,7 +1669,7 @@ debug\moc_qcpdocumentobject.cpp: C:\Qt\5.4\msvc2013_64\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qtprintsupportversion.h \
 		qcpdocumentobject.h
-	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ahill/Documents/Software-Engineering/CrowdAnalysys -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore qcpdocumentobject.h -o debug\moc_qcpdocumentobject.cpp
+	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -I"C:/Users/Ameer Fiqri Barahim/Desktop/Software-Engineering/CrowdAnalysys" -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore qcpdocumentobject.h -o debug\moc_qcpdocumentobject.cpp
 
 debug\moc_qcustomplot.cpp: C:\Qt\5.4\msvc2013_64\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013_64\include\QtCore\qobject.h \
@@ -2123,7 +2155,7 @@ debug\moc_qcustomplot.cpp: C:\Qt\5.4\msvc2013_64\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qtprintsupportversion.h \
 		qcustomplot.h
-	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ahill/Documents/Software-Engineering/CrowdAnalysys -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore qcustomplot.h -o debug\moc_qcustomplot.cpp
+	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -I"C:/Users/Ameer Fiqri Barahim/Desktop/Software-Engineering/CrowdAnalysys" -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore qcustomplot.h -o debug\moc_qcustomplot.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -2641,6 +2673,8 @@ debug\main.obj: main.cpp mainwindow.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qtprintsupportversion.h \
 		UserSettings.h \
+		..\Agent\agent.h \
+		..\Agent\strategy.h \
 		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QApplication
 
 debug\graphview.obj: graphview.cpp Graphview.h \
@@ -3134,7 +3168,7 @@ debug\graphview.obj: graphview.cpp Graphview.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qprinterinfo.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qtprintsupportversion.h \
-		ui_Graphview.h \
+		ui_graphview.h \
 		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QAction \
 		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QApplication \
 		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QButtonGroup \
@@ -4148,7 +4182,10 @@ debug\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QRadioButton \
 		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QSlider \
 		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QSpacerItem \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QVBoxLayout
+		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QVBoxLayout \
+		..\Agent\agent.h \
+		..\Agent\strategy.h \
+		..\Agent\randomgenerator.h
 
 debug\qcustomplot.obj: qcustomplot.cpp qcustomplot.h \
 		C:\Qt\5.4\msvc2013_64\include\QtCore\QObject \
@@ -4636,6 +4673,15 @@ debug\qcustomplot.obj: qcustomplot.cpp qcustomplot.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qtprintsupportversion.h
 
 debug\UserSettings.obj: UserSettings.cpp UserSettings.h
+
+debug\agent.obj: ..\Agent\agent.cpp ..\Agent\agent.h \
+		..\Agent\strategy.h \
+		..\Agent\randomgenerator.h
+
+debug\randomgenerator.obj: ..\Agent\randomgenerator.cpp ..\Agent\randomgenerator.h
+
+debug\strategy.obj: ..\Agent\strategy.cpp ..\Agent\strategy.h \
+		..\Agent\randomgenerator.h
 
 debug\moc_mainwindow.obj: debug\moc_mainwindow.cpp 
 

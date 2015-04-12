@@ -17,13 +17,19 @@ SOURCES += main.cpp\
     qcpdocumentobject.cpp \
     mainwindow.cpp \
     qcustomplot.cpp \
-    UserSettings.cpp
+    UserSettings.cpp \
+    ../Agent/agent.cpp \
+    ../Agent/randomgenerator.cpp \
+    ../Agent/strategy.cpp
 
 HEADERS  += mainwindow.h \
     graphview.h \
     qcpdocumentobject.h \
     qcustomplot.h \
-    UserSettings.h
+    UserSettings.h \
+    ../Agent/agent.h \
+    ../Agent/randomgenerator.h \
+    ../Agent/strategy.h
 
 FORMS    += mainwindow.ui \
     graphview.ui

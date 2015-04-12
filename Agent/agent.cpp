@@ -3,7 +3,7 @@
 
 static list<Agent *> allAgent;
 
-Agent::Agent(vector<Strategy *> newstrat){
+Agent::Agent(vector<Strategy *> newStrat, int newSkill, int newCom, int newDur){
 	//generate random history
 	vector<int> randDecision = generateRandomNumber(-1, 1, 3);
 	for (int i = 0; i < 3; i++){
@@ -14,7 +14,13 @@ Agent::Agent(vector<Strategy *> newstrat){
 	}
 
 	//maps the strategy
-	strat = newstrat;
+    strat = newStrat;
+
+    //initialize factors
+    skill = newSkill;
+    communication = newCom;
+    fishduration = newDur;
+    temp = 67.5;
 }
 
 vector<Strategy *> Agent::getStrat()
@@ -42,12 +48,12 @@ void Agent::setSkill(int newSkill)
 	skill = newSkill;
 }
 
-float Agent::getFishDuration()
+int Agent::getFishDuration()
 {
 	return fishduration;
 }
 
-void Agent::setFishduration(float newFishDuration)
+void Agent::setFishduration(int newFishDuration)
 {
 	fishduration = newFishDuration;
 }
@@ -57,11 +63,6 @@ float Agent::getTemp()
 	return temp;
 }
 
-//! Sets the temperature of the water
-//!
-//! 
-//! \param newTemp the new temperature in degrees celsius
-//! 
 void Agent::setTemp(float newTemp)
 {
 	temp = newTemp;
@@ -176,15 +177,19 @@ void initAgent(int numOfAgent)
 {
 	list<Strategy *> *stratlist = getAllStrat();
 	vector<int> randStrat = generateRandomNumber(0, 19, numOfAgent * 3);
+    vector<int> randSkill = generateRandomNumber(1, 5, numOfAgent);
+    vector<int> randDur = generateRandomNumber(1, 24, numOfAgent);
+    vector<int> randCom = generateRandomNumber(0, numOfAgent, numOfAgent);
+
 	vector<Strategy *> strat;
 	for (int i = 0; i < numOfAgent; i++)
 	{
 		for (int j = 0; j < 3; j++){
 			list<Strategy *>::iterator it = stratlist->begin();
-			advance(it, randStrat.at(i + j));
+            advance(it, randStrat.at(2*i + j));
 			strat.push_back(*it);
 		}
-		Agent *newAgent = new Agent(strat);
+        Agent *newAgent = new Agent(strat, randSkill.at(i), randCom.at(i), randDur.at(i));
 		allAgent.push_back(newAgent);
 		strat.clear();
 	}

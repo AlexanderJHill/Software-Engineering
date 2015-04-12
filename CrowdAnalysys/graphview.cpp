@@ -1,5 +1,5 @@
 #include "Graphview.h"
-#include "ui_Graphview.h"
+#include "ui_graphview.h"
 #include <QtGui>
 
 

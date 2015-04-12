@@ -30,6 +30,7 @@ public:
     //!
     void log(const QString& text);
 
+
 private slots:
     void on_fishers_valueChanged(int value);
     void on_locations_valueChanged(int value);
@@ -49,6 +50,10 @@ private slots:
     void on_reportButton_clicked();
 
     void on_simulateButton_clicked();
+
+    void startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp);
+
+
 
 private:
     Ui::MainWindow *ui;

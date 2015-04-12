@@ -6,46 +6,30 @@
 #include <cstdlib>
 using namespace std;
 
-<<<<<<< HEAD
 static list<Strategy *> allStrategy;
 
 //Strategy constructor
-=======
-//! Strategy constructor
->>>>>>> origin/master
 Strategy::Strategy(vector<int> randDecision){
     score = 0; //Initial
 	decisionPattern = randDecision;
 }
 
-//! Returns the decision pattern used by this strategy
-//!
-//! \return a vector containing the decision pattern used. 0 represents staying home and 1 going fishing.
 vector<int> Strategy::getDecisionPattern()
 {
 	return decisionPattern;
 }
 
-//! \brief returns the score
-//! This value represents the number of wins that an agent has made using this strategy
-//! \return the strategy score
 int Strategy::getScore()
 {
 	return score;
 }
 
-//! \brief records the secess of this strategy
 void Strategy::updateScore(int point)
 {
 	score = score + point;
 }
 
-<<<<<<< HEAD
 void initStrategy()
-=======
-//! \brief initializes all of the strategies
-void initStrategy(list<Strategy *> *allStrategy)
->>>>>>> origin/master
 {
 	vector<int> temp;
 	for (int i = 1; i < 21; i++){
