@@ -12,8 +12,8 @@ private:
 	vector<int> history; 		//holds the last 3 outcomes
 	int decision; 			//new decision *have to calculate, use makeDecision
 	int earlydecison; 		//based on history sequence and strategy
-        int skill; 			// will be 1-5 *from input
-        int fishduration; 		//*from input
+    int skill; 			// will be 1-5 *from input
+    int fishingduration; 		//*from input
 	float temp; 			//*from input
 	//int typefish; 		//number of fish *from input
 	int communication; 		//*from input
@@ -27,16 +27,17 @@ private:
 
 
 public:
-        Agent(vector<Strategy *> newStrat, int newSkill, int newCom, int newDur); //default constructor
-	void updateStrategyScore(int winnigScore);
-	void calcThreshold();
-	void makeEarlyDecision();
-	void makeDecision(); 		//will be based on earlydecision and threshold
-	void updateHistory(); 		//push new decision
+    Agent(vector<Strategy *> newStrat, int newSkill, int newCom, int newDur); //default constructor
+    void updateStrategyScore(int winnigScore);
+    void calcThreshold();
+    void makeEarlyDecision();
+    void makeDecision(); 		//will be based on earlydecision and threshold
+    void updateHistory(); 		//push new decision
+
 
 	void setTemp(float newTemp); 
 	void setSkill(int newskill); 
-    	void setFishduration(int newFishDuration); 
+    void setFishingduration(int newFishingDuration);
 	void setCommunication(int newCommunication);
 
 	vector<int> getHistory();
@@ -45,7 +46,7 @@ public:
 	int getSkill();
 	//int getTypeFish();
 	float getTemp();
-        int getFishDuration();
+    int getFishingDuration();
 	int getEarlyDecision();
 	float getThreshold();
 	vector<Strategy *> getStrat();
@@ -53,6 +54,7 @@ public:
 
 void initAgent(int numOfAgent);
 list<Agent *> *getAllAgent();
+void runAgentSimulation(); //run all the calculation in a proper order
 
 #endif
 

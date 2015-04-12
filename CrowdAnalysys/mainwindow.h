@@ -51,7 +51,7 @@ private slots:
 
     void on_simulateButton_clicked();
 
-    void startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp);
+    void startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp, int runtime);
 
 
 

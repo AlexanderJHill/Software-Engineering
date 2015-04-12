@@ -19,7 +19,7 @@ Agent::Agent(vector<Strategy *> newStrat, int newSkill, int newCom, int newDur){
     //initialize factors
     skill = newSkill;
     communication = newCom;
-    fishduration = newDur;
+    fishingduration = newDur;
     temp = 67.5;
 }
 
@@ -48,14 +48,14 @@ void Agent::setSkill(int newSkill)
 	skill = newSkill;
 }
 
-int Agent::getFishDuration()
+int Agent::getFishingDuration()
 {
-	return fishduration;
+    return fishingduration;
 }
 
-void Agent::setFishduration(int newFishDuration)
+void Agent::setFishingduration(int newFishingDuration)
 {
-	fishduration = newFishDuration;
+    fishingduration = newFishingDuration;
 }
 
 float Agent::getTemp()
@@ -85,13 +85,13 @@ void Agent::setCommunication(int newCommunication)
 
 void Agent::calcThreshold()
 {
-	float E = (skill / 5) * 20;
+    float E = ((float)skill / 5) * 20;
 	//float F = ((num / pop) * 20) - 20; //not sure how to represent fish yet
-	float T = (fishduration / 24) * 20;
-	float W = (-abs((67.5 - temp) / 67.5) * 20) + 20;
-	float C = (communication / allAgent.size()) * 20;
+    float T = ((float)fishingduration / 24) * 20;
+    float W = (-abs((67.5 - (float)temp) / 67.5) * 20) + 20;
+    float C = ((float)communication / allAgent.size()) * 20;
 	float p = E + T + W + C;
-	//haven't include frequency of communication in threshold
+
 	threshold = p;
 }
 
@@ -106,9 +106,13 @@ void Agent::updateHistory()
 
 void Agent::makeDecision()
 {
-	//isDecisionChange is to determine if we need to reward score to a strategy
-	//strategy score need to be updated if the threshold didn't
-	//change the earlydecision
+    //make the final decision
+    //this decision making is based on early decision and threshold
+    //if the threshold is >85, and the early decision is -1, stay home,
+    //the agent should decide to go fishing since all the factors are good.
+    //if the threshold is <40 and the early decision is 1, go fishing,
+    //agent should stay home because he will not have a good experience
+    //to fish with a bad factors
 	if (threshold >= 85 && earlydecison == -1)
 		decision = 1;
 	else if (threshold <= 40 && earlydecison == 1)
@@ -214,4 +218,27 @@ list<Agent *> *getAllAgent()
 {
 	return &allAgent;
 }
+
+void runAgentSimulation()
+{
+    int winScore = 0;
+    for(list<Agent *>::iterator it = allAgent.begin(); it != allAgent.end(); it++)
+    {
+        Agent *curAgent = *it;
+        curAgent->makeEarlyDecision();
+        curAgent->calcThreshold();
+        curAgent->makeDecision();
+        curAgent->updateHistory();
+
+        winScore = winScore + curAgent->getDecision();
+
+    }
+
+    for(list<Agent *>::iterator it = allAgent.begin(); it != allAgent.end(); it++)
+    {
+        Agent *curAgent = *it;
+        curAgent->updateStrategyScore(winScore);
+    }
+}
+
 

@@ -134,7 +134,7 @@ void MainWindow::on_simulateButton_clicked()
     QString locations = QString::number(getfishLoc());
     QString fishpop = QString::number(getfishPop());
     QString types = QString::number(getfishType());
-    QString runtime = QString::number(getRuntime());
+    QString runtimes = QString::number(getRuntime());
 
     QString w;
     switch(fishTemp){
@@ -150,7 +150,7 @@ void MainWindow::on_simulateButton_clicked()
 
 
     QString a = ("Fishers\t" + fishers + "\nLocations\t" + locations + "\nFish Population\t"
-            + fishpop + "\nFish Types\t" + types + "\nRuntime\t" + runtime + "\nWeather\t" + w);
+            + fishpop + "\nFish Types\t" + types + "\nRuntime\t" + runtimes + "\nWeather\t" + w);
     settings = ("Simulation settings:\n" + a);
     log ("Simulation started with the following settings...\n" + a);
 
@@ -160,88 +160,55 @@ void MainWindow::on_simulateButton_clicked()
     list<Strategy *> *allstrat = getAllStrat();
     allstrat->clear();
 
-    startSimulate(fisherNum, fishLoc, fishType, fishPop, fishTemp);
+    startSimulate(fisherNum, fishLoc, fishType, fishPop, fishTemp, runtime);
 
 
 }
 
-void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp)
+void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp, int runtime)
 {
     initStrategy();
     initAgent(fisherNum);
     QString a = "Num of agent in list " + QString::number(getAllAgent()->size());
     log(a);
 
-    //testing...
-    //****************************************************************************//
-    list<Agent *> *allAgent = getAllAgent(); // holds all the dummy agent
-    list<Agent *>::iterator it = allAgent->begin();
-    Agent *agent1 = *it;
-    it++;
-    Agent *agent2 = *it;
-
-    // printing agents' history
-    vector<int> his1 = agent1->getHistory();
-    vector<int> his2 = agent2->getHistory();
-
-    int index1 = 0; //hold the row number for a strategy
-    if (his1.at(2) == 1) index1 = index1 + 1;
-    if (his1.at(1) == 1) index1 = index1 + 2;
-    if (his1.at(0) == 1) index1 = index1 + 4;
-
-    int index2 = 0; //hold the row number for a strategy
-    if (his2.at(2) == 1) index2 = index2 + 1;
-    if (his2.at(1) == 1) index2 = index2 + 2;
-    if (his2.at(0) == 1) index2 = index2 + 4;
-
-    cout << "History" << endl;
-    printf("Agent 1: %2d %2d %2d", his1.at(0), his1.at(1), his1.at(2));
-    printf("\tIndex of strategy: %d\n", index1);
-    printf("Agent 2: %2d %2d %2d", his2.at(0), his2.at(1), his2.at(2));
-    printf("\tIndex of strategy: %d\n", index2);
-
-    // make early decision
-    agent1->makeEarlyDecision();
-    agent2->makeEarlyDecision();
-
-    // printing agents' strategy
-    vector<int> strat1 = agent1->getStrat().at(0)->getDecisionPattern();
-    vector<int> strat2 = agent2->getStrat().at(0)->getDecisionPattern();
-
-    cout << "\n\nAgent 1 Strategy       Agent 2 Strategy" << endl;
-    for (int i = 0; i < strat1.size(); i++)
+    for(int day = 0; day != runtime; day++)
     {
-        printf(" %-2d                     %-2d\n", strat1.at(i), strat2.at(i));
+        runAgentSimulation();
     }
 
-    // print early decision
-    cout << "\n\nAgents' Early Decision" << endl;
-    cout << "Agent 1: " << agent1->getEarlyDecision() << endl;
-    cout << "Agent 2: " << agent2->getEarlyDecision() << endl;
 
-    // printing agents' threshold
-    agent1->calcThreshold();
-    agent2->calcThreshold();
 
-    cout << "\n\nAgents' Threshold" << endl;
-    cout << "Agent 1: " << agent1->getThreshold() << endl;
-    cout << "Agent 2: " << agent2->getThreshold() << endl;
 
-    // printing final decision
-    agent1->makeDecision();
-    agent2->makeDecision();
-    cout << "\n\nAgents' Final Decision" << endl;
-    cout << "Agent 1: " << agent1->getDecision() << endl;
-    cout << "Agent 2: " << agent2->getDecision() << endl;
 
-    // printing updated history
-    agent1->updateHistory();
-    agent2->updateHistory();
-    vector<int> updatehis1 = agent1->getHistory();
-    vector<int> updatehis2 = agent2->getHistory();
-    cout << "\n\nUpdated History" << endl;
-    printf("Agent 1: %2d %2d %2d\n", updatehis1.at(0), updatehis1.at(1), updatehis1.at(2));
-    printf("Agent 2: %2d %2d %2d\n\n", updatehis2.at(0), updatehis2.at(1), updatehis2.at(2));
+    //testing...
+    //**********************************************************************************************//
+    for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
+    {
+        a = "Agent data: ";
+        Agent *curAgent = *it;
+        QString s = QString::number(curAgent->getSkill());
+        QString c = QString::number(curAgent->getCommunication());
+        QString t = QString::number(curAgent->getTemp());
+        QString f = QString::number(curAgent->getFishingDuration());
+        QString d = QString::number(curAgent->getDecision());
+        QString ed = QString::number(curAgent->getEarlyDecision());
+
+        a = a + QString::number(curAgent->getThreshold()) + " " + s + " " + c + " " + t + " " + f + " " + ed + " " + d;
+        log(a);
+    }
+
+    for(list<Strategy *>::iterator it = getAllStrat()->begin(); it != getAllStrat()->end(); it++)
+    {
+        a = "Strat Score: ";
+        Strategy *curStrat = *it;
+        QString s = QString::number(curStrat->getScore());
+
+        a = a + s;
+        log(a);
+    }
+    //**********************************************************************************************//
+
 
 }
 
