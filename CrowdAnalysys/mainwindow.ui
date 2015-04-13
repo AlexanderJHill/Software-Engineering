@@ -265,7 +265,7 @@
        <item>
         <widget class="QGroupBox" name="weather">
          <property name="title">
-          <string>Weather</string>
+          <string>Poor Weather</string>
          </property>
          <property name="checkable">
           <bool>true</bool>

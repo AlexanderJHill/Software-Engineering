@@ -140,12 +140,16 @@ void MainWindow::on_simulateButton_clicked()
     switch(fishTemp){
     case 0:
         w = "Sunny";
+        break;
     case 1:
         w = "Overcast";
+        break;
     case 2:
         w = "Rain";
+        break;
     case 3:
         w = "Snow";
+        break;
     }
 
 
