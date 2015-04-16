@@ -40,7 +40,7 @@ void Strategy::updateScore(int point)
 void initStrategy()
 {
 	vector<int> temp;
-	for (int i = 1; i < 21; i++){
+    for (int i = 1; i < 21; i++){
 		bitset<5> bin(i); 
 		for (int j = 0, counter = 1; j < bin.size(); j++, counter++){
 			if (bin.to_string().at(j) == '0')

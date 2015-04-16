@@ -8,7 +8,7 @@ using namespace std;
 
 class Strategy{
 private:
-    	int score; //hold score for strategy
+    int score; //hold score for strategy
 
 	//!brief represents a strategy for determining the conditions of going fishing.
 	//since each startegy depends on 3 previous outcomes, so posiible output

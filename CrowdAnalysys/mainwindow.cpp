@@ -176,9 +176,17 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
     QString a = "Num of agent in list " + QString::number(getAllAgent()->size());
     log(a);
 
-    for(int day = 0; day != runtime; day++)
+    for(int day = 1; day != runtime + 1; day++)
     {
+        a = "";
         runAgentSimulation();
+        int majscore = 0;
+        for(list<Agent *> ::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
+        {
+            Agent *c = *it;
+            majscore = majscore + c->getDecision();
+           // a = a /*+ QString::number(c->getAgentScore(0))*/ + "  " + QString::number(c->getAgentScore(1)) + " ";
+        }
     }
 
 
