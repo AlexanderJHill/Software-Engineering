@@ -171,9 +171,9 @@ void MainWindow::on_simulateButton_clicked()
 
 void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp, int runtime)
 {
-      double *goFishing;//Initialize agents deciding to go fishing
+    double *goFishing;//Initialize agents deciding to go fishing
     goFishing=new double[fishLoc];
-    //goFishing=NULL ;
+    //goFishing=0 ;
     int maxFisher = fisherNum/fishLoc;
     QString b = "Num max fisherman per spot " + QString::number(maxFisher);
     log(b);
@@ -195,10 +195,6 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
         }
     }
 
-
-
-
-
     //testing...
     //**********************************************************************************************//
 
@@ -210,9 +206,9 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
     }
 
 for(int i = 0; i < fishLoc; i++){
+    goFishing[i] = 0;
     for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
     {
-
         a = "Agent data: ";
         Agent *curAgent = *it;
         QString s = QString::number(curAgent->getSkill());
@@ -223,11 +219,12 @@ for(int i = 0; i < fishLoc; i++){
         QString ed = QString::number(curAgent->getEarlyDecision());
 
         if(curAgent->getDecision()==1){
-            goFishing[i]++;
+            goFishing[i]+= 1;
         }
 
        a = a + QString::number(curAgent->getThreshold()) + " " + s + " " + c + " " + t + " " + f + " " + ed + " " + d;
         log(a);
+
     }
 }
 
@@ -241,14 +238,12 @@ for(int i = 0; i < fishLoc; i++){
         log(a);
     }
     for(int i = 0; i < fishLoc; i++){
-    QString g = "Number go fishing " + QString::number(goFishing[i]);
-    log(g);
-    QString percent = "Percentage of crowd: " + QString::number(one[i].crowdness(goFishing[i]));
-    log(percent);
+        QString g = "Number go fishing " + QString::number(goFishing[i]);
+        log(g);
+        QString percent = "Percentage of crowd: " + QString::number(one[i].crowdness(goFishing[i]));
+        log(percent);
     }
-    //**********************************************************************************************//
-
-
+    //********************************************************************************************
 }
 
 
