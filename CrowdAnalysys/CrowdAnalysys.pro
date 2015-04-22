@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     UserSettings.cpp \
     ../Agent/agent.cpp \
     ../Agent/randomgenerator.cpp \
-    ../Agent/strategy.cpp
+    ../Agent/strategy.cpp \
+    ../Agent/spot.cpp
 
 HEADERS  += mainwindow.h \
     graphview.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     UserSettings.h \
     ../Agent/agent.h \
     ../Agent/randomgenerator.h \
-    ../Agent/strategy.h
+    ../Agent/strategy.h \
+    ../Agent/spot.h
 
 FORMS    += mainwindow.ui \
     graphview.ui
