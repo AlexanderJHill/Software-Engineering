@@ -3,6 +3,7 @@
 #include "../Agent/agent.h"
 #include "../Agent/strategy.h"
 #include "../Agent/randomgenerator.h"
+#include "../Agent/spot.h"
 #include <QtWidgets>
 #include <iostream>
 #include <stdio.h>
