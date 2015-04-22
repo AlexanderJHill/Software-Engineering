@@ -171,8 +171,14 @@ void MainWindow::on_simulateButton_clicked()
 
 void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp, int runtime)
 {
+      double *goFishing;//Initialize agents deciding to go fishing
+    goFishing=new double[fishLoc];
+    //goFishing=NULL ;
+    int maxFisher = fisherNum/fishLoc;
+    QString b = "Num max fisherman per spot " + QString::number(maxFisher);
+    log(b);
     initStrategy();
-    initAgent(fisherNum);
+    initAgent(maxFisher);
     QString a = "Num of agent in list " + QString::number(getAllAgent()->size());
     log(a);
 
@@ -195,8 +201,18 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
 
     //testing...
     //**********************************************************************************************//
+
+    Spot *one;
+    one = new Spot[fishLoc];
+    for (int i = 0; i < fishLoc ; i++ ){
+        one[i].setCap(maxFisher);
+        one[i].setAgentNum(maxFisher);
+    }
+
+for(int i = 0; i < fishLoc; i++){
     for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
     {
+
         a = "Agent data: ";
         Agent *curAgent = *it;
         QString s = QString::number(curAgent->getSkill());
@@ -206,9 +222,14 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
         QString d = QString::number(curAgent->getDecision());
         QString ed = QString::number(curAgent->getEarlyDecision());
 
-        a = a + QString::number(curAgent->getThreshold()) + " " + s + " " + c + " " + t + " " + f + " " + ed + " " + d;
+        if(curAgent->getDecision()==1){
+            goFishing[i]++;
+        }
+
+       a = a + QString::number(curAgent->getThreshold()) + " " + s + " " + c + " " + t + " " + f + " " + ed + " " + d;
         log(a);
     }
+}
 
     for(list<Strategy *>::iterator it = getAllStrat()->begin(); it != getAllStrat()->end(); it++)
     {
@@ -218,6 +239,12 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
 
         a = a + s;
         log(a);
+    }
+    for(int i = 0; i < fishLoc; i++){
+    QString g = "Number go fishing " + QString::number(goFishing[i]);
+    log(g);
+    QString percent = "Percentage of crowd: " + QString::number(one[i].crowdness(goFishing[i]));
+    log(percent);
     }
     //**********************************************************************************************//
 
