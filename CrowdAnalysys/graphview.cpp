@@ -32,55 +32,73 @@ void Graphview::printSettings(QString s){
 
 void Graphview::setupPlot()
 {
+    // create empty bar chart objects:
+    QCPBars *fossil = new QCPBars(ui->plot->xAxis, ui->plot->yAxis);
+
+    ui->plot->addPlottable(fossil);
+
+    // set names and colors:
+    QPen pen;
+    pen.setWidthF(1.2);
+    fossil->setName("Crowd Percentage");
+    pen.setColor(QColor(255, 131, 0));
+    fossil->setPen(pen);
+    fossil->setBrush(QColor(255, 131, 0, 50));
+
+    // stack bars ontop of each other:
 
 
-  // The following plot setup is taken from the sine demo:
-  // add two new graphs and set their look:
-  ui->plot->addGraph();
-  ui->plot->graph(0)->setPen(QPen(Qt::blue)); // line color blue for first graph
-  ui->plot->graph(0)->setBrush(QBrush(QColor(0, 0, 255, 20))); // first graph will be filled with translucent blue
-  ui->plot->addGraph();
-  ui->plot->graph(1)->setPen(QPen(Qt::red)); // line color red for second graph
+    // prepare x axis with country labels:
+    QVector<double> ticks;
+    QVector<QString> labels;
+    ticks << 1 << 2 << 3 << 4 << 5;
+    labels << "Spot 1" << "Spot 2" << "Spot 3" << "Spot 4"<< "Spot 5";
+    ui->plot->xAxis->setAutoTicks(false);
+   ui->plot->xAxis->setAutoTickLabels(false);
+    ui->plot->xAxis->setTickVector(ticks);
+   ui->plot->xAxis->setTickVectorLabels(labels);
+    ui->plot->xAxis->setTickLabelRotation(60);
+    ui->plot->xAxis->setSubTickCount(0);
+    ui->plot->xAxis->setTickLength(0, 4);
+    ui->plot->xAxis->grid()->setVisible(true);
+    ui->plot->xAxis->setRange(0, 5);
 
-  ui->plot_2->addGraph();
-  ui->plot_2->graph(0)->setPen(QPen(Qt::black));
-  ui->plot_2->graph(0)->setBrush(QBrush(QColor(0, 0, 0, 30)));
+    // prepare y axis:
+   ui->plot->yAxis->setRange(-12, 12.1);
+    ui->plot->yAxis->setPadding(5); // a bit more space to the left border
+    ui->plot->yAxis->setLabel("Crowd Percentage per Spot (%)");
+   ui->plot->yAxis->grid()->setSubGridVisible(true);
+    QPen gridPen;
+    gridPen.setStyle(Qt::SolidLine);
+    gridPen.setColor(QColor(0, 0, 0, 25));
+    ui->plot->yAxis->grid()->setPen(gridPen);
+    gridPen.setStyle(Qt::DotLine);
+    ui->plot->yAxis->grid()->setSubGridPen(gridPen);
 
-  // generate some points of data (y0 for first, y1 for second graph):
-  QVector<double> x(250), y0(250), y1(250);
-  for (int i=0; i<250; ++i)
-  {
-    x[i] = i;
-    y0[i] = qExp(-i/150.0)*qCos(i/10.0); // exponentially decaying cosine
-    y1[i] = qExp(-i/150.0); // exponential envelope
-  }
-  // configure right and top axis to show ticks but no labels:
-  // (see QCPAxisRect::setupFullAxesBox for a quicker method to do this)
-  ui->plot->xAxis2->setVisible(true);
-  ui->plot->xAxis2->setTickLabels(false);
-  ui->plot->yAxis2->setVisible(true);
-  ui->plot->yAxis2->setTickLabels(false);
-  // make left and bottom axes always transfer their ranges to right and top axes:
-  connect(ui->plot->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->plot->xAxis2, SLOT(setRange(QCPRange)));
-  connect(ui->plot->yAxis, SIGNAL(rangeChanged(QCPRange)), ui->plot->yAxis2, SLOT(setRange(QCPRange)));
-  // pass data points to graphs:
-  ui->plot->graph(0)->setData(x, y0);
-  ui->plot->graph(1)->setData(x, y1);
-  // let the ranges scale themselves so graph 0 fits perfectly in the visible area:
-  ui->plot->graph(0)->rescaleAxes();
-  // same thing for graph 1, but only enlarge ranges (in case graph 1 is smaller than graph 0):
-  ui->plot->graph(1)->rescaleAxes(true);
+    // Add data:
+    QVector<double> crowdData;
+    crowdData << -0.86*10.5 << 0.83*5.5 << 0.84*5.5 << 0.52*5.8 << 0.89*5.2;
 
-  connect(ui->plot_2->xAxis, SIGNAL(rangeChanged(QCPRange)), ui->plot_2->xAxis2, SLOT(setRange(QCPRange)));
-  connect(ui->plot_2->yAxis, SIGNAL(rangeChanged(QCPRange)), ui->plot_2->yAxis2, SLOT(setRange(QCPRange)));
-  ui->plot_2->graph(0)->setData(x, y0);
+    fossil->setData(ticks, crowdData);
+
+    // setup legend:
+   ui->plot->legend->setVisible(true);
+    ui->plot->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop|Qt::AlignHCenter);
+    ui->plot->legend->setBrush(QColor(255, 255, 255, 200));
+    QPen legendPen;
+    legendPen.setColor(QColor(130, 130, 130, 200));
+    ui->plot->legend->setBorderPen(legendPen);
+    QFont legendFont = font();
+    legendFont.setPointSize(10);
+    ui->plot->legend->setFont(legendFont);
+    ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
+
 
   // Note: we could have also just called customPlot->rescaleAxes(); instead
   // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking:
   ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
   ui->plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
   ui->tabWidget->setCurrentIndex(0);
-
 }
 
 
