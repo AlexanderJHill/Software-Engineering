@@ -1,6 +1,11 @@
 #include "Graphview.h"
 #include "ui_graphview.h"
 #include <QtGui>
+#include "mainwindow.h"
+#include "UserSettings.h"
+#include "ui_mainwindow.h"
+#include "../Agent/agent.h"
+#include "../Agent/spot.h"
 
 
 Graphview::Graphview(QWidget *parent) :
@@ -33,6 +38,10 @@ void Graphview::printSettings(QString s){
 void Graphview::setupPlot()
 {
 
+    list<Agent *> *allagent = getAllAgent();
+    list<Strategy *> *allstrat = getAllStrat();
+
+    //First graph, Spot
     // create empty bar chart objects:
     QCPBars *fossil = new QCPBars(ui->plot->xAxis, ui->plot->yAxis);
 
@@ -45,33 +54,29 @@ void Graphview::setupPlot()
     fossil->setPen(pen);
     fossil->setBrush(QColor(255, 131, 0, 50));
 
-    // stack bars ontop of each other:
-
-
     // prepare x axis with country labels:
     QVector<double> ticks;
     QVector<QString> labels;
-    //int fishLoc = a.getfishLoc();
-    for (int i = 0; i < 5; i++){
-        ui->plot->xAxis->setRange(0, i+2);
+
+    for (int i = 0; i < 2; i++){
         ticks << i+1;
     }
     labels <<"Spot 1"<<"Spot 2"<<"Spot 3"<<"Spot 4"<<"Spot 5"<<"Spot 6"<<"Spot 7"<<"Spot 8"<<"Spot 9"<<"Spot 10";
     ui->plot->xAxis->setAutoTicks(false);
-   ui->plot->xAxis->setAutoTickLabels(false);
+    ui->plot->xAxis->setAutoTickLabels(false);
     ui->plot->xAxis->setTickVector(ticks);
-   ui->plot->xAxis->setTickVectorLabels(labels);
+    ui->plot->xAxis->setTickVectorLabels(labels);
     ui->plot->xAxis->setTickLabelRotation(60);
     ui->plot->xAxis->setSubTickCount(0);
     ui->plot->xAxis->setTickLength(0, 4);
     ui->plot->xAxis->grid()->setVisible(true);
-
+    ui->plot->xAxis->setRange(0, 11);
 
     // prepare y axis:
-   ui->plot->yAxis->setRange(-12, 12.1);
+    ui->plot->yAxis->setRange(-12, 12.1);
     ui->plot->yAxis->setPadding(5); // a bit more space to the left border
     ui->plot->yAxis->setLabel("Crowd Percentage per Spot (%)");
-   ui->plot->yAxis->grid()->setSubGridVisible(true);
+    ui->plot->yAxis->grid()->setSubGridVisible(true);
     QPen gridPen;
     gridPen.setStyle(Qt::SolidLine);
     gridPen.setColor(QColor(0, 0, 0, 25));
@@ -79,30 +84,18 @@ void Graphview::setupPlot()
     gridPen.setStyle(Qt::DotLine);
     ui->plot->yAxis->grid()->setSubGridPen(gridPen);
 
-    // Add data:
+    //Add data;
     QVector<double> crowdData;
-    crowdData << -0.86*10.5 << 0.83*5.5 << 0.84*5.5 << 0.52*5.8 << 0.89*5.2;
-
+    crowdData << 0.21 << 0.909;
     fossil->setData(ticks, crowdData);
 
-    // setup legend:
-   ui->plot->legend->setVisible(true);
-    ui->plot->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop|Qt::AlignHCenter);
-    ui->plot->legend->setBrush(QColor(255, 255, 255, 200));
-    QPen legendPen;
-    legendPen.setColor(QColor(130, 130, 130, 200));
-    ui->plot->legend->setBorderPen(legendPen);
-    QFont legendFont = font();
-    legendFont.setPointSize(10);
-    ui->plot->legend->setFont(legendFont);
     ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 
-//Second graph
-    //int fishLoc = ui->locations->value();
+    //Second graph, strategy scores
     // create empty bar chart objects:
     QCPBars *fossil2 = new QCPBars(ui->plot_2->xAxis, ui->plot_2->yAxis);
 
-    ui->plot_2->addPlottable(fossil);
+    ui->plot_2->addPlottable(fossil2);
 
     // set names and colors:
     QPen pen2;
@@ -110,9 +103,6 @@ void Graphview::setupPlot()
     pen2.setColor(QColor(255, 131, 0));
     fossil2->setPen(pen);
     fossil2->setBrush(QColor(255, 131, 0, 50));
-
-    // stack bars ontop of each other:
-
 
     // prepare x axis with country labels:
     QVector<double> ticks2;
@@ -122,21 +112,21 @@ void Graphview::setupPlot()
     }
     labels2 <<"1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8"<<"9"<<"10"<<"11"<<"12"<<"13"<<"14"<<"15"<<"16"<<"17"<<"18"<<"19"<<"20";
     ui->plot_2->xAxis->setAutoTicks(false);
-   ui->plot_2->xAxis->setAutoTickLabels(false);
+    ui->plot_2->xAxis->setAutoTickLabels(false);
     ui->plot_2->xAxis->setTickVector(ticks2);
-   ui->plot_2->xAxis->setTickVectorLabels(labels2);
+    ui->plot_2->xAxis->setTickVectorLabels(labels2);
     ui->plot_2->xAxis->setTickLabelRotation(60);
     ui->plot_2->xAxis->setSubTickCount(0);
     ui->plot_2->xAxis->setTickLength(0, 4);
     ui->plot_2->xAxis->grid()->setVisible(true);
-    ui->plot_2->xAxis->setRange(0, 20);
-     ui->plot_2->xAxis->setLabel("Strategy Number");
+    ui->plot_2->xAxis->setRange(0, 21);
+    ui->plot_2->xAxis->setLabel("Strategy Number");
 
     // prepare y axis:
-   ui->plot_2->yAxis->setRange(-12, 12.1);
+    ui->plot_2->yAxis->setRange(-12, 12.1);
     ui->plot_2->yAxis->setPadding(5); // a bit more space to the left border
     ui->plot_2->yAxis->setLabel("Strategy Score");
-   ui->plot_2->yAxis->grid()->setSubGridVisible(true);
+    ui->plot_2->yAxis->grid()->setSubGridVisible(true);
     QPen gridPen2;
     gridPen2.setStyle(Qt::SolidLine);
     gridPen2.setColor(QColor(0, 0, 0, 25));
@@ -146,20 +136,14 @@ void Graphview::setupPlot()
 
     // Add data:
     QVector<double> crowdData2;
-    crowdData2 << -0.86*10.5 << 0.83*5.5 << 0.84*5.5 << 0.52*5.8 << 0.89*5.2;
+    for(list<Strategy *>::iterator it = getAllStrat()->begin(); it != getAllStrat()->end(); it++)
+    {
+        Strategy *curPoint = *it;
+        crowdData2 << curPoint->getScore();
+    }
 
     fossil2->setData(ticks2, crowdData2);
 
-    // setup legend:
-   ui->plot_2->legend->setVisible(true);
-    ui->plot_2->axisRect()->insetLayout()->setInsetAlignment(0, Qt::AlignTop|Qt::AlignHCenter);
-    ui->plot_2->legend->setBrush(QColor(255, 255, 255, 200));
-    QPen legendPen2;
-    legendPen2.setColor(QColor(130, 130, 130, 200));
-    ui->plot_2->legend->setBorderPen(legendPen);
-    QFont legendFont2 = font();
-    legendFont2.setPointSize(10);
-    ui->plot_2->legend->setFont(legendFont);
     ui->plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 
   // Note: we could have also just called customPlot->rescaleAxes(); instead
