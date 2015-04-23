@@ -5,7 +5,7 @@
 #include "UserSettings.h"
 #include "ui_mainwindow.h"
 #include "../Agent/agent.h"
-#include "../Agent/spot.h"
+
 
 
 Graphview::Graphview(QWidget *parent) :
