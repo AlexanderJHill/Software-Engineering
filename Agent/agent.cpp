@@ -344,7 +344,7 @@ void Agent::updateAgentScore(int majorityScore)
 {
     if (-(decision * majorityScore) > (0.1 * allAgent.size()))
     {
-        agentscore[0] = agentscore[0] + 1;
+        agentscore[0] = agentscore[0] + 1; //add agent score by one if he made a minoity decision
     }
 
     else
@@ -354,7 +354,7 @@ void Agent::updateAgentScore(int majorityScore)
     }
 
     if(agentscore[0] == 3)
-        agentscore[1] = 0;
+        agentscore[1] = 0; //reset the agent lose count if the agent wins 3 times in a row
 }
 
 int Agent::getAgentScore(int index)

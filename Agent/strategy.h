@@ -9,6 +9,8 @@ using namespace std;
 class Strategy{
 private:
     int score; //hold score for strategy
+    int win;
+    int lose;
 
 	//!brief represents a strategy for determining the conditions of going fishing.
 	//since each startegy depends on 3 previous outcomes, so posiible output
@@ -19,9 +21,17 @@ private:
 	vector<int> decisionPattern;
 public:
     Strategy(vector<int> randDecision);
+    void updateScore(int point);
+
 	vector<int> getDecisionPattern();
 	int getScore();
-	void updateScore(int point);
+    int getWin();
+    int getLose();
+
+    void clearWin();
+    void clearLose();
+
+
 };
 
 void initStrategy();

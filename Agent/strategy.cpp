@@ -11,6 +11,8 @@ static list<Strategy *> allStrategy;
 //Strategy constructor
 Strategy::Strategy(vector<int> randDecision){
     score = 0; //Initial
+    win = 0;
+    lose = 0;
 	decisionPattern = randDecision;
 }
 
@@ -27,13 +29,17 @@ vector<int> Strategy::getDecisionPattern()
 //! \return the strategy score
 int Strategy::getScore()
 {
-	return score;
+    return score;
 }
 
 //! \brief records the secess of this strategy
 void Strategy::updateScore(int point)
 {
 	score = score + point;
+    if(point == 1)
+        win = win + 1;
+    else
+        lose = lose + 1;
 }
 
 //! \brief initializes all of the strategies
@@ -62,4 +68,24 @@ void initStrategy()
 list<Strategy *> *getAllStrat()
 {
 	return &allStrategy;
+}
+
+int Strategy::getWin()
+{
+    return win;
+}
+
+int Strategy::getLose()
+{
+    return lose;
+}
+
+void Strategy::clearWin()
+{
+    win = 0;
+}
+
+void Strategy::clearLose()
+{
+    lose = 0;
 }

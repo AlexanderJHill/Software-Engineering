@@ -4,9 +4,7 @@
 #include "../Agent/strategy.h"
 #include "../Agent/randomgenerator.h"
 #include <QtWidgets>
-#include <iostream>
-#include <stdio.h>
-using namespace std;
+
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -178,50 +176,8 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
 
     for(int day = 1; day != runtime + 1; day++)
     {
-        a = "";
         runAgentSimulation();
-        int majscore = 0;
-        for(list<Agent *> ::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
-        {
-            Agent *c = *it;
-            majscore = majscore + c->getDecision();
-           // a = a /*+ QString::number(c->getAgentScore(0))*/ + "  " + QString::number(c->getAgentScore(1)) + " ";
-        }
     }
-
-
-
-
-
-    //testing...
-    //**********************************************************************************************//
-    for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
-    {
-        a = "Agent data: ";
-        Agent *curAgent = *it;
-        QString s = QString::number(curAgent->getSkill());
-        QString c = QString::number(curAgent->getCommunication());
-        QString t = QString::number(curAgent->getTemp());
-        QString f = QString::number(curAgent->getFishingDuration());
-        QString d = QString::number(curAgent->getDecision());
-        QString ed = QString::number(curAgent->getEarlyDecision());
-
-        a = a + QString::number(curAgent->getThreshold()) + " " + s + " " + c + " " + t + " " + f + " " + ed + " " + d;
-        log(a);
-    }
-
-    for(list<Strategy *>::iterator it = getAllStrat()->begin(); it != getAllStrat()->end(); it++)
-    {
-        a = "Strat Score: ";
-        Strategy *curStrat = *it;
-        QString s = QString::number(curStrat->getScore());
-
-        a = a + s;
-        log(a);
-    }
-    //**********************************************************************************************//
-
-
 }
 
 
