@@ -112,7 +112,7 @@ void MainWindow::on_reportButton_clicked()
     Graphview *graphview = new Graphview();
     graphview->show();
     graphview->printSettings(settings);
-
+    final.clear();
 }
 
 void MainWindow::on_simulateButton_clicked()
