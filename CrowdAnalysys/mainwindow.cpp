@@ -3,8 +3,14 @@
 #include "../Agent/agent.h"
 #include "../Agent/strategy.h"
 #include "../Agent/randomgenerator.h"
+#include "../Agent/spot.h"
 #include <QtWidgets>
+#include <iostream>
+#include <stdio.h>
+#include <QVector>
 
+using namespace std;
+QVector<double> final;
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -163,6 +169,7 @@ void MainWindow::on_simulateButton_clicked()
     allstrat->clear();
 
     startSimulate(fisherNum, fishLoc, fishType, fishPop, fishTemp, runtime);
+     calculateSpot(fisherNum, fishLoc);
 
 
 }
@@ -180,6 +187,39 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
     }
 }
 
+void MainWindow::calculateSpot(int fisherNum, int fishLoc ){
+
+    double *goFishing;//Initialize agents deciding to go fishing
+    goFishing=new double[fishLoc];
+    int maxFisher = fisherNum/fishLoc;
+    initStrategy();
+    initAgent(maxFisher);
+    Spot *one;
+    one = new Spot[fishLoc];
+    for (int i = 0; i < fishLoc ; i++ ){
+        one[i].setCap(maxFisher);
+        one[i].setAgentNum(maxFisher);
+    }
+
+    for(int i = 0; i < fishLoc; i++){
+
+        goFishing[i] = 0;
+        for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
+        {
+            Agent *curAgent = *it;
+            if(curAgent->getDecision()==1)
+            {
+              goFishing[i]+= 1;
+            }
+         }
+         final.push_front(one[i].crowdness(goFishing[i]));
+    }
+}
+
+QVector<double>getNumber(){
+    QVector<double> a = final;
+    return a;
+}
 
 //code to display a save dialog
 //
