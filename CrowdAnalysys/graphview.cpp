@@ -79,7 +79,7 @@ void Graphview::setupPlot()
     ui->plot->xAxis->setSubTickCount(0);
     ui->plot->xAxis->setTickLength(0, 8);
     ui->plot->xAxis->grid()->setVisible(true);
-    ui->plot->xAxis->setRange(-1, 10);
+    ui->plot->xAxis->setRange(-1, 5);
 
     // prepare y axis:
     ui->plot->yAxis->setRange(-12, 120);
