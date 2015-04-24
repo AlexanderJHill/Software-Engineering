@@ -5,6 +5,8 @@
 #include "UserSettings.h"
 #include "ui_mainwindow.h"
 #include "../Agent/agent.h"
+#include "../Agent/spot.h"
+#include <QVector>
 
 
 
@@ -37,11 +39,17 @@ void Graphview::printSettings(QString s){
 
 void Graphview::setupPlot()
 {
+    QVector<double> b = getNumber();
+    for (int i = 0; i < b.size(); i++){
+        QString a = QString::number(b.at(i));
+        printSettings(a);
+    }
 
     list<Agent *> *allagent = getAllAgent();
     list<Strategy *> *allstrat = getAllStrat();
+    QVector<double> f;
 
-    //First graph, Spot
+    //Spot
     // create empty bar chart objects:
     QCPBars *fossil = new QCPBars(ui->plot->xAxis, ui->plot->yAxis);
 
@@ -54,12 +62,13 @@ void Graphview::setupPlot()
     fossil->setPen(pen);
     fossil->setBrush(QColor(255, 131, 0, 50));
 
+
     // prepare x axis with country labels:
     QVector<double> ticks;
     QVector<QString> labels;
 
-    for (int i = 0; i < 2; i++){
-        ticks << i+1;
+    for (int i = 0; i < 5; i++){
+        ticks << i;
     }
     labels <<"Spot 1"<<"Spot 2"<<"Spot 3"<<"Spot 4"<<"Spot 5"<<"Spot 6"<<"Spot 7"<<"Spot 8"<<"Spot 9"<<"Spot 10";
     ui->plot->xAxis->setAutoTicks(false);
@@ -68,12 +77,12 @@ void Graphview::setupPlot()
     ui->plot->xAxis->setTickVectorLabels(labels);
     ui->plot->xAxis->setTickLabelRotation(60);
     ui->plot->xAxis->setSubTickCount(0);
-    ui->plot->xAxis->setTickLength(0, 4);
+    ui->plot->xAxis->setTickLength(0, 8);
     ui->plot->xAxis->grid()->setVisible(true);
-    ui->plot->xAxis->setRange(0, 11);
+    ui->plot->xAxis->setRange(-1, 10);
 
     // prepare y axis:
-    ui->plot->yAxis->setRange(-12, 12.1);
+    ui->plot->yAxis->setRange(-12, 120);
     ui->plot->yAxis->setPadding(5); // a bit more space to the left border
     ui->plot->yAxis->setLabel("Crowd Percentage per Spot (%)");
     ui->plot->yAxis->grid()->setSubGridVisible(true);
@@ -86,7 +95,11 @@ void Graphview::setupPlot()
 
     //Add data;
     QVector<double> crowdData;
-    crowdData << 0.21 << 0.909;
+    for (int i = 0; i < b.size(); i++){
+        crowdData<<b.at(i);
+    }
+    //crowdData = f;
+
     fossil->setData(ticks, crowdData);
 
     ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
@@ -148,9 +161,10 @@ void Graphview::setupPlot()
 
   // Note: we could have also just called customPlot->rescaleAxes(); instead
   // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking:
-  ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-  ui->plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-  ui->tabWidget->setCurrentIndex(0);
+    ui->plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+
+    ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+    ui->tabWidget->setCurrentIndex(0);
 
 }
 
