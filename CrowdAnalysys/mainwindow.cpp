@@ -191,7 +191,7 @@ void MainWindow::calculateSpot(int fisherNum, int fishLoc ){
 
     double *goFishing;//Initialize agents deciding to go fishing
     goFishing=new double[fishLoc];
-    double maxFisher = double(fisherNum)/double(fishLoc)
+    double maxFisher = double(fisherNum)/double(fishLoc);
     initStrategy();
     initAgent(maxFisher);
     Spot *one;
