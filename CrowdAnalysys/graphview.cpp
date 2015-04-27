@@ -8,8 +8,6 @@
 #include "../Agent/spot.h"
 #include <QVector>
 
-
-
 Graphview::Graphview(QWidget *parent) :
 QMainWindow(parent),
 ui(new Ui::Graphview)
