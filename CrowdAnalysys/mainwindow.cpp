@@ -7,8 +7,13 @@
 #include <QtWidgets>
 #include <iostream>
 #include <stdio.h>
-using namespace std;
+#include <QVector>
 
+using namespace std;
+QVector<double> final;
+QVector<double> final2;
+QVector<double> final3;
+int time;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -109,7 +114,8 @@ void MainWindow::on_reportButton_clicked()
     Graphview *graphview = new Graphview();
     graphview->show();
     graphview->printSettings(settings);
-
+    final.clear();
+    final2.clear();
 }
 
 void MainWindow::on_simulateButton_clicked()
@@ -166,18 +172,17 @@ void MainWindow::on_simulateButton_clicked()
     allstrat->clear();
 
     startSimulate(fisherNum, fishLoc, fishType, fishPop, fishTemp, runtime);
+   // calculateSpot(fisherNum, fishLoc);
+
 
 
 }
 
 void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp, int runtime)
 {
-    double *goFishing;//Initialize agents deciding to go fishing
-    goFishing=new double[fishLoc];
-    //goFishing=0 ;
-    int maxFisher = fisherNum/fishLoc;
-    QString b = "Num max fisherman per spot " + QString::number(maxFisher);
-    log(b);
+
+    double maxFisher = fisherNum/fishLoc;
+    setTime(runtime);
     initStrategy();
     initAgent(maxFisher);
     QString a = "Num of agent in list " + QString::number(getAllAgent()->size());
@@ -185,20 +190,76 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
 
     for(int day = 1; day != runtime + 1; day++)
     {
-        a = "";
         runAgentSimulation();
-        int majscore = 0;
-        for(list<Agent *> ::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
-        {
-            Agent *c = *it;
-            majscore = majscore + c->getDecision();
-           // a = a /*+ QString::number(c->getAgentScore(0))*/ + "  " + QString::number(c->getAgentScore(1)) + " ";
-        }
+        calculateSpot(fisherNum, fishLoc);
     }
 
-    //testing...
-    //**********************************************************************************************//
+}
 
+void calculateSpot(int fisherNum, int fishLoc ){
+    list<Agent *> *allagent = getAllAgent();
+    double goFishing;//Initialize agents deciding to go fishing
+    double maxFisher = fisherNum/fishLoc;
+    Spot one;
+    one.setCap(maxFisher);
+    goFishing = 0;
+    for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
+         {
+               Agent *curAgent = *it;
+                 if(curAgent->getDecision()==1)
+                 {
+                   goFishing+= 1;
+                 }
+         }
+
+     final.push_back(one.crowdness(goFishing));
+     if(fishLoc == 2){
+     for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
+          {
+                Agent *curAgent = *it;
+                  if(curAgent->getDecision()==1)
+                  {
+                    goFishing+= 1;
+                  }
+          }
+         Spot two;
+         two.setCap(maxFisher);
+         final2.push_back(two.crowdness(goFishing));
+    }
+     if(fishLoc == 3){
+     for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
+          {
+                Agent *curAgent = *it;
+                  if(curAgent->getDecision()==1)
+                  {
+                    goFishing+= 1;
+                  }
+          }
+         Spot two;
+         two.setCap(maxFisher);
+         final2.push_back(two.crowdness(goFishing));
+
+         for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
+              {
+                    Agent *curAgent = *it;
+                      if(curAgent->getDecision()==1)
+                      {
+                        goFishing+= 1;
+                      }
+              }
+         Spot three;
+         three.setCap(maxFisher);
+         final3.push_back(three.crowdness(goFishing));
+    }
+
+
+
+/*
+    double *goFishing;//Initialize agents deciding to go fishing
+    goFishing=new double[fishLoc];
+    double maxFisher = double(fisherNum)/double(fishLoc);
+    initStrategy();
+    initAgent(maxFisher);
     Spot *one;
     one = new Spot[fishLoc];
     for (int i = 0; i < fishLoc ; i++ ){
@@ -206,47 +267,42 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
         one[i].setAgentNum(maxFisher);
     }
 
-for(int i = 0; i < fishLoc; i++){
-    goFishing[i] = 0;
-    for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
-    {
-        a = "Agent data: ";
-        Agent *curAgent = *it;
-        QString s = QString::number(curAgent->getSkill());
-        QString c = QString::number(curAgent->getCommunication());
-        QString t = QString::number(curAgent->getTemp());
-        QString f = QString::number(curAgent->getFishingDuration());
-        QString d = QString::number(curAgent->getDecision());
-        QString ed = QString::number(curAgent->getEarlyDecision());
-
-        if(curAgent->getDecision()==1){
-            goFishing[i]+= 1;
-        }
-
-       a = a + QString::number(curAgent->getThreshold()) + " " + s + " " + c + " " + t + " " + f + " " + ed + " " + d;
-        log(a);
-
-    }
-}
-
-    for(list<Strategy *>::iterator it = getAllStrat()->begin(); it != getAllStrat()->end(); it++)
-    {
-        a = "Strat Score: ";
-        Strategy *curStrat = *it;
-        QString s = QString::number(curStrat->getScore());
-
-        a = a + s;
-        log(a);
-    }
     for(int i = 0; i < fishLoc; i++){
-        QString g = "Number go fishing " + QString::number(goFishing[i]);
-        log(g);
-        QString percent = "Percentage of crowd: " + QString::number(one[i].crowdness(goFishing[i]));
-        log(percent);
+
+        goFishing[i] = 0;
+        for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
+        {
+            Agent *curAgent = *it;
+            if(curAgent->getDecision()==1)
+            {
+              goFishing[i]+= 1;
+            }
+         }
+         final.push_front(one[i].crowdness(goFishing[i]));
     }
-    //********************************************************************************************
+    */
 }
 
+QVector<double>getNumber(){
+    QVector<double> a = final;
+    return a;
+}
+QVector<double>getNumber2(){
+    QVector<double> a2 = final2;
+    return a2;
+}
+QVector<double>getNumber3(){
+    QVector<double> a3 = final3;
+    return a3;
+}
+
+void setTime(int init){
+    time = init;
+}
+
+int getTime(){
+    return time;
+}
 
 //code to display a save dialog
 //
@@ -265,4 +321,3 @@ for(int i = 0; i < fishLoc; i++){
 //                                 options);
 //     if (!fileName.isEmpty())
 //         saveFileNameLabel->setText(fileName);
-
