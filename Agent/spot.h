@@ -11,7 +11,6 @@ class Spot{
 private:
     double maxcapacity; 	//!< max agents per spot
     int numAgent;			//!< number of agents possibly going fishing per spot
-    vector<int> locations;
 public:
     
 	/*! Constructor for a spot
