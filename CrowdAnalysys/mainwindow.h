@@ -9,12 +9,7 @@
 #include "../Agent/spot.h"
 #include <QVector>
 
-void calculateSpot(int fisherNum, int fishLoc );
 QVector<double>getNumber();
-QVector<double>getNumber2();
-QVector<double>getNumber3();
-void setTime(int init);
-int getTime();
 
 namespace Ui {
 class MainWindow;
@@ -62,6 +57,8 @@ friend double getSpotppp();
     void on_simulateButton_clicked();
 
     void startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp, int runtime);
+    
+    void calculateSpot(int fisherNum, int fishLoc );
 
 protected:
     Ui::MainWindow *ui;
