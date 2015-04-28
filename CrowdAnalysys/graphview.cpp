@@ -95,13 +95,20 @@ void Graphview::setupPlot()
     QVector<double> b = getNumber();
     QVector<double> b2 = getNumber2();
     QVector<double> b3 = getNumber3();
+    QVector<double> b4 = getNumber4();
+    QVector<double> b5 = getNumber5();
 
     int time= getTime();
     list<Agent *> *allagent = getAllAgent();
     list<Strategy *> *allstrat = getAllStrat();
 
+
+
+
+
+
  /************************ Spot 1**********************************************/
-    // create empty bar chart objects:
+   // create empty bar chart objects:
     QCPBars *fossil2 = new QCPBars(ui->plot_2->xAxis, ui->plot_2->yAxis);
     ui->plot_2->addPlottable(fossil2);
 
@@ -154,7 +161,7 @@ void Graphview::setupPlot()
     ui->plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 
  /*****************Spot 2**********************************************/
-   /*
+/*
     // create empty bar chart objects:
     QCPBars *fossil3 = new QCPBars(ui->plot_3->xAxis, ui->plot_3->yAxis);
 
@@ -166,18 +173,11 @@ void Graphview::setupPlot()
     fossil3->setPen(pen2);
     fossil3->setBrush(QColor(255, 131, 0, 50));
 
-    QVector<double> ticks3;
-    QVector<QString> labels3;
-    for (int i = 0; i < 24; i++){
-        ticks3 << i;
-    }
-    labels3 <<"1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8"<<"9"<<"10"<<"11"<<"12"<<"13"<<"14"<<"15"<<"16"<<"17"<<"18"<<"19"<<"20"
-    <<"21"<<"22"<<"23"<<"24";
     // prepare x axis with country labels:
     ui->plot_3->xAxis->setAutoTicks(false);
     ui->plot_3->xAxis->setAutoTickLabels(false);
     ui->plot_3->xAxis->setTickVector(ticks2);
-    ui->plot_3->xAxis->setTickVectorLabels(labels3);
+    ui->plot_3->xAxis->setTickVectorLabels(labels2);
     ui->plot_3->xAxis->setTickLabelRotation(60);
     ui->plot_3->xAxis->setSubTickCount(0);
     ui->plot_3->xAxis->setTickLength(0, 8);
@@ -201,10 +201,10 @@ void Graphview::setupPlot()
     for (int i = 0; i < b2.size(); i++){
         crowdData3<<b2.at(i);
     }
-    fossil3->setData(ticks3, crowdData3);
+    fossil3->setData(ticks2, crowdData3);
 
     ui->plot_3->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
-    */
+*/
  /********************************SPot 3***************************************/
 /*
     // create empty bar chart objects:
@@ -215,21 +215,14 @@ void Graphview::setupPlot()
     // set names and colors:
     pen2.setWidthF(1.2);
     pen2.setColor(QColor(255, 131, 0));
-    fossil3->setPen(pen2);
-    fossil3->setBrush(QColor(255, 131, 0, 50));
+    fossil4->setPen(pen2);
+    fossil4->setBrush(QColor(255, 131, 0, 50));
 
-    QVector<double> ticks4;
-    QVector<QString> labels4;
-    for (int i = 0; i < 24; i++){
-        ticks4 << i;
-    }
-    labels4 <<"1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8"<<"9"<<"10"<<"11"<<"12"<<"13"<<"14"<<"15"<<"16"<<"17"<<"18"<<"19"<<"20"
-    <<"21"<<"22"<<"23"<<"24";
     // prepare x axis with country labels:
     ui->plot_4->xAxis->setAutoTicks(false);
     ui->plot_4->xAxis->setAutoTickLabels(false);
     ui->plot_4->xAxis->setTickVector(ticks2);
-    ui->plot_4->xAxis->setTickVectorLabels(labels4);
+    ui->plot_4->xAxis->setTickVectorLabels(labels2);
     ui->plot_4->xAxis->setTickLabelRotation(60);
     ui->plot_4->xAxis->setSubTickCount(0);
     ui->plot_4->xAxis->setTickLength(0, 8);
@@ -253,18 +246,110 @@ void Graphview::setupPlot()
     for (int i = 0; i < b3.size(); i++){
         crowdData4<<b3.at(i);
     }
-    fossil4->setData(ticks4, crowdData4);
+    fossil4->setData(ticks2, crowdData4);
 
     ui->plot_4->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
+*/
+    /********************************SPot 4***************************************/
+/*
+    // create empty bar chart objects:
+    QCPBars *fossil5 = new QCPBars(ui->plot_5->xAxis, ui->plot_5->yAxis);
+
+    ui->plot_5->addPlottable(fossil5);
+
+    // set names and colors:
+    pen2.setWidthF(1.2);
+    pen2.setColor(QColor(255, 131, 0));
+    fossil5->setPen(pen2);
+    fossil5->setBrush(QColor(255, 131, 0, 50));
+
+    // prepare x axis with country labels:
+    ui->plot_5->xAxis->setAutoTicks(false);
+    ui->plot_5->xAxis->setAutoTickLabels(false);
+    ui->plot_5->xAxis->setTickVector(ticks2);
+    ui->plot_5->xAxis->setTickVectorLabels(labels2);
+    ui->plot_5->xAxis->setTickLabelRotation(60);
+    ui->plot_5->xAxis->setSubTickCount(0);
+    ui->plot_5->xAxis->setTickLength(0, 8);
+    ui->plot_5->xAxis->grid()->setVisible(true);
+    ui->plot_5->xAxis->setRange(-1, time);
+    ui->plot_5->xAxis->setLabel("Time (day)");
+
+    // prepare y axis:
+    ui->plot_5->yAxis->setRange(-1, 100);
+    ui->plot_5->yAxis->setPadding(5); // a bit more space to the left border
+    ui->plot_5->yAxis->setLabel("Crowd Percentage on Spot 3 (%)");
+    ui->plot_5->yAxis->grid()->setSubGridVisible(true);
+    gridPen2.setStyle(Qt::SolidLine);
+    gridPen2.setColor(QColor(0, 0, 0, 25));
+    ui->plot_5->yAxis->grid()->setPen(gridPen2);
+    gridPen2.setStyle(Qt::DotLine);
+    ui->plot_5->yAxis->grid()->setSubGridPen(gridPen2);
+
+    // Add data:
+    QVector<double> crowdData5;
+    for (int i = 0; i < b3.size(); i++){
+        crowdData5<<b4.at(i);
+    }
+    fossil5->setData(ticks2, crowdData5);
+
+    ui->plot_5->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
+*/
+    /********************************SPot 5***************************************/
+/*
+      // create empty bar chart objects:
+      QCPBars *fossil6 = new QCPBars(ui->plot_6->xAxis, ui->plot_6->yAxis);
+
+      ui->plot_6->addPlottable(fossil6);
+
+      // set names and colors:
+      pen2.setWidthF(1.2);
+      pen2.setColor(QColor(255, 131, 0));
+      fossil6->setPen(pen2);
+      fossil6->setBrush(QColor(255, 131, 0, 50));
+
+      // prepare x axis with country labels:
+      ui->plot_6->xAxis->setAutoTicks(false);
+      ui->plot_6->xAxis->setAutoTickLabels(false);
+      ui->plot_6->xAxis->setTickVector(ticks2);
+      ui->plot_6->xAxis->setTickVectorLabels(labels2);
+      ui->plot_6->xAxis->setTickLabelRotation(60);
+      ui->plot_6->xAxis->setSubTickCount(0);
+      ui->plot_6->xAxis->setTickLength(0, 8);
+      ui->plot_6->xAxis->grid()->setVisible(true);
+      ui->plot_6->xAxis->setRange(-1, time);
+      ui->plot_6->xAxis->setLabel("Time (day)");
+
+      // prepare y axis:
+      ui->plot_6->yAxis->setRange(-1, 100);
+      ui->plot_6->yAxis->setPadding(5); // a bit more space to the left border
+      ui->plot_6->yAxis->setLabel("Crowd Percentage on Spot 3 (%)");
+      ui->plot_6->yAxis->grid()->setSubGridVisible(true);
+      gridPen2.setStyle(Qt::SolidLine);
+      gridPen2.setColor(QColor(0, 0, 0, 25));
+      ui->plot_4->yAxis->grid()->setPen(gridPen2);
+      gridPen2.setStyle(Qt::DotLine);
+      ui->plot_4->yAxis->grid()->setSubGridPen(gridPen2);
+
+      // Add data:
+      QVector<double> crowdData6;
+      for (int i = 0; i < b5.size(); i++){
+          crowdData6<<b5.at(i);
+      }
+      fossil6->setData(ticks2, crowdData6);
+
+      ui->plot_6->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 */
   // Note: we could have also just called customPlot->rescaleAxes(); instead
   // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking:
 
-    ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-    ui->plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-   // ui->plot_3->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-    //ui->plot_4->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-    ui->tabWidget->setCurrentIndex(0);
+  ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+  ui->plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+  //ui->plot_3->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+  // ui->plot_4->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+  //ui->plot_5->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+  // ui->plot_6->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+  ui->tabWidget->setCurrentIndex(0);
 
 }
 
