@@ -187,7 +187,11 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
     setTime(runtime);
     initStrategy();
     initAgent(fisherNum);
-    int index ;
+    int index = getAllAgent()->size();
+    int rem = fisherNum%fishLoc;
+    if(rem!=0){
+    getAllAgent()->resize(index - rem);
+    }
 
     QString a =  QString::number(fisherNum/fishLoc);
     log(a);
