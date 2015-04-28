@@ -37,7 +37,7 @@ void Graphview::printSettings(QString s){
 
 void Graphview::setupPlot()
 {
-        /***********************************Strategy Scores***************************/
+    /***********************************Strategy Scores***************************/
          //graph, strategy scores
          // create empty bar chart objects:
          QCPBars *fossil = new QCPBars(ui->plot->xAxis, ui->plot->yAxis);
@@ -68,7 +68,7 @@ void Graphview::setupPlot()
          ui->plot->xAxis->setLabel("Strategy Number");
 
          // prepare y axis:
-         ui->plot->yAxis->setRange(-50, 50);
+         ui->plot->yAxis->setRange(-10, 80);
          ui->plot->yAxis->setPadding(5); // a bit more space to the left border
          ui->plot->yAxis->setLabel("Strategy Score");
          ui->plot->yAxis->grid()->setSubGridVisible(true);
@@ -84,7 +84,7 @@ void Graphview::setupPlot()
               for(list<Strategy *>::iterator it = getAllStrat()->begin(); it != getAllStrat()->end(); it++)
               {
                   Strategy *curPoint = *it;
-                  crowdData << curPoint->getScore();
+                  crowdData << curPoint->getWin();
               }
 
               fossil->setData(ticks, crowdData);
@@ -116,11 +116,11 @@ void Graphview::setupPlot()
     QVector<double> ticks2;
     QVector<QString> labels2;
 
-    for (int i = 0; i < 24; i++){
+    for (int i = 0; i < 30; i++){
         ticks2 << i;
     }
     labels2 <<"1"<<"2"<<"3"<<"4"<<"5"<<"6"<<"7"<<"8"<<"9"<<"10"<<"11"<<"12"<<"13"<<"14"<<"15"<<"16"<<"17"<<"18"<<"19"<<"20"
- <<"21"<<"22"<<"23"<<"24";
+ <<"21"<<"22"<<"23"<<"24"<<"25"<<"26"<<"27"<<"28"<<"29"<<"30";
     ui->plot_2->xAxis->setAutoTicks(false);
     ui->plot_2->xAxis->setAutoTickLabels(false);
     ui->plot_2->xAxis->setTickVector(ticks2);
@@ -130,12 +130,12 @@ void Graphview::setupPlot()
     ui->plot_2->xAxis->setTickLength(0, 8);
     ui->plot_2->xAxis->grid()->setVisible(true);
     ui->plot_2->xAxis->setRange(-1, time);
-    ui->plot_2->xAxis->setLabel("Hour");
+    ui->plot_2->xAxis->setLabel("Time (day)");
 
     // prepare y axis:
     ui->plot_2->yAxis->setRange(-1, 100);
     ui->plot_2->yAxis->setPadding(5); // a bit more space to the left border
-    ui->plot_2->yAxis->setLabel("Crowd Percentage per Spot 1 (%)");
+    ui->plot_2->yAxis->setLabel("Crowd Percentage on Spot 1 (%)");
     ui->plot_2->yAxis->grid()->setSubGridVisible(true);
     QPen gridPen2;
     gridPen2.setStyle(Qt::SolidLine);
@@ -154,7 +154,8 @@ void Graphview::setupPlot()
     ui->plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 
  /*****************Spot 2**********************************************/
-  /*  // create empty bar chart objects:
+   /*
+    // create empty bar chart objects:
     QCPBars *fossil3 = new QCPBars(ui->plot_3->xAxis, ui->plot_3->yAxis);
 
     ui->plot_3->addPlottable(fossil3);
@@ -182,12 +183,12 @@ void Graphview::setupPlot()
     ui->plot_3->xAxis->setTickLength(0, 8);
     ui->plot_3->xAxis->grid()->setVisible(true);
     ui->plot_3->xAxis->setRange(-1, time);
-    ui->plot_3->xAxis->setLabel("Hour");
+    ui->plot_3->xAxis->setLabel("Time (day)");
 
     // prepare y axis:
     ui->plot_3->yAxis->setRange(-1, 100);
     ui->plot_3->yAxis->setPadding(5); // a bit more space to the left border
-    ui->plot_3->yAxis->setLabel("Crowd Percentage per Spot 2 (%)");
+    ui->plot_3->yAxis->setLabel("Crowd Percentage on Spot 2 (%)");
     ui->plot_3->yAxis->grid()->setSubGridVisible(true);
     gridPen2.setStyle(Qt::SolidLine);
     gridPen2.setColor(QColor(0, 0, 0, 25));
@@ -234,12 +235,12 @@ void Graphview::setupPlot()
     ui->plot_4->xAxis->setTickLength(0, 8);
     ui->plot_4->xAxis->grid()->setVisible(true);
     ui->plot_4->xAxis->setRange(-1, time);
-    ui->plot_4->xAxis->setLabel("Hour");
+    ui->plot_4->xAxis->setLabel("Time (day)");
 
     // prepare y axis:
     ui->plot_4->yAxis->setRange(-1, 100);
     ui->plot_4->yAxis->setPadding(5); // a bit more space to the left border
-    ui->plot_4->yAxis->setLabel("Crowd Percentage per Spot 3 (%)");
+    ui->plot_4->yAxis->setLabel("Crowd Percentage on Spot 3 (%)");
     ui->plot_4->yAxis->grid()->setSubGridVisible(true);
     gridPen2.setStyle(Qt::SolidLine);
     gridPen2.setColor(QColor(0, 0, 0, 25));
@@ -262,9 +263,8 @@ void Graphview::setupPlot()
     ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
     ui->plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
    // ui->plot_3->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-   // ui->plot_4->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+    //ui->plot_4->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
     ui->tabWidget->setCurrentIndex(0);
-
 
 }
 
@@ -313,6 +313,4 @@ void Graphview::on_actionSave_Document_triggered()
     ui->textEdit->document()->print(&printer);
   }
 }
-
-
 
