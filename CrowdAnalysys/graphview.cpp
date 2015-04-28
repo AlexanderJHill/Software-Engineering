@@ -102,11 +102,6 @@ void Graphview::setupPlot()
     list<Agent *> *allagent = getAllAgent();
     list<Strategy *> *allstrat = getAllStrat();
 
-
-
-
-
-
  /************************ Spot 1**********************************************/
    // create empty bar chart objects:
     QCPBars *fossil2 = new QCPBars(ui->plot_2->xAxis, ui->plot_2->yAxis);
