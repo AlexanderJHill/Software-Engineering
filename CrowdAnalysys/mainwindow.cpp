@@ -13,8 +13,11 @@ using namespace std;
 QVector<double> final;
 QVector<double> final2;
 QVector<double> final3;
+QVector<double> final4;
+QVector<double> final5;
+QVector<double> final6;
 int time;
-
+vector<Spot *> spots;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -172,116 +175,82 @@ void MainWindow::on_simulateButton_clicked()
     allagent->clear();
     list<Strategy *> *allstrat = getAllStrat();
     allstrat->clear();
+    spots.clear();
 
     startSimulate(fisherNum, fishLoc, fishType, fishPop, fishTemp, runtime);
-     calculateSpot(fisherNum, fishLoc);
 
 }
 
 void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp, int runtime)
 {
 
-    double maxFisher = fisherNum/fishLoc;
+    if ((fisherNum%fishLoc) != 0){
+        getAllAgent()->resize(getAllAgent()->size()-(fisherNum%fishLoc));
+    }
     setTime(runtime);
     initStrategy();
-    initAgent(maxFisher);
-    QString a = "Num of agent in list " + QString::number(getAllAgent()->size());
+    initAgent(fisherNum);
+    int index ;
+
+    QString a =  QString::number(fisherNum/fishLoc);
     log(a);
-
-    for(int day = 1; day != runtime + 1; day++)
-    {
-        runAgentSimulation();
-        calculateSpot(fisherNum, fishLoc);
-    }
-
-}
-
-void calculateSpot(int fisherNum, int fishLoc ){
-    list<Agent *> *allagent = getAllAgent();
-    double goFishing;//Initialize agents deciding to go fishing
-    double maxFisher = fisherNum/fishLoc;
-    Spot one;
-    one.setCap(maxFisher);
-    goFishing = 0;
-    for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
-         {
-               Agent *curAgent = *it;
-                 if(curAgent->getDecision()==1)
-                 {
-                   goFishing+= 1;
-                 }
-         }
-
-     final.push_back(one.crowdness(goFishing));
-     if(fishLoc == 2){
-     for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
-          {
-                Agent *curAgent = *it;
-                  if(curAgent->getDecision()==1)
-                  {
-                    goFishing+= 1;
-                  }
-          }
-         Spot two;
-         two.setCap(maxFisher);
-         final2.push_back(two.crowdness(goFishing));
-    }
-     if(fishLoc == 3){
-     for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
-          {
-                Agent *curAgent = *it;
-                  if(curAgent->getDecision()==1)
-                  {
-                    goFishing+= 1;
-                  }
-          }
-         Spot two;
-         two.setCap(maxFisher);
-         final2.push_back(two.crowdness(goFishing));
-
-         for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
-              {
-                    Agent *curAgent = *it;
-                      if(curAgent->getDecision()==1)
-                      {
-                        goFishing+= 1;
-                      }
-              }
-         Spot three;
-         three.setCap(maxFisher);
-         final3.push_back(three.crowdness(goFishing));
-    }
-
-
-
-/*
-    double *goFishing;//Initialize agents deciding to go fishing
-    goFishing=new double[fishLoc];
-    double maxFisher = double(fisherNum)/double(fishLoc);
-    initStrategy();
-    initAgent(maxFisher);
-    Spot *one;
-    one = new Spot[fishLoc];
-    for (int i = 0; i < fishLoc ; i++ ){
-        one[i].setCap(maxFisher);
-        one[i].setAgentNum(maxFisher);
-    }
-
-    for(int i = 0; i < fishLoc; i++){
-
-        goFishing[i] = 0;
-        for(list<Agent *>::iterator it = getAllAgent()->begin(); it != getAllAgent()->end(); it++)
-        {
+    //setting up agent for each spot
+    list<Agent *>::iterator it = getAllAgent()->begin();
+    while(it != getAllAgent()->end()){
+        list<Agent *> subagent;
+        for (int i=0; i < fisherNum/fishLoc; i++){
             Agent *curAgent = *it;
-            if(curAgent->getDecision()==1)
-            {
-              goFishing[i]+= 1;
-            }
-         }
-         final.push_front(one[i].crowdness(goFishing[i]));
+            subagent.push_back(curAgent);
+            it++;
+        }
+        Spot *newSpot = new Spot(subagent);
+        spots.push_back(newSpot);
+        subagent.clear();
     }
-    */
+        //assign the agent
+        QString b = "Num of agent in list " + QString::number(getAllAgent()->size());
+        log(b);
+        for(int day = 1; day != runtime + 1; day++)
+         {
+             runAgentSimulation();
+             calculateSpot(fisherNum, fishLoc);
+         }
+
 }
+
+void MainWindow::calculateSpot(int fisherNum, int fishLoc ){
+
+    int goFishing =0;
+    vector<int> data;
+    for (int i =0; i < fishLoc; i++){
+      list<Agent *> agents = spots.at(i)->getAgents();
+      for (list<Agent *>::iterator it = agents.begin(); it != agents.end(); it++)
+      {
+            Agent *curAgent = *it;
+            if (curAgent->getDecision()== 1)
+            {
+                goFishing++;
+            }
+       }
+      data.push_back(goFishing);
+      goFishing = 0;
+    }
+    final.push_back(data.at(0));
+
+    if (fishLoc == 2){
+    final2.push_back(data.at(1));
+    }
+    if (fishLoc == 3){
+    final2.push_back(data.at(1));
+    final3.push_back(data.at(2));
+    }
+
+    //final4.push_back(data.at(3));
+    //final5.push_back(data.at(4));
+    //final6.push_back(data.at(5));
+
+}
+
 
 QVector<double>getNumber(){
     QVector<double> a = final;
@@ -303,6 +272,8 @@ void setTime(int init){
 int getTime(){
     return time;
 }
+
+
 
 //code to display a save dialog
 //
