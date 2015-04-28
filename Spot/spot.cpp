@@ -1,12 +1,13 @@
 #include <iostream>
 #include <list>
-#include "agent.h"
-#include "strategy.h"
+#include "../Agent/agent.h"
+#include "../Agent/strategy.h"
 #include "spot.h"
 /*
  constructor
  */
-Spot::Spot(){
+Spot::Spot(list<Agent *> newAgents){
+    agents = newAgents;
     numAgent = 0;//Initial
     maxcapacity = 0;
 }
@@ -48,3 +49,6 @@ double Spot::crowdness(double goFish) {
     return crowdness;
 }
 
+list<Agent *> Spot::getAgents(){
+    return agents;
+}
