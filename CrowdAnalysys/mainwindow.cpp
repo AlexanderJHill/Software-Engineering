@@ -184,9 +184,6 @@ void MainWindow::on_simulateButton_clicked()
 void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp, int runtime)
 {
 
-    if ((fisherNum%fishLoc) != 0){
-        getAllAgent()->resize(getAllAgent()->size()-(fisherNum%fishLoc));
-    }
     setTime(runtime);
     initStrategy();
     initAgent(fisherNum);
