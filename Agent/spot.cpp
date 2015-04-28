@@ -6,7 +6,8 @@
 /*
  constructor
  */
-Spot::Spot(){
+Spot::Spot(list<Agent *> newAgents){
+    agents = newAgents;
     numAgent = 0;//Initial
     maxcapacity = 0;
 }
@@ -48,3 +49,6 @@ double Spot::crowdness(double goFish) {
     return crowdness;
 }
 
+list<Agent *> Spot::getAgents(){
+    return agents;
+}
