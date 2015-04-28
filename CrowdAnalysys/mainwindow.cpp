@@ -15,7 +15,6 @@ QVector<double> final2;
 QVector<double> final3;
 QVector<double> final4;
 QVector<double> final5;
-QVector<double> final6;
 int time;
 vector<Spot *> spots;
 
@@ -121,6 +120,8 @@ void MainWindow::on_reportButton_clicked()
     final.clear();
     final2.clear();
     final3.clear();
+    final4.clear();
+    final5.clear();
 }
 
 void MainWindow::on_simulateButton_clicked()
@@ -183,7 +184,6 @@ void MainWindow::on_simulateButton_clicked()
 
 void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp, int runtime)
 {
-
     setTime(runtime);
     initStrategy();
     initAgent(fisherNum);
@@ -192,9 +192,6 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
     if(rem!=0){
     getAllAgent()->resize(index - rem);
     }
-
-    QString a =  QString::number(fisherNum/fishLoc);
-    log(a);
     //setting up agent for each spot
     list<Agent *>::iterator it = getAllAgent()->begin();
     while(it != getAllAgent()->end()){
@@ -245,11 +242,17 @@ void MainWindow::calculateSpot(int fisherNum, int fishLoc ){
     final2.push_back(data.at(1));
     final3.push_back(data.at(2));
     }
-
-    //final4.push_back(data.at(3));
-    //final5.push_back(data.at(4));
-    //final6.push_back(data.at(5));
-
+    if(fishLoc == 4){
+        final2.push_back(data.at(1));
+        final3.push_back(data.at(2));
+        final4.push_back(data.at(3));
+    }
+    if(fishLoc == 5){
+        final2.push_back(data.at(1));
+        final3.push_back(data.at(2));
+        final4.push_back(data.at(3));
+        final5.push_back(data.at(4));
+    }
 }
 
 
@@ -265,6 +268,14 @@ QVector<double>getNumber3(){
     QVector<double> a3 = final3;
     return a3;
 }
+QVector<double>getNumber4(){
+    QVector<double> a = final4;
+    return a;
+}
+QVector<double>getNumber5(){
+    QVector<double> a2 = final5;
+    return a2;
+}
 
 void setTime(int init){
     time = init;
@@ -273,8 +284,6 @@ void setTime(int init){
 int getTime(){
     return time;
 }
-
-
 
 //code to display a save dialog
 //
