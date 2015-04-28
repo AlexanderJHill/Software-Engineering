@@ -12,7 +12,8 @@
 QVector<double>getNumber();
 QVector<double>getNumber2();
 QVector<double>getNumber3();
-
+QVector<double>getNumber4();
+QVector<double>getNumber5();
 void setTime(int init);
 int getTime();
 
