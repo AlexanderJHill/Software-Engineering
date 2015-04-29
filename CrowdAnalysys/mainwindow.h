@@ -28,8 +28,10 @@ class MainWindow;
 QVector<double> getSpot();
 class MainWindow : public QMainWindow, public UserSettings
 {
-    Q_OBJECT
+    QGraphicsScene * drawing_scene;
 
+
+    Q_OBJECT
 public:
 
     explicit MainWindow(QWidget *parent = 0);

@@ -21,7 +21,8 @@ SOURCES += main.cpp\
     ../Agent/agent.cpp \
     ../Agent/randomgenerator.cpp \
     ../Agent/strategy.cpp \
-    ../Agent/spot.cpp
+    ../Agent/spot.cpp \
+    drawing.cpp
 
 HEADERS  += mainwindow.h \
     graphview.h \
@@ -31,7 +32,8 @@ HEADERS  += mainwindow.h \
     ../Agent/agent.h \
     ../Agent/randomgenerator.h \
     ../Agent/strategy.h \
-    ../Agent/spot.h
+    ../Agent/spot.h \
+    drawing.h
 
 FORMS    += mainwindow.ui \
     graphview.ui
