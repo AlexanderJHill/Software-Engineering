@@ -134,7 +134,7 @@ void MainWindow::on_weather_clicked()
 {
     if(ui->weather->isChecked()){
         log("[test] weather enabled");
-        if(!(ui->overcast->isChecked() + ui->rain->isChecked() + ui->snow->isChecked()))
+        if(!(ui->overcast->isChecked() || ui->rain->isChecked() || ui->snow->isChecked()))
         ui->overcast->setChecked(1);
     }
     else{
