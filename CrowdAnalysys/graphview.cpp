@@ -91,9 +91,6 @@ void Graphview::setupPlot()
 
            ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 
-
-
-
 /**********************************Crowd per Spot Data ************************************/
     //Get data from main
     QVector<double> b = getNumber();
