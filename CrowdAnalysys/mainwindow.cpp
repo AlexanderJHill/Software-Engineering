@@ -8,8 +8,13 @@
 #include <iostream>
 #include <stdio.h>
 #include <QVector>
+#include <math.h>
 
 using namespace std;
+
+
+#define PI 3.14159265
+
 QVector<double> final;
 QVector<double> final2;
 QVector<double> final3;
@@ -56,19 +61,27 @@ void MainWindow::on_locations_valueChanged(int value)
     ui->lineEdit_1->setText(s);
 
 
-    int start = -300; // ui->graphicsView->width()/2 + 100 ;
+    double theta = 10;
+
+    double x = cos(theta * PI/180);
+    double y = sin(theta * PI/180);
+    //drawing_scene->addEllipse()
+
+    //drawing_scene->deleteLater(drawing_scene->);
+    int start = -200; // ui->graphicsView->width()/2 + 100 ;
 
     int seperation = 100;
     int n = 0;
-    for(n = 0; n < value; n++){
-        drawing_scene->addEllipse(start + seperation * n,0,start + 40 + seperation * n,40,QPen(QBrush(Qt::black),1));
+    for(n = 0; n <= value; n++){
+        drawing_scene->addLine((seperation * n) + start,0,seperation * n + start,100,QPen(QBrush(Qt::black),1));
+        drawing_scene->addEllipse((seperation * n) + start,0,40,40,QPen(QBrush(Qt::black),1));
     }
-    drawing_scene->addEllipse(0,0,40,40,QPen(QBrush(Qt::black),1));
+    /*drawing_scene->addEllipse(0,0,40,40,QPen(QBrush(Qt::black),1));
 
     drawing_scene->addEllipse(0,0,40,40,QPen(QBrush(Qt::black),1));
 
     drawing_scene->addEllipse(0,0,40,40,QPen(QBrush(Qt::black),1));
-
+    */
 //    drawing_scene->addLine(0,0,600,600,QPen(QBrush(Qt::black),1));
     ui->graphicsView->show();
 
