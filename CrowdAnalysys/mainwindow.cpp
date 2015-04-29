@@ -205,9 +205,7 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
         spots.push_back(newSpot);
         subagent.clear();
     }
-        //assign the agent
-        QString b = "Num of agent in list " + QString::number(getAllAgent()->size());
-        log(b);
+        
         for(int day = 1; day != runtime + 1; day++)
          {
              runAgentSimulation();
