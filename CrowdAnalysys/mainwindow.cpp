@@ -55,7 +55,7 @@ void MainWindow::on_locations_valueChanged(int value)
     QString s = QString::number(value);
     ui->lineEdit_1->setText(s);
 
-
+    drawing_scene->deleteLater(drawing_scene->);
     int start = -300; // ui->graphicsView->width()/2 + 100 ;
 
     int seperation = 100;
@@ -121,7 +121,7 @@ void MainWindow::on_weather_clicked()
 {
     if(ui->weather->isChecked()){
         log("[test] weather enabled");
-        if(!(ui->overcast->isChecked() + ui->rain->isChecked() + ui->snow->isChecked()))
+        if(!(ui->overcast->isChecked() || ui->rain->isChecked() || ui->snow->isChecked()))
         ui->overcast->setChecked(1);
     }
     else{
