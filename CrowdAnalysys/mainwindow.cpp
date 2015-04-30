@@ -43,15 +43,44 @@ MainWindow::MainWindow(QWidget *parent) :
     RealTime->SetLocationPop(3,0);
     RealTime->SetLocationPop(4,0);
     RealTime->SetLocationPop(5,0);
+    RealTime->SetDay(1);
     RealTime->SetNumberOfLocations(1);
 
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(update()));
+    timer->start(1000);
 
     log("Welcome to Fisher Sim!");
+
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::update(){
+    static int tmp = 0;
+    int numberOfLoc = ui->locations->value();
+    if(tmp < final.length()){
+        RealTime->SetDay(tmp);
+        if(numberOfLoc > 0 && tmp < final.length())
+            RealTime->SetLocationPop(1,final.at(tmp));
+        if(numberOfLoc > 1 && tmp < final2.length())
+            RealTime->SetLocationPop(2,final2.at(tmp));
+        if(numberOfLoc > 2 && tmp < final3.length())
+            RealTime->SetLocationPop(3,final3.at(tmp));
+        if(numberOfLoc > 3 && tmp < final4.length())
+            RealTime->SetLocationPop(4,final4.at(tmp));
+        if(numberOfLoc > 4 && tmp < final5.length())
+            RealTime->SetLocationPop(5,final5.at(tmp));
+
+        tmp++;
+    }else{
+        tmp = 0;
+    }
+    RealTime->ReDraw();
+
 }
 
 void MainWindow::log(const QString& text){
@@ -238,6 +267,7 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
          runAgentSimulation();
          calculateSpot(fisherNum, fishLoc);
      }
+    RealTime->Sim(getNumber(),getNumber2(),getNumber3(),getNumber4(),getNumber5());
 
 }
 
@@ -261,11 +291,11 @@ void MainWindow::calculateSpot(int fisherNum, int fishLoc ){
     final.push_back(data.at(0));
 
     if (fishLoc == 2){
-    final2.push_back(data.at(1));
+        final2.push_back(data.at(1));
     }
     if (fishLoc == 3){
-    final2.push_back(data.at(1));
-    final3.push_back(data.at(2));
+        final2.push_back(data.at(1));
+        final3.push_back(data.at(2));
     }
     if(fishLoc == 4){
         final2.push_back(data.at(1));

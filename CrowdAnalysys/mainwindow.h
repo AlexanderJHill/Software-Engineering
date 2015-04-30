@@ -67,11 +67,13 @@ friend double getSpotppp();
 
     void startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp, int runtime);
     void calculateSpot(int fisherNum, int fishLoc );
+    void update();
 
 protected:
     Ui::MainWindow *ui;
     QString settings;
     bool simulated = false;
+    QTimer * timer;
 
 };
 

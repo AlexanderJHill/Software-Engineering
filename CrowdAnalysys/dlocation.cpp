@@ -8,20 +8,20 @@ Dlocation::Dlocation(QWidget *parent)
 }
 
 bool Dlocation::setPop(int number){
-
+    return false;
 }
 
 int Dlocation::getPop(void){
-
+    return 0;
 }
 
 bool Dlocation::setCenter(int x, int y){
 
-
+    return 0;
 }
 
 
-void RenderArea::paintEvent(QPaintEvent * /* event */)
+void Dlocation::paintEvent(QPaintEvent * /* event */)
 {
     static const QPoint points[4] = {
         QPoint(10, 80),

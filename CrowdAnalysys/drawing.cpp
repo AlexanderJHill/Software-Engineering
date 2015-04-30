@@ -14,6 +14,16 @@ Drawing::Drawing(QGraphicsView * graphics_view,QGraphicsScene * drawing_scene)
 
 }
 
+void Drawing::Sim(QVector<double> s1,QVector<double> s2,QVector<double> s3,QVector<double> s4,QVector<double> s5) {
+    QString s;
+    s.sprintf("Number of elements: %d", s1.length());
+    scene->addText(s);
+
+
+}
+
+
+
 
 // uses icon from https://www.iconfinder.com/icons/309035/account_human_person_user_icon#size=128
 // Also consider using http://www.flaticon.com/free-icon/fishing-rod-and-fisher_10965
@@ -37,6 +47,10 @@ void Drawing::DrawPerson(int x, int y){
 void Drawing::SetLocationPop(int location,int pop){
     locationPop[location] = pop;
 
+}
+
+void Drawing::SetDay(int day){
+    CurrentDay = day;
 }
 
 void Drawing::DrawLocationPop(int location){
@@ -128,6 +142,20 @@ void Drawing::ReDraw(){
         DrawLocationPop(n);
 
     }
+
+
+    io = new QGraphicsTextItem;
+    QString s;
+    s.sprintf("Day %d",CurrentDay);
+    io->setPos(0,view->height() / 2 - 40);
+    io->setPlainText(s);
+
+    io->setFont(font);
+
+    scene->addItem(io);
+
+
+
 
     view->show();
 
