@@ -309,6 +309,18 @@ void Graphview::on_actionInsert_Plot_triggered()
       case 1:
           cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_2, width, height));
           break;
+      case 2:
+          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_3, width, height));
+          break;
+      case 3:
+          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_4, width, height));
+          break;
+      case 4:
+          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_5, width, height));
+          break;
+      case 5:
+          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_6, width, height));
+          break;
   }
   
   ui->textEdit->setTextCursor(cursor);
