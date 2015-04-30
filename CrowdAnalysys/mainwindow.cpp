@@ -13,7 +13,7 @@
 using namespace std;
 
 
-#define PI 3.14159265
+
 
 QVector<double> final;
 QVector<double> final2;
@@ -34,6 +34,9 @@ MainWindow::MainWindow(QWidget *parent) :
     drawing_scene = new QGraphicsScene;
     drawing_scene->setSceneRect(0,0,ui->graphicsView->width(),ui->graphicsView->height());
     ui->graphicsView->setScene(drawing_scene);
+
+    // allocate a new Drawing item and initilize it.
+    RealTime = new Drawing(ui->graphicsView,drawing_scene);
 
     log("Welcome to Fisher Sim!");
 }
@@ -60,30 +63,7 @@ void MainWindow::on_locations_valueChanged(int value)
     QString s = QString::number(value);
     ui->lineEdit_1->setText(s);
 
-
-    double theta = 10;
-
-    double x = cos(theta * PI/180);
-    double y = sin(theta * PI/180);
-    //drawing_scene->addEllipse()
-
-    //drawing_scene->deleteLater(drawing_scene->);
-    int start = -200; // ui->graphicsView->width()/2 + 100 ;
-
-    int seperation = 100;
-    int n = 0;
-    for(n = 0; n <= value; n++){
-        drawing_scene->addLine((seperation * n) + start,0,seperation * n + start,100,QPen(QBrush(Qt::black),1));
-        drawing_scene->addEllipse((seperation * n) + start,0,40,40,QPen(QBrush(Qt::black),1));
-    }
-    /*drawing_scene->addEllipse(0,0,40,40,QPen(QBrush(Qt::black),1));
-
-    drawing_scene->addEllipse(0,0,40,40,QPen(QBrush(Qt::black),1));
-
-    drawing_scene->addEllipse(0,0,40,40,QPen(QBrush(Qt::black),1));
-    */
-//    drawing_scene->addLine(0,0,600,600,QPen(QBrush(Qt::black),1));
-    ui->graphicsView->show();
+    RealTime->SetNumberOfLocations(value);
 
 }
 
@@ -243,11 +223,11 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
         subagent.clear();
     }
         
-        for(int day = 1; day != runtime + 1; day++)
-         {
-             runAgentSimulation();
-             calculateSpot(fisherNum, fishLoc);
-         }
+    for(int day = 1; day != runtime + 1; day++)
+     {
+         runAgentSimulation();
+         calculateSpot(fisherNum, fishLoc);
+     }
 
 }
 

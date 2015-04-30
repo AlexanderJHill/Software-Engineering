@@ -7,6 +7,7 @@
 #include "graphview.h"
 #include "UserSettings.h"
 #include "../Agent/spot.h"
+#include "drawing.h"
 #include <QVector>
 
 QVector<double>getNumber();
@@ -29,7 +30,7 @@ QVector<double> getSpot();
 class MainWindow : public QMainWindow, public UserSettings
 {
     QGraphicsScene * drawing_scene;
-
+    Drawing * RealTime;
 
     Q_OBJECT
 public:

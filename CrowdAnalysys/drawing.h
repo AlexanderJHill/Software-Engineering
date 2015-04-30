@@ -1,12 +1,24 @@
 #ifndef DRAWING_H
 #define DRAWING_H
 
+#include <QMainWindow>
+#include <QtWidgets>
+#include <QVector>
+#include "dlocation.h"
+
+
 class Drawing
 {
 public:
-    Drawing();
+    QGraphicsScene * scene;
+    QGraphicsView * view;
 
-    SetNumberOfLocations(int number);
+    //Qlist<Dlocation *> locations;
+
+
+    Drawing(QGraphicsView * graphics_view,QGraphicsScene * drawing_scene);
+
+    void SetNumberOfLocations(int number);
 
 };
 
