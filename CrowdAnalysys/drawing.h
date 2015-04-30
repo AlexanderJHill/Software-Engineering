@@ -12,6 +12,7 @@ class Drawing
 public:
     QGraphicsScene * scene;
     QGraphicsView * view;
+    int NumberOfLocations;
 
     //Qlist<Dlocation *> locations;
 
@@ -19,6 +20,10 @@ public:
     Drawing(QGraphicsView * graphics_view,QGraphicsScene * drawing_scene);
 
     void SetNumberOfLocations(int number);
+    void DrawPerson(int x, int y);
+    double getLocationCenterX(int location);
+    double getLocationCenterY(int location);
+    void SetLocationPop(int location,int pop);
 
 };
 

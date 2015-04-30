@@ -37,7 +37,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // allocate a new Drawing item and initilize it.
     RealTime = new Drawing(ui->graphicsView,drawing_scene);
-
+    RealTime->SetNumberOfLocations(1);
     log("Welcome to Fisher Sim!");
 }
 
