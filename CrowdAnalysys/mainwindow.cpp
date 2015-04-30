@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
     RealTime->SetLocationPop(4,0);
     RealTime->SetLocationPop(5,0);
     RealTime->SetDay(1);
-    RealTime->SetNumberOfLocations(1);
+    RealTime->SetNumberOfLocations(3);
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
@@ -267,7 +267,6 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
          runAgentSimulation();
          calculateSpot(fisherNum, fishLoc);
      }
-    RealTime->Sim(getNumber(),getNumber2(),getNumber3(),getNumber4(),getNumber5());
 
 }
 

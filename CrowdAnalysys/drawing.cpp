@@ -8,19 +8,9 @@ Drawing::Drawing(QGraphicsView * graphics_view,QGraphicsScene * drawing_scene)
 {
     view = graphics_view;
     scene = drawing_scene;
-    int t = 0;
-    for(t = 0; t < 9;t++);
-   //     locationPop[t] = 0;
 
 }
 
-void Drawing::Sim(QVector<double> s1,QVector<double> s2,QVector<double> s3,QVector<double> s4,QVector<double> s5) {
-    QString s;
-    s.sprintf("Number of elements: %d", s1.length());
-    scene->addText(s);
-
-
-}
 
 
 

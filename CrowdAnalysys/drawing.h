@@ -26,7 +26,6 @@ public:
     void SetLocationPop(int location,int pop);
     void DrawLocationPop(int location);
     void ReDraw();
-    void Sim(QVector<double> s1,QVector<double> s2,QVector<double> s3,QVector<double> s4,QVector<double> s5);
     void SetDay(int day);
     int CurrentDay;
 };
