@@ -37,7 +37,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // allocate a new Drawing item and initilize it.
     RealTime = new Drawing(ui->graphicsView,drawing_scene);
+    RealTime->SetLocationPop(0,0);
+    RealTime->SetLocationPop(1,0);
+    RealTime->SetLocationPop(2,0);
+    RealTime->SetLocationPop(3,0);
+    RealTime->SetLocationPop(4,0);
+    RealTime->SetLocationPop(5,0);
     RealTime->SetNumberOfLocations(1);
+
+
     log("Welcome to Fisher Sim!");
 }
 
@@ -55,6 +63,8 @@ void MainWindow::on_fishers_valueChanged(int value)
 {
     QString s = QString::number(value);
     ui->lineEdit_0->setText(s);
+    RealTime->SetLocationPop(0,value);
+    RealTime->ReDraw();
 }
 
 

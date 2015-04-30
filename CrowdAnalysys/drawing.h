@@ -14,7 +14,7 @@ public:
     QGraphicsView * view;
     int NumberOfLocations;
 
-    //Qlist<Dlocation *> locations;
+    int locationPop[10];
 
 
     Drawing(QGraphicsView * graphics_view,QGraphicsScene * drawing_scene);
@@ -24,6 +24,8 @@ public:
     double getLocationCenterX(int location);
     double getLocationCenterY(int location);
     void SetLocationPop(int location,int pop);
+    void DrawLocationPop(int location);
+    void ReDraw();
 
 };
 
