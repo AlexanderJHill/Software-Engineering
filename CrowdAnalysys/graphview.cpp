@@ -140,12 +140,11 @@ void Graphview::setupPlot()
          // prepare y axis:
          ui->plot_2->yAxis->setRange(-1, 100);
          ui->plot_2->yAxis->setPadding(5); // a bit more space to the left border
-         ui->plot_2->yAxis->setLabel("Crowd Percentage on Spot 1 (%)");
+         ui->plot_2->yAxis->setLabel("Crowd Percentage on Location 1 (%)");
          //ui->plot_2->yAxis->grid()->setSubGridVisible(true);
          ui->plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
 
 /***************************Spot 2 *******************************/
-/*
          ui->plot_3->addGraph();
          pen.setColor(QColor(qSin(1*1+1.2)*80+80, qSin(1*0.3+0)*80+80, qSin(1*0.3+1.5)*80+80));
          ui->plot_3->graph()->setPen(pen);
@@ -173,12 +172,12 @@ void Graphview::setupPlot()
           // prepare y axis:
           ui->plot_3->yAxis->setRange(-1, 100);
           ui->plot_3->yAxis->setPadding(5); // a bit more space to the left border
-          ui->plot_3->yAxis->setLabel("Crowd Percentage on Spot 2 (%)");
+          ui->plot_3->yAxis->setLabel("Crowd Percentage on Location 2 (%)");
           //ui->plot_3->yAxis->grid()->setSubGridVisible(true);
           ui->plot_3->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
-*/
+
 /********************************SPot 3***************************************/
-/*        ui->plot_4->addGraph();
+         ui->plot_4->addGraph();
           pen.setColor(QColor(qSin(1*1+1.2)*80+80, qSin(1*0.3+0)*80+80, qSin(1*0.3+1.5)*80+80));
           ui->plot_4->graph()->setPen(pen);
          //ui->plot_2->graph()->setName(lineNames.at(i-QCPGraph::lsNone));
@@ -205,12 +204,12 @@ void Graphview::setupPlot()
            // prepare y axis:
            ui->plot_4->yAxis->setRange(-1, 100);
            ui->plot_4->yAxis->setPadding(5); // a bit more space to the left border
-           ui->plot_4->yAxis->setLabel("Crowd Percentage on Spot 3 (%)");
+           ui->plot_4->yAxis->setLabel("Crowd Percentage on Location 3 (%)");
            //ui->plot_3->yAxis->grid()->setSubGridVisible(true);
            ui->plot_4->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
-*/
+
 /********************************SPot 4***************************************/
- /*          ui->plot_5->addGraph();
+           ui->plot_5->addGraph();
            pen.setColor(QColor(qSin(1*1+1.2)*80+80, qSin(1*0.3+0)*80+80, qSin(1*0.3+1.5)*80+80));
            ui->plot_5->graph()->setPen(pen);
           //ui->plot_2->graph()->setName(lineNames.at(i-QCPGraph::lsNone));
@@ -237,12 +236,12 @@ void Graphview::setupPlot()
             // prepare y axis:
             ui->plot_5->yAxis->setRange(-1, 100);
             ui->plot_5->yAxis->setPadding(5); // a bit more space to the left border
-            ui->plot_5->yAxis->setLabel("Crowd Percentage on Spot 4 (%)");
+            ui->plot_5->yAxis->setLabel("Crowd Percentage on Location 4 (%)");
             //ui->plot_3->yAxis->grid()->setSubGridVisible(true);
             ui->plot_5->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
-*/
+
 /********************************SPot 5***************************************/
- /*          ui->plot_6->addGraph();
+           ui->plot_6->addGraph();
             pen.setColor(QColor(qSin(1*1+1.2)*80+80, qSin(1*0.3+0)*80+80, qSin(1*0.3+1.5)*80+80));
             ui->plot_6->graph()->setPen(pen);
            //ui->plot_2->graph()->setName(lineNames.at(i-QCPGraph::lsNone));
@@ -269,19 +268,19 @@ void Graphview::setupPlot()
              // prepare y axis:
              ui->plot_6->yAxis->setRange(-1, 100);
              ui->plot_6->yAxis->setPadding(5); // a bit more space to the left border
-             ui->plot_6->yAxis->setLabel("Crowd Percentage on Spot 5 (%)");
+             ui->plot_6->yAxis->setLabel("Crowd Percentage on Location 5 (%)");
              //ui->plot_3->yAxis->grid()->setSubGridVisible(true);
              ui->plot_6->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom);
-*/
+
   // Note: we could have also just called customPlot->rescaleAxes(); instead
   // Allow user to drag axis ranges with mouse, zoom with mouse wheel and select graphs by clicking:
 
     ui->plot->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
     ui->plot_2->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-   // ui->plot_3->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-   // ui->plot_4->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-    //ui->plot_5->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
-    //ui->plot_6->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+    ui->plot_3->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+    ui->plot_4->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+    ui->plot_5->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
+    ui->plot_6->setInteractions(QCP::iRangeDrag | QCP::iRangeZoom | QCP::iSelectPlottables);
     ui->tabWidget->setCurrentIndex(0);
 }
 
