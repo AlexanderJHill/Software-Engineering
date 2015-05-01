@@ -304,22 +304,22 @@ void Graphview::on_actionInsert_Plot_triggered()
   int a = ui->tabWidget->currentIndex();
   switch (a){
       case 0:
-          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot, width, height));
+          cursor.insertText("\nStrategy score:" + QString(QChar::ObjectReplacementCharacter) + "\n", QCPDocumentObject::generatePlotFormat(ui->plot, width, height));
           break;
       case 1:
-          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_2, width, height));
+          cursor.insertText("\nPercentage of fishers at location 1 over time:" + QString(QChar::ObjectReplacementCharacter) + "\n", QCPDocumentObject::generatePlotFormat(ui->plot_2, width, height));
           break;
       case 2:
-          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_3, width, height));
+          cursor.insertText("\nPercentage of fishers at location 2 over time:" + QString(QChar::ObjectReplacementCharacter) + "\n", QCPDocumentObject::generatePlotFormat(ui->plot_3, width, height));
           break;
       case 3:
-          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_4, width, height));
+          cursor.insertText("\nPercentage of fishers at location 3 over time:" + QString(QChar::ObjectReplacementCharacter) + "\n", QCPDocumentObject::generatePlotFormat(ui->plot_4, width, height));
           break;
       case 4:
-          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_5, width, height));
+          cursor.insertText("\nPercentage of fishers at location 4 over time:" + QString(QChar::ObjectReplacementCharacter) + "\n", QCPDocumentObject::generatePlotFormat(ui->plot_5, width, height));
           break;
       case 5:
-          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_6, width, height));
+          cursor.insertText("\nPercentage of fishers at location 5 over time:" + QString(QChar::ObjectReplacementCharacter) + "\n", QCPDocumentObject::generatePlotFormat(ui->plot_6, width, height));
           break;
   }
   

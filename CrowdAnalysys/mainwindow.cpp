@@ -157,13 +157,10 @@ void MainWindow::on_lineEdit_4_textEdited(const QString &arg1)
 void MainWindow::on_weather_clicked()
 {
     if(ui->weather->isChecked()){
-        log("[test] weather enabled");
         if(!(ui->overcast->isChecked() || ui->rain->isChecked() || ui->snow->isChecked()))
         ui->overcast->setChecked(1);
     }
-    else{
-        log("[test] weather disabled");
-    }
+
 }
 
 
@@ -229,8 +226,8 @@ void MainWindow::on_simulateButton_clicked()
 
     QString a = ("Fishers\t" + fishers + "\nLocations\t" + locations + "\nFish Population\t"
             + fishpop + "\nFish Types\t" + types + "\nRuntime\t" + runtimes + "\nWeather\t" + w);
-    settings = ("Simulation settings:\n" + a);
-    log ("Simulation started with the following settings...\n" + a);
+    settings = ("Simulation settings:\n" + a + "\n");
+    log ("\nSimulation started with the following settings...\n" + a);
 
     //clear the list
     list<Agent *> *allagent = getAllAgent();
