@@ -15,6 +15,11 @@ QVector<double>getNumber2();
 QVector<double>getNumber3();
 QVector<double>getNumber4();
 QVector<double>getNumber5();
+QVector<double>getCrowd();
+QVector<double>getCrowd2();
+QVector<double>getCrowd3();
+QVector<double>getCrowd4();
+QVector<double>getCrowd5();
 void setTime(int init);
 int getTime();
 

@@ -703,7 +703,7 @@ release\moc_mainwindow.cpp: C:\Qt\5.4\msvc2013_64\include\QtWidgets\QMainWindow 
 		drawing.h \
 		dlocation.h \
 		mainwindow.h
-	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ahill/Documents/Software-Engineering/CrowdAnalysys -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore mainwindow.h -o release\moc_mainwindow.cpp
+	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/badot/Documents/GitHub/Software-Engineering/CrowdAnalysys -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore mainwindow.h -o release\moc_mainwindow.cpp
 
 release\moc_graphview.cpp: C:\Qt\5.4\msvc2013_64\include\QtWidgets\QMainWindow \
 		C:\Qt\5.4\msvc2013_64\include\QtWidgets\qmainwindow.h \
@@ -1196,7 +1196,7 @@ release\moc_graphview.cpp: C:\Qt\5.4\msvc2013_64\include\QtWidgets\QMainWindow \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qtprintsupportversion.h \
 		graphview.h
-	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ahill/Documents/Software-Engineering/CrowdAnalysys -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore graphview.h -o release\moc_graphview.cpp
+	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/badot/Documents/GitHub/Software-Engineering/CrowdAnalysys -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore graphview.h -o release\moc_graphview.cpp
 
 release\moc_qcpdocumentobject.cpp: C:\Qt\5.4\msvc2013_64\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013_64\include\QtCore\qobject.h \
@@ -1685,7 +1685,7 @@ release\moc_qcpdocumentobject.cpp: C:\Qt\5.4\msvc2013_64\include\QtCore\QObject 
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qtprintsupportversion.h \
 		qcpdocumentobject.h
-	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ahill/Documents/Software-Engineering/CrowdAnalysys -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore qcpdocumentobject.h -o release\moc_qcpdocumentobject.cpp
+	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/badot/Documents/GitHub/Software-Engineering/CrowdAnalysys -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore qcpdocumentobject.h -o release\moc_qcpdocumentobject.cpp
 
 release\moc_qcustomplot.cpp: C:\Qt\5.4\msvc2013_64\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013_64\include\QtCore\qobject.h \
@@ -2171,7 +2171,7 @@ release\moc_qcustomplot.cpp: C:\Qt\5.4\msvc2013_64\include\QtCore\QObject \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qtprintsupportversion.h \
 		qcustomplot.h
-	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/ahill/Documents/Software-Engineering/CrowdAnalysys -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore qcustomplot.h -o release\moc_qcustomplot.cpp
+	C:\Qt\5.4\msvc2013_64\bin\moc.exe $(DEFINES) -D_MSC_VER=1800 -D_WIN32 -D_WIN64 -IC:/Qt/5.4/msvc2013_64/mkspecs/win32-msvc2013 -IC:/Users/badot/Documents/GitHub/Software-Engineering/CrowdAnalysys -IC:/Qt/5.4/msvc2013_64/include -IC:/Qt/5.4/msvc2013_64/include/QtPrintSupport -IC:/Qt/5.4/msvc2013_64/include/QtWidgets -IC:/Qt/5.4/msvc2013_64/include/QtGui -IC:/Qt/5.4/msvc2013_64/include/QtANGLE -IC:/Qt/5.4/msvc2013_64/include/QtCore qcustomplot.h -o release\moc_qcustomplot.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -3188,20 +3188,6 @@ release\graphview.obj: graphview.cpp Graphview.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qprintpreviewwidget.h \
 		C:\Qt\5.4\msvc2013_64\include\QtPrintSupport\qtprintsupportversion.h \
 		ui_graphview.h \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QAction \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QApplication \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QButtonGroup \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QCheckBox \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QGridLayout \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QHBoxLayout \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QHeaderView \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QLabel \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QSpinBox \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QStatusBar \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QTabWidget \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QTextEdit \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QToolBar \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QVBoxLayout \
 		mainwindow.h \
 		graphview.h \
 		UserSettings.h \
@@ -3210,17 +3196,7 @@ release\graphview.obj: graphview.cpp Graphview.h \
 		..\Agent\strategy.h \
 		drawing.h \
 		dlocation.h \
-		ui_mainwindow.h \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QFormLayout \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QGraphicsView \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QGroupBox \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QLineEdit \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QMenuBar \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QPlainTextEdit \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QPushButton \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QRadioButton \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QSlider \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QSpacerItem
+		ui_mainwindow.h
 
 release\qcpdocumentobject.obj: qcpdocumentobject.cpp qcpdocumentobject.h \
 		C:\Qt\5.4\msvc2013_64\include\QtCore\QObject \
@@ -4209,23 +4185,6 @@ release\mainwindow.obj: mainwindow.cpp mainwindow.h \
 		drawing.h \
 		dlocation.h \
 		ui_mainwindow.h \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QAction \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QApplication \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QButtonGroup \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QFormLayout \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QGraphicsView \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QGroupBox \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QHBoxLayout \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QHeaderView \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QLabel \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QLineEdit \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QMenuBar \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QPlainTextEdit \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QPushButton \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QRadioButton \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QSlider \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QSpacerItem \
-		C:\Qt\5.4\msvc2013_64\include\QtWidgets\QVBoxLayout \
 		..\Agent\randomgenerator.h
 
 release\qcustomplot.obj: qcustomplot.cpp qcustomplot.h \

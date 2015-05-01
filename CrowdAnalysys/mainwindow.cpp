@@ -22,6 +22,11 @@ QVector<double> final4;
 QVector<double> final5;
 int time;
 vector<Spot *> spots;
+QVector<double> percentage;
+QVector<double> percentage2;
+QVector<double> percentage3;
+QVector<double> percentage4;
+QVector<double> percentage5;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -152,13 +157,10 @@ void MainWindow::on_lineEdit_4_textEdited(const QString &arg1)
 void MainWindow::on_weather_clicked()
 {
     if(ui->weather->isChecked()){
-        log("[test] weather enabled");
         if(!(ui->overcast->isChecked() || ui->rain->isChecked() || ui->snow->isChecked()))
         ui->overcast->setChecked(1);
     }
-    else{
-        log("[test] weather disabled");
-    }
+
 }
 
 
@@ -224,8 +226,8 @@ void MainWindow::on_simulateButton_clicked()
 
     QString a = ("Fishers\t" + fishers + "\nLocations\t" + locations + "\nFish Population\t"
             + fishpop + "\nFish Types\t" + types + "\nRuntime\t" + runtimes + "\nWeather\t" + w);
-    settings = ("Simulation settings:\n" + a);
-    log ("Simulation started with the following settings...\n" + a);
+    settings = ("Simulation settings:\n" + a + "\n");
+    log ("\nSimulation started with the following settings...\n" + a);
 
     //clear the list
     list<Agent *> *allagent = getAllAgent();
@@ -271,9 +273,10 @@ void MainWindow::startSimulate(int fisherNum, int fishLoc, int fishType, int fis
 }
 
 void MainWindow::calculateSpot(int fisherNum, int fishLoc ){
-
+    int maxCap = fisherNum/fishLoc;
     int goFishing =0;
     vector<int> data;
+    vector<int> percent;
     for (int i =0; i < fishLoc; i++){
       list<Agent *> agents = spots.at(i)->getAgents();
       for (list<Agent *>::iterator it = agents.begin(); it != agents.end(); it++)
@@ -285,8 +288,10 @@ void MainWindow::calculateSpot(int fisherNum, int fishLoc ){
             }
        }
       data.push_back(goFishing);
-      goFishing = 0;
+      percent.push_back(crowdness(goFishing,maxCap));
+       goFishing = 0;
     }
+
     final.push_back(data.at(0));
 
     if (fishLoc == 2){
@@ -306,6 +311,27 @@ void MainWindow::calculateSpot(int fisherNum, int fishLoc ){
         final3.push_back(data.at(2));
         final4.push_back(data.at(3));
         final5.push_back(data.at(4));
+    }
+
+    percentage.push_back(percent.at(0));
+
+    if (fishLoc == 2){
+        percentage2.push_back(percent.at(1));
+    }
+    if (fishLoc == 3){
+        percentage2.push_back(percent.at(1));
+        percentage3.push_back(percent.at(2));
+    }
+    if(fishLoc == 4){
+        percentage2.push_back(percent.at(1));
+        percentage3.push_back(percent.at(2));
+        percentage4.push_back(percent.at(3));
+    }
+    if(fishLoc == 5){
+        percentage2.push_back(percent.at(1));
+        percentage3.push_back(percent.at(2));
+        percentage4.push_back(percent.at(3));
+        percentage5.push_back(percent.at(4));
     }
 }
 
@@ -330,7 +356,26 @@ QVector<double>getNumber5(){
     QVector<double> a2 = final5;
     return a2;
 }
-
+QVector<double>getCrowd(){
+    QVector<double> a = percentage;
+    return a;
+}
+QVector<double>getCrowd2(){
+    QVector<double> a2 = percentage2;
+    return a2;
+}
+QVector<double>getCrowd3(){
+    QVector<double> a3 = percentage3;
+    return a3;
+}
+QVector<double>getCrowd4(){
+    QVector<double> a = percentage4;
+    return a;
+}
+QVector<double>getCrowd5(){
+    QVector<double> a2 = percentage5;
+    return a2;
+}
 void setTime(int init){
     time = init;
 }

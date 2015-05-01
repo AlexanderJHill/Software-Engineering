@@ -68,7 +68,7 @@ void Graphview::setupPlot()
          ui->plot->xAxis->setLabel("Strategy Number");
 
          // prepare y axis:
-         ui->plot->yAxis->setRange(-10, 100);
+         ui->plot->yAxis->setRange(-10, 101);
          ui->plot->yAxis->setPadding(5); // a bit more space to the left border
          ui->plot->yAxis->setLabel("Strategy Score");
          ui->plot->yAxis->grid()->setSubGridVisible(true);
@@ -93,11 +93,11 @@ void Graphview::setupPlot()
 
 /**********************************Crowd per Spot Data ************************************/
     //Get data from main
-    QVector<double> b = getNumber();
-    QVector<double> b2 = getNumber2();
-    QVector<double> b3 = getNumber3();
-    QVector<double> b4 = getNumber4();
-    QVector<double> b5 = getNumber5();
+    QVector<double> b = getCrowd();
+    QVector<double> b2 = getCrowd2();
+    QVector<double> b3 = getCrowd3();
+    QVector<double> b4 = getCrowd4();
+    QVector<double> b5 = getCrowd5();
 
     int time= getTime();
     list<Agent *> *allagent = getAllAgent();
@@ -138,7 +138,7 @@ void Graphview::setupPlot()
          ui->plot_2->xAxis->setLabel("Time (day)");
 
          // prepare y axis:
-         ui->plot_2->yAxis->setRange(-1, 100);
+         ui->plot_2->yAxis->setRange(-1, 101);
          ui->plot_2->yAxis->setPadding(5); // a bit more space to the left border
          ui->plot_2->yAxis->setLabel("Crowd Percentage on Location 1 (%)");
          //ui->plot_2->yAxis->grid()->setSubGridVisible(true);
@@ -170,7 +170,7 @@ void Graphview::setupPlot()
           ui->plot_3->xAxis->setLabel("Time (day)");
 
           // prepare y axis:
-          ui->plot_3->yAxis->setRange(-1, 100);
+          ui->plot_3->yAxis->setRange(-1, 101);
           ui->plot_3->yAxis->setPadding(5); // a bit more space to the left border
           ui->plot_3->yAxis->setLabel("Crowd Percentage on Location 2 (%)");
           //ui->plot_3->yAxis->grid()->setSubGridVisible(true);
@@ -202,7 +202,7 @@ void Graphview::setupPlot()
            ui->plot_4->xAxis->setLabel("Time (day)");
 
            // prepare y axis:
-           ui->plot_4->yAxis->setRange(-1, 100);
+           ui->plot_4->yAxis->setRange(-1, 101);
            ui->plot_4->yAxis->setPadding(5); // a bit more space to the left border
            ui->plot_4->yAxis->setLabel("Crowd Percentage on Location 3 (%)");
            //ui->plot_3->yAxis->grid()->setSubGridVisible(true);
@@ -234,7 +234,7 @@ void Graphview::setupPlot()
             ui->plot_5->xAxis->setLabel("Time (day)");
 
             // prepare y axis:
-            ui->plot_5->yAxis->setRange(-1, 100);
+            ui->plot_5->yAxis->setRange(-1, 101);
             ui->plot_5->yAxis->setPadding(5); // a bit more space to the left border
             ui->plot_5->yAxis->setLabel("Crowd Percentage on Location 4 (%)");
             //ui->plot_3->yAxis->grid()->setSubGridVisible(true);
@@ -266,7 +266,7 @@ void Graphview::setupPlot()
              ui->plot_6->xAxis->setLabel("Time (day)");
 
              // prepare y axis:
-             ui->plot_6->yAxis->setRange(-1, 100);
+             ui->plot_6->yAxis->setRange(-1, 101);
              ui->plot_6->yAxis->setPadding(5); // a bit more space to the left border
              ui->plot_6->yAxis->setLabel("Crowd Percentage on Location 5 (%)");
              //ui->plot_3->yAxis->grid()->setSubGridVisible(true);
@@ -304,22 +304,22 @@ void Graphview::on_actionInsert_Plot_triggered()
   int a = ui->tabWidget->currentIndex();
   switch (a){
       case 0:
-          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot, width, height));
+          cursor.insertText("\nStrategy score:" + QString(QChar::ObjectReplacementCharacter) + "\n", QCPDocumentObject::generatePlotFormat(ui->plot, width, height));
           break;
       case 1:
-          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_2, width, height));
+          cursor.insertText("\nPercentage of fishers at location 1 over time:" + QString(QChar::ObjectReplacementCharacter) + "\n", QCPDocumentObject::generatePlotFormat(ui->plot_2, width, height));
           break;
       case 2:
-          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_3, width, height));
+          cursor.insertText("\nPercentage of fishers at location 2 over time:" + QString(QChar::ObjectReplacementCharacter) + "\n", QCPDocumentObject::generatePlotFormat(ui->plot_3, width, height));
           break;
       case 3:
-          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_4, width, height));
+          cursor.insertText("\nPercentage of fishers at location 3 over time:" + QString(QChar::ObjectReplacementCharacter) + "\n", QCPDocumentObject::generatePlotFormat(ui->plot_4, width, height));
           break;
       case 4:
-          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_5, width, height));
+          cursor.insertText("\nPercentage of fishers at location 4 over time:" + QString(QChar::ObjectReplacementCharacter) + "\n", QCPDocumentObject::generatePlotFormat(ui->plot_5, width, height));
           break;
       case 5:
-          cursor.insertText(QString(QChar::ObjectReplacementCharacter), QCPDocumentObject::generatePlotFormat(ui->plot_6, width, height));
+          cursor.insertText("\nPercentage of fishers at location 5 over time:" + QString(QChar::ObjectReplacementCharacter) + "\n", QCPDocumentObject::generatePlotFormat(ui->plot_6, width, height));
           break;
   }
   

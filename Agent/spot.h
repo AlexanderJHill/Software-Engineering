@@ -56,8 +56,9 @@ public:
     @post Percentage of crowd is calculated
     @return Percentage of fisherman going fishing
     */
-    double crowdness(double goFish);
+
     list<Agent *> getAgents();
 };
 
 #endif /* defined(____spot__) */
+ double crowdness(double goFish, double maxCap);

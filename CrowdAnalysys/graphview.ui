@@ -33,7 +33,7 @@
           </sizepolicy>
          </property>
          <attribute name="title">
-          <string>Tab 1</string>
+          <string>Strategy Score</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">
@@ -56,7 +56,7 @@
           </sizepolicy>
          </property>
          <attribute name="title">
-          <string>Tab 2</string>
+          <string>Location 1</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_2">
           <item row="0" column="0">
@@ -79,7 +79,7 @@
           </sizepolicy>
          </property>
          <attribute name="title">
-          <string>Page</string>
+          <string>Location 2</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_4">
           <item row="0" column="0">
@@ -96,7 +96,7 @@
         </widget>
         <widget class="QWidget" name="tab_4">
          <attribute name="title">
-          <string>Page</string>
+          <string>Location 3</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="0">
@@ -113,7 +113,7 @@
         </widget>
         <widget class="QWidget" name="tab_5">
          <attribute name="title">
-          <string>Page</string>
+          <string>Location 4</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_6">
           <item row="0" column="0">
@@ -130,7 +130,7 @@
         </widget>
         <widget class="QWidget" name="tab_6">
          <attribute name="title">
-          <string>Page</string>
+          <string>Location 5</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_7">
           <item row="0" column="0">

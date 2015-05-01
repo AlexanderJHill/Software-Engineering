@@ -51,13 +51,15 @@ public:
     */
     int getAgentNum();
     
-	/*! Calculate how crowded a spot is
+
+    list<Agent *> getAgents();
+};
+
+#endif /* defined(____spot__) */	
+/*! Calculate how crowded a spot is
     @pre Give number of agents that decided to go fishing
     @post Percentage of crowd is calculated
     @return Percentage of fisherman going fishing
     */
-    double crowdness(double goFish);
-    list<Agent *> getAgents();
-};
-
-#endif /* defined(____spot__) */
+    
+ double crowdness(double goFish, double maxCap);

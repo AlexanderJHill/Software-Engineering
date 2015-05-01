@@ -40,15 +40,16 @@ int Spot::getAgentNum() {
     return numAgent;
 }
 
-/* @pre: 
- Computes the crowdness, in percentage
- */
-double Spot::crowdness(double goFish) {
-    double crowdness =(goFish/maxcapacity)*100;
-    //cout<<crowdness<<'\n';
-    return crowdness;
-}
 
 list<Agent *> Spot::getAgents(){
     return agents;
+}
+
+/* @pre:
+ Computes the crowdness, in percentage
+ */
+double crowdness(double goFish, double maxCap) {
+    double crowdness =(goFish/maxCap)*100;
+    //cout<<crowdness<<'\n';
+    return crowdness;
 }
