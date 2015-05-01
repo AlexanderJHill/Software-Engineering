@@ -75,13 +75,32 @@ void Drawing::DrawLocationPop(int location){
 
 
     int MaxWidth = 5;
+    int MaxRows = 6;
+    int PersonOffset = 25;
+    if(location == 0){ // the home location can show more rows.
+        MaxRows = 7;
+        MaxWidth = 10;
+        PersonOffset = 45;
+    }
     int popLeft = locationPop[location];
     int col = 0;
     int row = 0;
     while(popLeft){
         for(row = 0;popLeft > 0 && row < MaxWidth; row ++){
             popLeft--;
-            DrawPerson(x-25 + row * 10 ,y-25 + col * 10);
+            if(col < MaxRows){
+                // if there are more items than can be displayed
+                if(col == MaxRows-1 && row == MaxWidth -1 && popLeft > 1){
+                     io = new QGraphicsTextItem;
+                    QFontMetrics fm(io->font());
+                    io->setPos(x-PersonOffset + row * 10 - 8 ,y-25 + col * 10 -5); //  fm.height()+10 + y);
+                    io->setPlainText("+");
+
+                    scene->addItem(io);
+                }else{
+                    DrawPerson(x-PersonOffset + row * 10 ,y-25 + col * 10);
+                }
+            }
         }
         col++;
     }
@@ -100,7 +119,7 @@ double Drawing::getLocationCenterX(int location){
 
 double Drawing::getLocationCenterY(int location){
     double theta = 180;
-    double r = 120;
+    double r = 150;
 
     double theta_step = 360 / NumberOfLocations;
     theta += location * theta_step;
@@ -114,7 +133,7 @@ void Drawing::ReDraw(){
     qDeleteAll(scene->items());
 
     // create the center location
-    scene->addEllipse(-45,-45,90,90,QPen(QBrush(Qt::black),1));
+    scene->addEllipse(-70,-70,140,140,QPen(QBrush(Qt::black),4));
 
     QGraphicsTextItem * io = new QGraphicsTextItem;
 
@@ -125,7 +144,7 @@ void Drawing::ReDraw(){
     io->setFont(font);
 
     QFontMetrics fm(font);
-    io->setPos(-fm.width("Home")/2,-fm.height());
+    io->setPos(-fm.width("Home")/2,-fm.height()-45);
     io->setPlainText("Home");
     scene->addItem(io);
     DrawLocationPop(0);
@@ -140,7 +159,11 @@ void Drawing::ReDraw(){
         io = new QGraphicsTextItem;
         QString s;
         s.sprintf("Location %d",n);
-        io->setPos(-fm.width(s)/2 + x + 10, y - 45 - fm.height() - 5);
+        if(NumberOfLocations > 3 && n == 1)
+            io->setPos(45 + x + 10, y - fm.height() - 5);
+        else
+            io->setPos(-fm.width(s)/2 + x + 10, y - 45 - fm.height() - 5);
+
         io->setPlainText(s);
 
         io->setFont(font);
@@ -154,8 +177,8 @@ void Drawing::ReDraw(){
 
     io = new QGraphicsTextItem;
     QString s;
-    s.sprintf("Day %d",CurrentDay);
-    io->setPos(0,view->height() / 2 - 40);
+    s.sprintf("Day %d",CurrentDay );
+    io->setPos(0,view->height() / 2 - 20);
     io->setPlainText(s);
 
     io->setFont(font);

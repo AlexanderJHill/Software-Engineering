@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // allocate a new Drawing item and initilize it.
     RealTime = new Drawing(ui->graphicsView,drawing_scene);
-    RealTime->SetLocationPop(0,0);
+    RealTime->SetLocationPop(0,50);
     RealTime->SetLocationPop(1,0);
     RealTime->SetLocationPop(2,0);
     RealTime->SetLocationPop(3,0);
@@ -67,19 +67,31 @@ MainWindow::~MainWindow()
 void MainWindow::update(){
     static int tmp = 0;
     int numberOfLoc = ui->locations->value();
+    int popLeft = ui->fishers->value();
     if(tmp < final.length()){
-        RealTime->SetDay(tmp);
-        if(numberOfLoc > 0 && tmp < final.length())
+        RealTime->SetDay(tmp + 1);
+        if(numberOfLoc > 0 && tmp < final.length()){
             RealTime->SetLocationPop(1,final.at(tmp));
-        if(numberOfLoc > 1 && tmp < final2.length())
+            popLeft -= final.at(tmp);
+        }
+        if(numberOfLoc > 1 && tmp < final2.length()){
             RealTime->SetLocationPop(2,final2.at(tmp));
-        if(numberOfLoc > 2 && tmp < final3.length())
+            popLeft -= final.at(tmp);
+        }
+        if(numberOfLoc > 2 && tmp < final3.length()){
             RealTime->SetLocationPop(3,final3.at(tmp));
-        if(numberOfLoc > 3 && tmp < final4.length())
+            popLeft -= final.at(tmp);
+        }
+        if(numberOfLoc > 3 && tmp < final4.length()){
             RealTime->SetLocationPop(4,final4.at(tmp));
-        if(numberOfLoc > 4 && tmp < final5.length())
+            popLeft -= final.at(tmp);
+        }
+        if(numberOfLoc > 4 && tmp < final5.length()){
             RealTime->SetLocationPop(5,final5.at(tmp));
+            popLeft -= final.at(tmp);
+        }
 
+        RealTime->SetLocationPop(0,popLeft);
         tmp++;
     }else{
         tmp = 0;
