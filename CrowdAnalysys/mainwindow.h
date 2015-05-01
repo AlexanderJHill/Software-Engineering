@@ -73,6 +73,7 @@ friend double getSpotppp();
     void startSimulate(int fisherNum, int fishLoc, int fishType, int fishPop, int fishTemp, int runtime);
     void calculateSpot(int fisherNum, int fishLoc );
     void update();
+    void ResetRealTimeDisplay(void);
 
 protected:
     Ui::MainWindow *ui;

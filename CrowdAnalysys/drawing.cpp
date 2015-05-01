@@ -76,7 +76,7 @@ void Drawing::DrawLocationPop(int location){
 
     int MaxWidth = 5;
     int MaxRows = 6;
-    int PersonOffset = 25;
+    int PersonOffset = 22;
     if(location == 0){ // the home location can show more rows.
         MaxRows = 7;
         MaxWidth = 10;
@@ -129,7 +129,6 @@ double Drawing::getLocationCenterY(int location){
 void Drawing::ReDraw(){
     int n = 0;
 
-
     qDeleteAll(scene->items());
 
     // create the center location
@@ -160,9 +159,9 @@ void Drawing::ReDraw(){
         QString s;
         s.sprintf("Location %d",n);
         if(NumberOfLocations > 3 && n == 1)
-            io->setPos(45 + x + 10, y - fm.height() - 5);
+            io->setPos(45 + x, y - fm.height() - 5);
         else
-            io->setPos(-fm.width(s)/2 + x + 10, y - 45 - fm.height() - 5);
+            io->setPos(-fm.width(s)/2 + x + 0, y - 45 - fm.height() - 5);
 
         io->setPlainText(s);
 
@@ -178,7 +177,8 @@ void Drawing::ReDraw(){
     io = new QGraphicsTextItem;
     QString s;
     s.sprintf("Day %d",CurrentDay );
-    io->setPos(0,view->height() / 2 - 20);
+//    io->setPos(0,view->height() / 2 - 20);
+    io->setPos(0,200);
     io->setPlainText(s);
 
     io->setFont(font);

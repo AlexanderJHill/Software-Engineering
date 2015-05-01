@@ -40,20 +40,14 @@ MainWindow::MainWindow(QWidget *parent) :
     drawing_scene->setSceneRect(0,0,ui->graphicsView->width(),ui->graphicsView->height());
     ui->graphicsView->setScene(drawing_scene);
 
-    // allocate a new Drawing item and initilize it.
-    RealTime = new Drawing(ui->graphicsView,drawing_scene);
-    RealTime->SetLocationPop(0,50);
-    RealTime->SetLocationPop(1,0);
-    RealTime->SetLocationPop(2,0);
-    RealTime->SetLocationPop(3,0);
-    RealTime->SetLocationPop(4,0);
-    RealTime->SetLocationPop(5,0);
-    RealTime->SetDay(1);
-    RealTime->SetNumberOfLocations(3);
-
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(update()));
-    timer->start(1000);
+
+    // allocate a new Drawing item and initilize it.
+    RealTime = new Drawing(ui->graphicsView,drawing_scene);
+    ResetRealTimeDisplay();
+
+
 
     log("Welcome to Fisher Sim!");
 
@@ -62,6 +56,19 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::ResetRealTimeDisplay(void){
+    timer->stop();
+    RealTime->SetLocationPop(0,50);
+    RealTime->SetLocationPop(1,0);
+    RealTime->SetLocationPop(2,0);
+    RealTime->SetLocationPop(3,0);
+    RealTime->SetLocationPop(4,0);
+    RealTime->SetLocationPop(5,0);
+    RealTime->SetDay(0);
+    RealTime->SetNumberOfLocations(3);
+    RealTime->ReDraw();
 }
 
 void MainWindow::update(){
@@ -94,6 +101,7 @@ void MainWindow::update(){
         RealTime->SetLocationPop(0,popLeft);
         tmp++;
     }else{
+        timer->stop();
         tmp = 0;
     }
     RealTime->ReDraw();
@@ -249,6 +257,7 @@ void MainWindow::on_simulateButton_clicked()
     spots.clear();
 
     startSimulate(fisherNum, fishLoc, fishType, fishPop, fishTemp, runtime);
+    timer->start(1000); // start the timer to display the RealTime view
 
 }
 
