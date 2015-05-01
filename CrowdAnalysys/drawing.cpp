@@ -67,6 +67,25 @@ void Drawing::DrawLocationPop(int location){
     io->setPlainText(s);
 
     scene->addItem(io);
+
+    // draw the requiered number of people
+    //           MaxWidth
+    // +------------------------+
+    // + p1 | p2 | p3 | p4 | p5 |
+
+
+    int MaxWidth = 5;
+    int popLeft = locationPop[location];
+    int col = 0;
+    int row = 0;
+    while(popLeft){
+        for(row = 0;popLeft > 0 && row < MaxWidth; row ++){
+            popLeft--;
+            DrawPerson(x-25 + row * 10 ,y-25 + col * 10);
+        }
+        col++;
+    }
+
 }
 
 
@@ -126,7 +145,6 @@ void Drawing::ReDraw(){
 
         io->setFont(font);
 
-        DrawPerson(x,y);
         scene->addItem(io);
 
         DrawLocationPop(n);
