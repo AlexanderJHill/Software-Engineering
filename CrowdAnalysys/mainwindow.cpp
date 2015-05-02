@@ -205,6 +205,11 @@ void MainWindow::on_reportButton_clicked()
 void MainWindow::on_simulateButton_clicked()
 {
 
+    final.clear();
+    final2.clear();
+    final3.clear();
+    final4.clear();
+    final5.clear();
     simulated = true;
     fisherNum = ui->fishers->value();
     fishLoc = ui->locations->value();
