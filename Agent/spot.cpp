@@ -1,3 +1,4 @@
+//Created and edited by Orielle Joy Yu
 #include <iostream>
 #include <list>
 #include "../Agent/agent.h"
@@ -39,7 +40,9 @@ void Spot::setAgentNum(int fisherNum){
 int Spot::getAgentNum() {
     return numAgent;
 }
-
+/*
+Returns a list of agents
+*/
 
 list<Agent *> Spot::getAgents(){
     return agents;
