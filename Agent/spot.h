@@ -1,7 +1,6 @@
 //! \file spot.h 
 //! \brief Used to create a spot and calculate how crowded a spot is.
 
-//! \brief Created and edited by Orielle Joy Yu
 #ifndef ____spot__
 #define ____spot__
 
