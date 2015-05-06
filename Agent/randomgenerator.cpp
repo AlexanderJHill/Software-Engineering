@@ -1,3 +1,4 @@
+//Created and edited by Ameer Fiqri Barahim
 #include "randomgenerator.h"
 #include <chrono>
 #include <random>
