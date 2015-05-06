@@ -1,3 +1,4 @@
+//Created and edited by Ameer Fiqri Barahim
 #include "agent.h"
 #include "randomgenerator.h"
 
