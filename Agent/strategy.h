@@ -1,4 +1,3 @@
-//Created and edited by Ameer Fiqri Barahim
 #ifndef ____strategy__
 #define ____strategy__
 
