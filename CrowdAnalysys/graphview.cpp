@@ -11,6 +11,7 @@
 // graphview made by
 // David Lazaar
 // Orielle Joy Yu
+// Vicent Videl Dura
 // and the creator of Qcustomplot, Emanuel Eichhammer
 
 Graphview::Graphview(QWidget *parent) :
