@@ -1,3 +1,4 @@
+//Created and edited by Ameer Fiqri Barahim
 #include "strategy.h"
 #include "randomgenerator.h"
 #include<string>
