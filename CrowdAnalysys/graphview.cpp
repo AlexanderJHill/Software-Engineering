@@ -8,6 +8,11 @@
 #include "../Agent/spot.h"
 #include <QVector>
 
+// graphview made by
+// David Lazaar
+// Orielle Joy Yu
+// and the creator of Qcustomplot, Emanuel Eichhammer
+
 Graphview::Graphview(QWidget *parent) :
 QMainWindow(parent),
 ui(new Ui::Graphview)
@@ -326,7 +331,7 @@ void Graphview::on_actionInsert_Plot_triggered()
   ui->textEdit->setTextCursor(cursor);
 }
 
-void Graphview::on_actionSave_Document_triggered()
+void Graphview::on_actionSave_Document_triggered()  // save as a pdf (and see other pdfs in that directory in the file dialog)
 {
   QString filter = "PDF (*.pdf)";
   QString fileName = QFileDialog::getSaveFileName(this, "Save document...", qApp->applicationDirPath(), filter);

@@ -1,6 +1,9 @@
 #include "drawing.h"
 #include <QtAlgorithms>
 
+// drawing made by
+// Alexander Hill
+
 #define PI 3.14159265
 
 

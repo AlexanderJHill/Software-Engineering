@@ -1,5 +1,8 @@
 #include "dlocation.h"
 
+// dlocation made by
+// Alexander Hill
+
 Dlocation::Dlocation(QWidget *parent)
     : QWidget(parent)
 {

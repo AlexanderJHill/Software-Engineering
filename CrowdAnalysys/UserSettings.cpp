@@ -1,5 +1,8 @@
 #include "UserSettings.h"
 
+// UserSettings made by
+// Vincent Vindel Dura
+
 UserSettings::UserSettings()
 {
    fisherNum = 0;

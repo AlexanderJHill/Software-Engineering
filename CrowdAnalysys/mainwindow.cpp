@@ -12,7 +12,9 @@
 
 using namespace std;
 
-
+// mainwindow made by
+// David Lazaar
+// Alexander Hill
 
 
 QVector<double> final;
@@ -32,8 +34,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-    ui->plainTextEdit->setReadOnly(true);
+    ui->setupUi(this);                      // sets up the ui described in mainwindow.ui
+    ui->plainTextEdit->setReadOnly(true);   // makes the log read only
 
     // initilize the drawing scene
     drawing_scene = new QGraphicsScene;
@@ -108,10 +110,12 @@ void MainWindow::update(){
 
 }
 
-void MainWindow::log(const QString& text){
-    ui->plainTextEdit->appendPlainText(text); // Adds the message to the widget
+void MainWindow::log(const QString& text){      // This function can print to the log
+    ui->plainTextEdit->appendPlainText(text);   // Adds the message to the widget
     ui->plainTextEdit->verticalScrollBar()->setValue(ui->plainTextEdit->verticalScrollBar()->maximum()); // Scrolls to the bottom
 }
+
+// the functions below handle user input on our settings ui elements
 
 void MainWindow::on_fishers_valueChanged(int value)
 {
@@ -189,10 +193,10 @@ void MainWindow::on_reportButton_clicked()
 {
 
     if (simulated == false){
-        log("ERROR - run a simulation first");
+        log("ERROR - run a simulation first");  // if a simulation has not been run first, we cannot generate reports
         return;
     }
-    Graphview *graphview = new Graphview();
+    Graphview *graphview = new Graphview();     // instantiate graphview
     graphview->show();
     graphview->printSettings(settings);
     final.clear();
@@ -210,8 +214,11 @@ void MainWindow::on_simulateButton_clicked()
     final3.clear();
     final4.clear();
     final5.clear();
-    simulated = true;
-    fisherNum = ui->fishers->value();
+
+    simulated = true;                       // a simulation has been run
+
+
+    fisherNum = ui->fishers->value();       // these assignments get our user input from the ui elements
     fishLoc = ui->locations->value();
     fishType = ui->fishtypes->value();
     fishPop = ui->fishpop->value();
@@ -226,14 +233,14 @@ void MainWindow::on_simulateButton_clicked()
         fishTemp = 3;
 
 
-    QString fishers = QString::number(getfisherNum());
+    QString fishers = QString::number(getfisherNum());     // convert to strings for printing
     QString locations = QString::number(getfishLoc());
     QString fishpop = QString::number(getfishPop());
     QString types = QString::number(getfishType());
     QString runtimes = QString::number(getRuntime());
 
     QString w;
-    switch(fishTemp){
+    switch(fishTemp){   // resolve weather string
     case 0:
         w = "Sunny";
         break;
@@ -249,7 +256,7 @@ void MainWindow::on_simulateButton_clicked()
     }
 
 
-    QString a = ("Fishers\t" + fishers + "\nLocations\t" + locations + "\nFish Population\t"
+    QString a = ("Fishers\t" + fishers + "\nLocations\t" + locations + "\nFish Population\t"        // prepare a settings string to be set to graphview
             + fishpop + "\nFish Types\t" + types + "\nRuntime\t" + runtimes + "\nWeather\t" + w);
     settings = ("Simulation settings:\n" + a + "\n");
     log ("\nSimulation started with the following settings...\n" + a);
