@@ -1,3 +1,4 @@
+//Created and edited by Ameer Fiqri Barahim
 #ifndef _RANDOM_GENERATOR
 #define _RANDOM_GENERATOR
 
