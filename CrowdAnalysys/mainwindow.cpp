@@ -128,7 +128,6 @@ void MainWindow::on_fishers_valueChanged(int value)
     RealTime->ReDraw();
 }
 
-
 void MainWindow::on_locations_valueChanged(int value)
 {
     QString s = QString::number(value);
