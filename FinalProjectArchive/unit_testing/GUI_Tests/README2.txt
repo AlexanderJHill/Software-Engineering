@@ -18,4 +18,4 @@ qmake -project "QT += testlib widgets"
 qmake
 nmake
 cd release
-2_unit_testing.exe
+GUI_Tests.exe
