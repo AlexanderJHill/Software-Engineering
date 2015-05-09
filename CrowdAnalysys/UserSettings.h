@@ -1,3 +1,4 @@
+#vicent X. vindel dura
 #ifndef _USERSETTINGS_H_
 #define _USERSETTINGS_H_
 //! \file usersettings.h 
