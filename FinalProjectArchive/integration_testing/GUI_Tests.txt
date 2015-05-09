@@ -1,0 +1,17 @@
+Integration tests on the GUI were focused on elements and objects that depended on other objects in some form. These included checking that: 
+
+- state change in a slider correctly modifies the value in a corresponding text box. 
+
+- state change in an element could correctly print text to the log.
+
+- button presses triggered their corresponding functions in Qt’s ‘signals’ and ‘slots’ paradigm, with objects like buttons being able to emit signals that run a function (‘slot’).
+
+- button groupings behaved properly, i.e. only one radio button can be selected at a time, and access to them is controlled by the enable checkbox.
+
+- the report generation button shows the report generation window.
+
+- the plot objects were correctly contained and displayed in the tabbed view.
+
+- the document could be saved as a PDF properly.
+
+If unable to confirm correct behavior visually, text was written to the log to confirm events like button presses. These tests are present in the accompanying demo1 code.
