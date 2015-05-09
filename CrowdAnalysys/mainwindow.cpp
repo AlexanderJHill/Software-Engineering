@@ -13,12 +13,13 @@
 using namespace std;
 
 // mainwindow made by
-// David Lazaar
-// Alexander Hill
-//Edited by
-//Ameer Fiqri Barahim
-// Orielle Joy Yu
-// Vicent Videl Dura
+//      David Lazaar
+//      Alexander Hill
+//
+// Edited by
+//      Ameer Fiqri Barahim
+//      Orielle Joy Yu
+//      Vicent Videl Dura
 
 QVector<double> final;
 QVector<double> final2;

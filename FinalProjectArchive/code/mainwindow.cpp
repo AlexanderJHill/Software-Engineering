@@ -1,9 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "../Agent/agent.h"
-#include "../Agent/strategy.h"
-#include "../Agent/randomgenerator.h"
-#include "../Agent/spot.h"
+#include "agent.h"
+#include "strategy.h"
+#include "randomgenerator.h"
+#include "spot.h"
 #include <QtWidgets>
 #include <iostream>
 #include <stdio.h>
