@@ -9,10 +9,10 @@
 
 Folder descriptions:
 
-	/code -- 
-	/docs 
-	/tests
-
+	/code -- Contains the Qt project file and project code.
+	/docs -- Contains user and technical documentation as well as the reports and demo presentations. Also includes the marketing brochure.
+	/tests -- Contains the integration and unit tests as well as instructions on how to run them.
+	/Fisher Sim (standalone version) -- Contains a runnable version of the program.
 
 How to use:
 
